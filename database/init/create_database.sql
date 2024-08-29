@@ -22,6 +22,8 @@ CREATE TABLE IF NOT EXISTS cop4331_contact_manager.users
     username VARCHAR(255) NOT NULL,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255),
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    last_logged_in TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     password VARCHAR(255) NOT NULL, -- Secure hashed password
     CONSTRAINT unique_users_username UNIQUE (username),
     PRIMARY KEY (id)
