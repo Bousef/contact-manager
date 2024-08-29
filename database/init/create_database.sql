@@ -31,10 +31,14 @@ CREATE TABLE IF NOT EXISTS cop4331_contact_manager.users
 CREATE TABLE IF NOT EXISTS cop4331_contact_manager.contacts 
 (
     id INT AUTO_INCREMENT,
+    id_user INT NOT NULL,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     phone_number VARCHAR(255),
     id_address INT,
+    CONSTRAINT fk_contacts_id_user FOREIGN KEY (id_user) 
+        REFERENCES cop4331_contact_manager.users(id) 
+        ON DELETE CASCADE,
     CONSTRAINT fk_contacts_id_address FOREIGN KEY (id_address) 
         REFERENCES cop4331_contact_manager.addresses(id) 
         ON DELETE SET NULL,
