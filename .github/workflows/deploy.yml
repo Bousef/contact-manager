@@ -14,12 +14,13 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set up SSH
+      id: ssh-agent  # Add an ID to reference this step
       uses: webfactory/ssh-agent@v0.5.3
       with:
-        ssh-private-key: ${{ vars.BITNAMI_SSH_PRIVATE_KEY }}
+        ssh-private-key: ${{ vars.SSH_PRIVATE_KEY }}
 
     - name: Copy 'website' directory to the 'htdocs' directory
       run: |
-        rsync -avz ./website/ ${{ secrets.BITNAMI_SSH_USERNAME }}@${{ vars.BITNAMI_SSH_HOST }}:${{ vars.BITNAMI_ROOT_DIRECTORY }}
+        rsync -avz ./website/ ${{ vars.SSH_USERNAME }}@${{ vars.SSH_HOST }}:${{ vars.BITNAMI_HT_DOCS_DIRECTORY }}
       env:
         SSH_AUTH_SOCK: ${{ steps.ssh-agent.outputs.ssh-auth-sock }}
