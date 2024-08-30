@@ -1,0 +1,25 @@
+name: Deploy to Bitnami Server
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment on pushes to the 'main' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.BITNAMI_SSH_PRIVATE_KEY }}
+
+    - name: Copy 'website' directory to the 'htdocs' directory
+      run: |
+        rsync -avz ./website/ ${{ secrets.BITNAMI_SSH_USERNAME }}@${{ vars.BITNAMI_SSH_HOST }}:${{ vars.BITNAMI_ROOT_DIRECTORY }}
+      env:
+        SSH_AUTH_SOCK: ${{ steps.ssh-agent.outputs.ssh-auth-sock }}
