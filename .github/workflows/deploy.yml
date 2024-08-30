@@ -1,9 +1,7 @@
 name: Deploy to Bitnami Server
 
 on:
-  push:
-    branches:
-      - main  # Trigger deployment on pushes to the 'main' branch
+  workflow_dispatch: # Trigger deployment manually
 
 jobs:
   deploy:
