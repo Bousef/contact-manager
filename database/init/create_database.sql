@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS cop4331_contact_manager.addresses
     city VARCHAR(255) NOT NULL,
     state VARCHAR(255) NOT NULL,
     zip_code VARCHAR(255) NOT NULL,
+    status ENUM('active', 'pending') DEFAULT 'pending' NOT NULL,
     CONSTRAINT unique_addresses UNIQUE (address_line_01, address_line_02, city, state, zip_code),
     PRIMARY KEY (id)
 );
