@@ -2,23 +2,62 @@ name: Deploy to Bitnami Server
 
 on:
   workflow_dispatch: # Trigger deployment manually
+  push:
+    branches:
+      - main
+    paths:
+      - 'Frontend/**' # Trigger deployment on changes to the Frontend folder
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v4.1.7
 
-    - name: Set up SSH
-      id: ssh-agent  # Add an ID to reference this step
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ vars.SSH_PRIVATE_KEY }}
-
-    - name: Copy 'website' directory to the 'htdocs' directory
+    - name: Verify Frontend directory
       run: |
-        rsync -avz ./website/ ${{ vars.SSH_USERNAME }}@${{ vars.SSH_HOST }}:${{ vars.BITNAMI_HT_DOCS_DIRECTORY }}
-      env:
-        SSH_AUTH_SOCK: ${{ steps.ssh-agent.outputs.ssh-auth-sock }}
+        if [ -d "${{ github.workspace }}/Frontend" ]; then
+          echo "Frontend directory exists."
+        else
+          echo "Frontend directory does not exist."
+          exit 1
+        fi
+
+    - name: Remove existing files on remote server
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd ${{ vars.BITNAMI_HT_DOCS_DIRECTORY }}
+          if [ "$(realpath $(pwd -P))" = "$(realpath ${{ vars.BITNAMI_HT_DOCS_DIRECTORY }})" ]; then
+            echo "Correct directory, proceeding with deletion"
+            rm -rf *
+          else
+            echo "Failed to change directory, aborting"
+            exit 1
+          fi
+
+    - name: Add remote server to known hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+    - name: Transfer files using scp
+      run: |
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/private_key
+        chmod 600 /tmp/private_key
+        scp -r -i /tmp/private_key ${{ github.workspace }}/Frontend/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ vars.BITNAMI_HT_DOCS_DIRECTORY }}
+        rm /tmp/private_key
+
+    - name: Restart Apache on remote server
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          sudo /opt/bitnami/ctlscript.sh restart apache
