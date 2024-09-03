@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+
+    <div>
+        <h2>Login page</h2>
+        <br>
+        <br>
+        <h3>User Login</h3>
+        <form action="login.php" method="post">
+            <p>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="userame" required>
+            </p>
+            <p>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </p>
+            <p>
+                <a href="forgotPassword.php">Forgot password?</a>
+            </p>
+            <p>
+                <input type="submit" value="Login">
+                <input type="button" value="Create account" onclick="location.href='register.php';">
+            </p>
+        </form>
+    </div>
+
+</body>
+</html>
