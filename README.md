@@ -6,3 +6,4 @@ COP4331 Processes of Object Oriented Software Design Project 1
 - Gary Orsargos (garyorsargos)
 - Yousef Osman  (Bousef)
 - Gabriel Schiavo (gschiavodev)
+- Jose Luna (.torut)
