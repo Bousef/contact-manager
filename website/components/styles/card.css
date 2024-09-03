@@ -1,0 +1,48 @@
+.contactWrapper {
+  border-radius: 30px;
+  border: 0.2px solid #000;
+  background: #D7DEE9;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+
+  width: 350px;
+  height: 220px;
+
+  margin: 10px;
+}
+
+.name {
+  color: #000;
+font-family: "Archivo Narrow";
+font-size: 30px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.number {
+  color: #000;
+font-family: "Archivo Narrow";
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.email {
+  color: #000;
+font-family: "Archivo Narrow";
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.company {
+  color: #000;
+font-family: "Archivo Narrow";
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
