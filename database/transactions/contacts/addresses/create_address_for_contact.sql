@@ -9,7 +9,7 @@ CREATE PROCEDURE create_address_for_contact(
     IN in_zip_code VARCHAR(255)
 )
 BEGIN
-    DECLARE address_id INT;
+    DECLARE new_address_id INT DEFAULT NULL;
 
     -- Error handler
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -29,46 +29,46 @@ BEGIN
     -- Start transaction
     START TRANSACTION;
 
-    -- Check if the address already exists (case-insensitive)
-    SELECT id INTO address_id
+    -- Check if the address already exists (case-insensitive) with row lock
+    SELECT id INTO new_address_id
     FROM cop4331_contact_manager.addresses
     WHERE LOWER(address_line_01) = LOWER(in_address_line_01)
         AND LOWER(address_line_02) = LOWER(in_address_line_02)
         AND LOWER(city) = LOWER(in_city)
         AND LOWER(state) = LOWER(in_state)
         AND LOWER(zip_code) = LOWER(in_zip_code)
-        AND status = 'active';
+    FOR UPDATE;
 
-    IF address_id IS NOT NULL THEN
+    IF new_address_id IS NOT NULL THEN
 
-        -- Address exists, update its status to 'pending'
-        UPDATE cop4331_contact_manager.addresses
-        SET status = 'pending'
-        WHERE id = address_id;
+        -- Address exists, use the existing address ID
+        UPDATE cop4331_contact_manager.contacts
+        SET id_address = new_address_id
+        WHERE id = in_contact_id;
 
     ELSE
 
-        -- Address does not exist, insert a new address
-        INSERT INTO cop4331_contact_manager.addresses (address_line_01, address_line_02, city, state, zip_code, status)
-        VALUES (in_address_line_01, in_address_line_02, in_city, in_state, in_zip_code, 'pending');
-        -- Get the ID of the newly inserted address
-        SET address_id = LAST_INSERT_ID();
+        -- Address does not exist, create a new address
+        INSERT INTO cop4331_contact_manager.addresses (
+            address_line_01, address_line_02, city, state, zip_code
+        ) VALUES (
+            in_address_line_01, in_address_line_02, in_city, in_state, in_zip_code
+        );
+
+        -- Get the new address ID
+        SET new_address_id = LAST_INSERT_ID();
+
+        -- Assign the new address to the contact
+        UPDATE cop4331_contact_manager.contacts
+        SET id_address = new_address_id
+        WHERE id = in_contact_id;
+
     END IF;
-
-    -- Update the contact with the address ID
-    UPDATE cop4331_contact_manager.contacts
-    SET id_address = address_id
-    WHERE id = in_contact_id;
-
-    -- Update the status of the address to 'active'
-    UPDATE cop4331_contact_manager.addresses
-    SET status = 'active'
-    WHERE id = address_id;
 
     -- Commit the transaction
     COMMIT;
 
-    -- Return exit_status as a boolean-like value
+    -- Return success as a boolean-like value
     SELECT TRUE AS exit_status;
 
 END //

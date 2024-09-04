@@ -9,13 +9,14 @@ CREATE PROCEDURE update_address_for_contact(
     IN in_zip_code VARCHAR(255)
 )
 BEGIN
-    DECLARE existing_address_id INT;
-    DECLARE new_address_id INT;
+    DECLARE new_address_id INT DEFAULT NULL;
+    DECLARE current_address_id INT;
     DECLARE current_address_line_01 VARCHAR(255);
-    DECLARE current_address_line_02 VARCHAR(255);
+    DECLARE current_address_line_02 VARCHAR(255) DEFAULT "";
     DECLARE current_city VARCHAR(255);
     DECLARE current_state VARCHAR(255);
     DECLARE current_zip_code VARCHAR(255);
+    DECLARE address_count INT DEFAULT 0;
 
     -- Error handler
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -29,22 +30,49 @@ BEGIN
 
         -- Exit the procedure after rollback
         RETURN;
-
+        
     END;
 
     -- Start transaction
     START TRANSACTION;
 
-    -- Get the current address ID for the given contact ID
-    SELECT id_address INTO existing_address_id
+    -- Get the current address ID for the given contact ID and lock the row
+    SELECT id_address INTO current_address_id
     FROM cop4331_contact_manager.contacts
-    WHERE id = in_contact_id;
+    WHERE id = in_contact_id
+    FOR UPDATE;
 
-    -- Get the current address details
+    -- Check if current_address_id is NULL
+    IF current_address_id IS NULL THEN
+
+        -- Call create_address_for_contact procedure
+        CALL create_address_for_contact(
+            in_contact_id,
+            in_address_line_01,
+            in_address_line_02,
+            in_city,
+            in_state,
+            in_zip_code
+        );
+
+        -- Capture the exit status from create_address_for_contact
+        SELECT exit_status INTO create_exit_status;
+
+        -- Commit the transaction
+        COMMIT;
+
+        -- Return the exit status from create_address_for_contact
+        SELECT create_exit_status AS exit_status;
+        RETURN;
+
+    END IF;
+
+    -- Get the current address details and lock the row
     SELECT address_line_01, address_line_02, city, state, zip_code
     INTO current_address_line_01, current_address_line_02, current_city, current_state, current_zip_code
     FROM cop4331_contact_manager.addresses
-    WHERE id = existing_address_id;
+    WHERE id = current_address_id
+    FOR UPDATE;
 
     -- Use existing values if input is NULL
     SET in_address_line_01 = COALESCE(in_address_line_01, current_address_line_01);
@@ -61,27 +89,61 @@ BEGIN
         AND LOWER(city) = LOWER(in_city)
         AND LOWER(state) = LOWER(in_state)
         AND LOWER(zip_code) = LOWER(in_zip_code)
-        AND status = 'active';
+    LIMIT 1
+    FOR UPDATE;
+
+    -- Count the number of contacts using the current address
+    SELECT COUNT(*) INTO address_count
+    FROM cop4331_contact_manager.contacts
+    WHERE id_address = current_address_id
+    FOR UPDATE;
 
     IF new_address_id IS NOT NULL THEN
-        -- New address exists, delete the current address
-        DELETE FROM cop4331_contact_manager.addresses
-        WHERE id = existing_address_id;
+    
+        -- Check if the current address is shared by other contacts
+        IF address_count = 1 THEN
+
+            -- Current address is not shared, delete the current address
+            DELETE FROM cop4331_contact_manager.addresses
+            WHERE id = current_address_id;
+
+        END IF;
 
         -- Update the contact to use the new address ID
         UPDATE cop4331_contact_manager.contacts
         SET id_address = new_address_id
         WHERE id = in_contact_id;
+
     ELSE
-        -- New address does not exist, update the current address
-        UPDATE cop4331_contact_manager.addresses
-        SET address_line_01 = in_address_line_01,
-            address_line_02 = in_address_line_02,
-            city = in_city,
-            state = in_state,
-            zip_code = in_zip_code,
-            status = 'active'
-        WHERE id = existing_address_id;
+
+        -- Check if the current address is shared by other contacts
+        IF address_count > 1 THEN
+
+            -- Current address is shared, create a new address
+            INSERT INTO cop4331_contact_manager.addresses (address_line_01, address_line_02, city, state, zip_code)
+            VALUES (in_address_line_01, in_address_line_02, in_city, in_state, in_zip_code);
+
+            -- Get the new address ID
+            SET new_address_id = LAST_INSERT_ID();
+
+            -- Update the contact to use the new address ID
+            UPDATE cop4331_contact_manager.contacts
+            SET id_address = new_address_id
+            WHERE id = in_contact_id;
+
+        ELSE
+        
+            -- Current address is not shared, update the existing address
+            UPDATE cop4331_contact_manager.addresses
+            SET address_line_01 = in_address_line_01,
+                address_line_02 = in_address_line_02,
+                city = in_city,
+                state = in_state,
+                zip_code = in_zip_code
+            WHERE id = current_address_id;
+
+        END IF;
+
     END IF;
 
     -- Commit the transaction
@@ -91,5 +153,4 @@ BEGIN
     SELECT TRUE AS exit_status;
 
 END //
-
 DELIMITER ;
