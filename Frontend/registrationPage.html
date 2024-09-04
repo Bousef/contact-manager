@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Contact Manager</title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1 id="title">Registration</h1>
+    </header>
+    <main>
+        <section id="register">
+            <h2 id="function">Register</h2>
+            <form id="registerForm" method="POST" action="register.php">
+                <label id="param" for="username">Username:</label>
+                <input type="text" id="username" name="username"> <br>
+
+                <label id="param" for="email">Email:</label>
+                <input type="text" id="email" name="email"> <br>
+
+                <label id="param" for="password">Password:</label>
+                <input type="password" id="password" name="password"> <br><br>
+
+                <button id="button" type="submit">Register</button>
+            </form>
+            <p id="param"> Already have an account? <a href="index.html">Login here</a></p>
+        </section>
+    </main>
+</body>
+</html>

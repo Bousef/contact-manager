@@ -1,0 +1,44 @@
+body{
+    background:linear-gradient(cornflowerblue,aquamarine);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#title
+{
+    color:black;
+    font-size: 40px;
+    width: 100%;
+    margin-left: 50%;
+    font-family: 'consolas', sans-serif;
+    
+}
+
+#function{
+    color:aquamarine;
+    font-size: 20px;
+    width: 100%;
+    margin: 2% 5%;
+    text-align: center;
+    font-family: 'consolas', sans-serif;
+}
+
+#searchBar{
+    font-size: 20px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+
+    text-align: center;
+    font-family: 'consolas', sans-serif;
+    
+}
+
+#button{
+    margin-left: 50%;
+   
+}
+
+#param{
+    margin-left: 50%;
+}
