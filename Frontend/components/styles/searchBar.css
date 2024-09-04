@@ -5,12 +5,12 @@
 
 .searchInput {
   display: inline-block;
-  width: 85%;
+  width: 90%;
   margin: 2px;
 }
 
 .searchSubmitBtn {
   display: inline-block;
-  width: 10%;
+  width: 5%;
   margin: 2px;
 }
