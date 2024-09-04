@@ -3,29 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
+    <link href="css/style.css" rel="stylesheet">
 </head>
-<body>
+<body id="body">
 
     <div>
-        <h2>Login page</h2>
+        <h2 id="title">Login page Contact Manager</h2>
         <br>
         <br>
-        <h3>User Login</h3>
-        <form action="login.php" method="post">
+        <h3 id="function">User Login</h3>
+       <!-- <form action="login.php" method="post"> -->
             <p>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="userame" required>
+                <label id="param" for="username">Username:</label>
+                <input type="text" id="username" name="Username">
             </p>
             <p>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <label id="param" for="password">Password:</label>
+                <input type="password" id="password" name="Password">
             </p>
             <p>
-                <a href="forgotPassword.php">Forgot password?</a>
+                <a id="button" href="forgotPassword.php">Forgot password?</a>
             </p>
             <p>
-                <input type="submit" value="Login">
-                <input type="button" value="Create account" onclick="location.href='register.php';">
+                <input id="button" type="submit" value="Login" onclick="doLogin()">
+                <span id="loginResult"></span>
+                 <!--<input type="button" value="Create account" onclick="location.href='register.php';"> -->
+                <input id="button" type="button" value="Create Account" onclick="doRegister()">
             </p>
         </form>
     </div>

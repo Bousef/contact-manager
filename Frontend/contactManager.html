@@ -1,0 +1,33 @@
+<!--Technically this is our index.html. We can rename/replace current one later-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Contact Manager</title>
+    <link href="css/style.css" rel="stylesheet">
+    <!-- css needs to be added -->
+</head>
+<body>
+    <div class ="container">
+        <header class="header">
+            <h1 id="title">Contact Manager</h3>
+            <input id="searchBar" type="text" contactName="contactName" placeholder="Search for Contact...">
+            <button id="button" type="button" id="searchContactName" class="buttons" onclick="searchContactName();"> Search Button</button><br />
+	        <span id="contactSearchResult"></span>
+	        <p id="contactList">
+           <!--<input type="submit" name="search" value="Search"> -->
+        </header>
+
+    </div class="contactList">
+  
+        <div class="contactCard">
+            <h2>Contact Name:</h2>
+            <p>Contact Phone Number</p>
+            <p>Contact Email</p>
+            <p>Contact Company</p>
+            <p>Contact Company Address</p>
+        </div>
+    
+</body>
+</html>
