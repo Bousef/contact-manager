@@ -1,0 +1,35 @@
+body {
+  margin: 0px;
+}
+
+.navBarWrapper {
+  display: flex;
+  background: #8FB1E2;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.siteHeader {
+  display: inline-block; 
+  height: 43px;
+  justify-content: center;
+  flex-shrink: 0;
+
+  margin: 5px;
+}
+
+.profileBtn {
+  display: inline-block;
+  border-radius: 30px;
+  border: 0.2px solid #000;
+  background: #8FB1E2;
+
+  width: 55px;
+  height: 55px;
+  margin: 5px;
+}
+
+.profileBtn:hover {
+  background: #5E94E0;
+}

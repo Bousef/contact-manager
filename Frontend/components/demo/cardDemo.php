@@ -15,9 +15,12 @@
   ?>
   <link href="../styles/card.css" rel="stylesheet">
   <link href="../styles/searchBar.css" rel="stylesheet">
+  <link href="../styles/navBar.css" rel="stylesheet">
+
 
   <body>
     <?php
+      include '../navBar.php';
       include '../searchBar.php';
     ?>
   <div class = 'cardGrid'>
