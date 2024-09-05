@@ -7,26 +7,34 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1 id="title">Registration</h1>
-    </header>
-    <main>
+    <div class="login-title">
+        <h1>Registration</h1>
+    </div>
+    <div class="login-form">
         <section id="register">
-            <h2 id="function">Register</h2>
             <form id="registerForm" method="POST" action="register.php">
-                <label id="param" for="username">Username:</label>
-                <input type="text" id="username" name="username"> <br>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username">
+                </div>
 
-                <label id="param" for="email">Email:</label>
-                <input type="text" id="email" name="email"> <br>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email">
+                </div>
 
-                <label id="param" for="password">Password:</label>
-                <input type="password" id="password" name="password"> <br><br>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password">
+                </div>
 
-                <button id="button" type="submit">Register</button>
+                <div class="form-group">
+                    <button type="submit">Register</button>
+                </div>
             </form>
-            <p id="param"> Already have an account? <a href="index.html">Login here</a></p>
+            <p>Already have an account? <a href="index.html">Login here</a></p>
         </section>
-    </main>
+    </div>
+        
 </body>
 </html>
