@@ -17,9 +17,9 @@ BEGIN
            a.city,
            a.state,
            a.zip_code
-    FROM contacts c
-    LEFT JOIN addresses a ON c.id_address = a.id
-    INNER JOIN users_contacts uc ON uc.id_contact = c.id
+    FROM cop4331_contact_manager.contacts c
+    LEFT JOIN cop4331_contact_manager.addresses a ON c.id_address = a.id
+    INNER JOIN cop4331_contact_manager.users_contacts uc ON uc.id_contact = c.id
     WHERE c.id = in_contact_id AND uc.id_user = in_user_id;
 
 END //

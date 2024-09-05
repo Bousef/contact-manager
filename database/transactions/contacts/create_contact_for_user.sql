@@ -29,14 +29,14 @@ BEGIN
     START TRANSACTION;
 
     -- Insert new contact
-    INSERT INTO contacts (id_user, first_name, last_name, phone_number)
+    INSERT INTO cop4331_contact_manager.contacts (id_user, first_name, last_name, phone_number)
     VALUES (in_user_id, in_first_name, in_last_name, in_phone_number);
 
     -- Get the last inserted ID
     SET contact_id = LAST_INSERT_ID();
 
     -- Insert into users_contacts table
-    INSERT INTO users_contacts (id_user, id_contact)
+    INSERT INTO cop4331_contact_manager.users_contacts (id_user, id_contact)
     VALUES (in_user_id, contact_id);
 
     -- Commit the transaction

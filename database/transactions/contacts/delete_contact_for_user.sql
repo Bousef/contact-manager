@@ -11,6 +11,7 @@ BEGIN
     -- Error handler
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
+
         -- Rollback the transaction in case of an error
         ROLLBACK;
 
@@ -19,6 +20,7 @@ BEGIN
 
         -- Exit the procedure after rollback
         RETURN;
+
     END;
 
     -- Start transaction
@@ -26,24 +28,17 @@ BEGIN
 
     -- Get the address ID of the contact
     SELECT address_id INTO current_address_id
-    FROM contacts
+    FROM cop4331_contact_manager.contacts
     WHERE id = in_contact_id
     FOR UPDATE;
 
     -- Delete from users_contacts table
-    DELETE FROM users_contacts
+    DELETE FROM cop4331_contact_manager.users_contacts
     WHERE id_user = in_user_id AND id_contact = in_contact_id;
 
     -- Delete from contacts table
-    DELETE FROM contacts
+    DELETE FROM cop4331_contact_manager.contacts
     WHERE id = in_contact_id;
-
-    -- Delete the contact's address if it is not used by any other contacts
-    IF current_address_id IS NOT NULL THEN
-        DELETE FROM addresses
-        WHERE id = current_address_id
-        AND NOT EXISTS (SELECT 1 FROM contacts WHERE address_id = current_address_id);
-    END IF;
 
     -- Commit the transaction
     COMMIT;

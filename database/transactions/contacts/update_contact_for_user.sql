@@ -31,12 +31,12 @@ BEGIN
 
     -- Get the current contact data
     SELECT first_name, last_name, phone_number INTO current_first_name, current_last_name, current_phone_number
-    FROM contacts
+    FROM cop4331_contact_manager.contacts
     WHERE id = in_contact_id
     FOR UPDATE;
 
     -- Update the contact data, using current data if input is NULL
-    UPDATE contacts
+    UPDATE cop4331_contact_manager.contacts
     SET first_name = COALESCE(in_first_name, current_first_name),
         last_name = COALESCE(in_last_name, current_last_name),
         phone_number = COALESCE(in_phone_number, current_phone_number)
