@@ -6,43 +6,75 @@
   padding: 20px;
 
   width: 325px;
-  height: 220px;
+  height: 250px;
 
   margin: 10px;
+  margin-bottom: 5px;
+  padding-top: 5px;
 }
 
 .name {
   color: #000;
-font-family: "Archivo Narrow";
-font-size: 30px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  font-family: "Archivo Narrow";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 0px;
 }
 
 .number {
   color: #000;
-font-family: "Archivo Narrow";
-font-size: 20px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  font-family: "Archivo Narrow";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 0px;
+
 }
 
 .email {
   color: #000;
-font-family: "Archivo Narrow";
-font-size: 20px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  font-family: "Archivo Narrow";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 0px;
 }
 
 .company {
   color: #000;
-font-family: "Archivo Narrow";
-font-size: 20px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  font-family: "Archivo Narrow";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+.contactBtn {
+  display: inline-flex;
+  border-radius: 30px;
+  border: 0.2px solid #000;
+  background: #8FB1E2;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+}
+
+.contactBtn:hover {
+  background: #5E94E0;
+}
+
+i {
+  color: rgb(0, 0, 0);
+}
+
+a {
+  text-decoration: none;
 }

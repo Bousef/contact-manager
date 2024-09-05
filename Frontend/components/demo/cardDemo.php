@@ -13,6 +13,7 @@
   $emailarr = array("skibbidi@yahoo.com", "nfl@nba.com", "test123@google.edu", "fakeemail@com.com");
   $companyarr = array("Mr. Beast Media", "PGA Tour", "Ultimate Fighting Championship", "McDonalds");
   ?>
+  <script src="https://kit.fontawesome.com/ac1c3ec324.js" crossorigin="anonymous"></script>
   <link href="../styles/card.css" rel="stylesheet">
   <link href="../styles/searchBar.css" rel="stylesheet">
   <link href="../styles/navBar.css" rel="stylesheet">
