@@ -8,6 +8,7 @@ CREATE PROCEDURE update_address_for_contact(
     IN in_state VARCHAR(255),
     IN in_zip_code VARCHAR(255)
 )
+SQL SECURITY DEFINER
 BEGIN
     DECLARE new_address_id INT DEFAULT NULL;
     DECLARE current_address_id INT;
@@ -45,26 +46,13 @@ BEGIN
     -- Check if current_address_id is NULL
     IF current_address_id IS NULL THEN
 
-        -- Call create_address_for_contact procedure
-        CALL create_address_for_contact(
-            in_contact_id,
-            in_address_line_01,
-            in_address_line_02,
-            in_city,
-            in_state,
-            in_zip_code
-        );
+        -- Rollback the transaction
+        ROLLBACK;
 
-        -- Capture the exit status from create_address_for_contact
-        SELECT exit_status INTO create_exit_status;
-
-        -- Commit the transaction
-        COMMIT;
-
-        -- Return the exit status from create_address_for_contact
-        SELECT create_exit_status AS exit_status;
+        -- Return the status
+        SELECT FALSE AS exit_status;
         RETURN;
-
+        
     END IF;
 
     -- Get the current address details and lock the row

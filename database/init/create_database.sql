@@ -20,11 +20,11 @@ CREATE TABLE IF NOT EXISTS cop4331_contact_manager.users
 (
     id INT AUTO_INCREMENT,
     username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL, -- Secure hashed password
     first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255),
+    last_name VARCHAR(255) DEFAULT NULL,
     date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_logged_in TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    password VARCHAR(255) NOT NULL, -- Secure hashed password
     CONSTRAINT unique_users_username UNIQUE (username),
     PRIMARY KEY (id)
 );
@@ -35,9 +35,9 @@ CREATE TABLE IF NOT EXISTS cop4331_contact_manager.contacts
     id INT AUTO_INCREMENT,
     id_user INT NOT NULL,
     first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(255),
-    id_address INT,
+    last_name VARCHAR(255) DEFAULT NULL,
+    phone_number VARCHAR(255) DEFAULT NULL,
+    id_address INT DEFAULT NULL,
     CONSTRAINT fk_contacts_id_user FOREIGN KEY (id_user) 
         REFERENCES cop4331_contact_manager.users(id) 
         ON DELETE CASCADE,

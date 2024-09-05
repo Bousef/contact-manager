@@ -3,6 +3,7 @@ DELIMITER //
 CREATE PROCEDURE delete_address_for_contact(
     IN in_contact_id INT
 )
+SQL SECURITY DEFINER
 BEGIN
     DECLARE current_address_id INT DEFAULT NULL;
     DECLARE address_count INT DEFAULT 0;
@@ -30,6 +31,20 @@ BEGIN
     FROM cop4331_contact_manager.contacts
     WHERE id = in_contact_id
     FOR UPDATE;
+
+    -- If the address ID is NULL, return success without doing anything
+    IF current_address_id IS NULL THEN
+
+        -- Commit the transaction
+        COMMIT;
+
+        -- Return success as a boolean-like value
+        SELECT TRUE AS exit_status;
+
+        -- Exit the procedure after commit
+        RETURN;
+
+    END IF;
 
     -- Update the contact to set the address ID to NULL
     UPDATE cop4331_contact_manager.contacts

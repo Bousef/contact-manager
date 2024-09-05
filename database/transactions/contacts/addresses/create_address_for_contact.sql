@@ -8,6 +8,7 @@ CREATE PROCEDURE create_address_for_contact(
     IN in_state VARCHAR(255),
     IN in_zip_code VARCHAR(255)
 )
+SQL SECURITY DEFINER
 BEGIN
     DECLARE new_address_id INT DEFAULT NULL;
 

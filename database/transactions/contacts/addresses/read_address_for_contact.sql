@@ -3,6 +3,7 @@ DELIMITER //
 CREATE PROCEDURE read_address_for_contact(
     IN in_contact_id INT
 )
+SQL SECURITY DEFINER
 BEGIN
 
     -- Get the address details for the given contact ID
