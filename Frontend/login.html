@@ -4,34 +4,40 @@
     <meta charset="UTF-8">
     <title>Login Page</title>
     <link href="css/style.css" rel="stylesheet">
+    <script src="js/login.js"></script>
 </head>
 <body id="body">
 
-    <div>
-        <h2 id="title">Login page Contact Manager</h2>
+    <div class="login-title">
+        <h2 id="title">Contact Manager</h2>
         <br>
         <br>
-        <h3 id="function">User Login</h3>
-       <!-- <form action="login.php" method="post"> -->
-            <p>
-                <label id="param" for="username">Username:</label>
-                <input type="text" id="username" name="Username">
-            </p>
-            <p>
-                <label id="param" for="password">Password:</label>
-                <input type="password" id="password" name="Password">
-            </p>
-            <p>
-                <a id="button" href="forgotPassword.php">Forgot password?</a>
-            </p>
-            <p>
-                <input id="button" type="submit" value="Login" onclick="doLogin()">
-                <span id="loginResult"></span>
-                 <!--<input type="button" value="Create account" onclick="location.href='register.php';"> -->
-                <input id="button" type="button" value="Create Account" onclick="doRegister()">
-            </p>
-        </form>
     </div>
 
+    <div class="login-form">
+        <h3>User Login</h3>
+        <form id="loginForm" onsubmit="doLogin()">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <a href="forgotPassword.php">Forgot password?</a>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login">
+                <span id="loginResult"></span>
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="doRegister()">Create Account</button>
+            </div>
+        </form>
+    </div>
+       
+    </div>
 </body>
 </html>
