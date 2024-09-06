@@ -11,6 +11,10 @@
         const NO_ROWS_DELETED = ['code' => 7, 'message' => 'No rows deleted'];
         const INVALID_ACTION = ['code' => 8, 'message' => 'Invalid action'];
         const INVALID_REQUEST_METHOD = ['code' => 9, 'message' => 'Invalid request method'];
+        
+        // Added error codes for contact-related operations
+        const CONTACT_CREATION_FAILED = ['code' => 10, 'message' => 'Failed to create contact'];
+        const CONTACT_NOT_FOUND = ['code' => 11, 'message' => 'Contact not found'];
     }
     
 ?>

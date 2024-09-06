@@ -1,193 +1,343 @@
 <?php
-header('Content-Type: application/json');
-require_once 'database.php';
-require_once 'ErrorCodes.php';
 
-/**
- * Create a new user in the database.
- *
- * @param string $username
- * @param string $password
- * @param string $first_name
- * @param string $last_name
- */
-function create_user($username, $password, $first_name, $last_name) 
-{
-    $conn = open_connection_to_database();
-    if ($conn === null) 
-    {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::DATABASE_CONNECTION_FAILED['code'], 'error_message' => ErrorCodes::DATABASE_CONNECTION_FAILED['message']]);
-        return;
-    }
+    // Set the content type to JSON
+    header('Content-Type: application/json');
 
-    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-    $stmt = $conn->prepare("CALL create_user(?, ?, ?, ?)");
-    if (!$stmt) 
-    {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::STATEMENT_PREPARATION_FAILED['code'], 'error_message' => ErrorCodes::STATEMENT_PREPARATION_FAILED['message']]);
-        close_connection_to_database($conn);
-        return;
-    }
+    // Include the database connection and error handling files
+    require_once 'database.php';
+    require_once 'errors.php';
 
-    $stmt->bind_param("ssss", $username, $hashed_password, $first_name, $last_name);
-    if (!$stmt->execute()) 
+    function create_user($username, $password, $first_name, $last_name) 
     {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::STATEMENT_EXECUTION_FAILED['code'], 'error_message' => ErrorCodes::STATEMENT_EXECUTION_FAILED['message']]);
+        
+        // Open a connection to the database
+        $conn = open_connection_to_database();
+        if ($conn === null) 
+        {
+
+            // If the connection failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::DATABASE_CONNECTION_FAILED['code'], 
+                'error_message' => ErrorCodes::DATABASE_CONNECTION_FAILED['message']
+            ]);
+            return;
+
+        }
+
+        // Hash the user's password using bcrypt
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+        
+        // Prepare the SQL statement to call the stored procedure for creating a user
+        $stmt = $conn->prepare("CALL create_user(?, ?, ?, ?)");
+        if (!$stmt) 
+        {
+
+            // If the statement preparation failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::STATEMENT_PREPARATION_FAILED['code'], 
+                'error_message' => ErrorCodes::STATEMENT_PREPARATION_FAILED['message']
+            ]);
+            close_connection_to_database($conn);
+            return;
+
+        }
+
+        // Bind the parameters to the SQL statement
+        $stmt->bind_param("ssss", $username, $hashed_password, $first_name, $last_name);
+        if (!$stmt->execute()) 
+        {
+
+            // If the statement execution failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::STATEMENT_EXECUTION_FAILED['code'], 
+                'error_message' => ErrorCodes::STATEMENT_EXECUTION_FAILED['message']
+            ]);
+            $stmt->close();
+            close_connection_to_database($conn);
+            return;
+
+        }
+
+        // Fetch the result of the statement execution
+        $result = $stmt->get_result()->fetch_assoc();
+        if ($result === null || $result['user_id'] === null) 
+        {
+
+            // If the user creation failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::USER_CREATION_FAILED['code'], 
+                'error_message' => ErrorCodes::USER_CREATION_FAILED['message']
+            ]);
+
+        } 
+        else 
+        {
+
+            // If the user creation was successful, return a success response with the user ID
+            echo json_encode([
+                'success' => true, 
+                'result' => $result['insert_id']
+            ]);
+
+        }
+
+        // Close the statement and the database connection
         $stmt->close();
         close_connection_to_database($conn);
-        return;
+
     }
 
-    $result = $stmt->get_result()->fetch_assoc();
-    if ($result === null || $result['user_id'] === null) 
+    function read_user($user_id) 
     {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::USER_CREATION_FAILED['code'], 'error_message' => ErrorCodes::USER_CREATION_FAILED['message']]);
-    } 
-    else 
-    {
-        echo json_encode(['success' => true, 'user_id' => $result['insert_id']]);
-    }
+        // Open a connection to the database
+        $conn = open_connection_to_database();
+        if ($conn === null) 
+        {
 
-    $stmt->close();
-    close_connection_to_database($conn);
-}
+            // If the connection failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::DATABASE_CONNECTION_FAILED['code'], 
+                'error_message' => ErrorCodes::DATABASE_CONNECTION_FAILED['message']
+            ]);
+            return;
 
-/**
- * Read a user from the database.
- *
- * @param int $user_id
- */
-function read_user($user_id) 
-{
-    $conn = open_connection_to_database();
-    if ($conn === null) 
-    {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::DATABASE_CONNECTION_FAILED['code'], 'error_message' => ErrorCodes::DATABASE_CONNECTION_FAILED['message']]);
-        return;
-    }
+        }
 
-    $stmt = $conn->prepare("CALL read_user(?)");
-    if (!$stmt) 
-    {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::STATEMENT_PREPARATION_FAILED['code'], 'error_message' => ErrorCodes::STATEMENT_PREPARATION_FAILED['message']]);
-        close_connection_to_database($conn);
-        return;
-    }
+        // Prepare the SQL statement to call the stored procedure for reading a user
+        $stmt = $conn->prepare("CALL read_user(?)");
+        if (!$stmt) 
+        {
 
-    $stmt->bind_param("i", $user_id);
-    if (!$stmt->execute()) 
-    {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::STATEMENT_EXECUTION_FAILED['code'], 'error_message' => ErrorCodes::STATEMENT_EXECUTION_FAILED['message']]);
+            // If the statement preparation failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::STATEMENT_PREPARATION_FAILED['code'], 
+                'error_message' => ErrorCodes::STATEMENT_PREPARATION_FAILED['message']
+            ]);
+            close_connection_to_database($conn);
+            return;
+
+        }
+
+        // Bind the parameter to the SQL statement
+        $stmt->bind_param("i", $user_id);
+        if (!$stmt->execute()) 
+        {
+
+            // If the statement execution failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::STATEMENT_EXECUTION_FAILED['code'], 
+                'error_message' => ErrorCodes::STATEMENT_EXECUTION_FAILED['message']
+            ]);
+            $stmt->close();
+            close_connection_to_database($conn);
+            return;
+
+        }
+
+        // Fetch the result of the statement execution
+        $result = $stmt->get_result()->fetch_assoc();
+        if ($result === null) 
+        {
+
+            // If the user was not found, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::USER_NOT_FOUND['code'], 
+                'error_message' => ErrorCodes::USER_NOT_FOUND['message']
+            ]);
+
+        } 
+        else 
+        {
+
+            // If the user was found, return a success response with the user data
+            $filtered_result = 
+            [
+                'id' => $result['id'],
+                'username' => $result['username'],
+                'password' => $result['password'],
+                'first_name' => $result['first_name'],
+                'last_name' => $result['last_name']
+            ];
+
+            echo json_encode([
+                'success' => true, 
+                'result' => $filtered_result
+            ]);
+
+        }
+
+        // Close the statement and the database connection
         $stmt->close();
         close_connection_to_database($conn);
-        return;
+
     }
 
-    $result = $stmt->get_result()->fetch_assoc();
-    if ($result === null) 
+    function update_user($user_id, $username, $password, $first_name, $last_name) 
     {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::USER_NOT_FOUND['code'], 'error_message' => ErrorCodes::USER_NOT_FOUND['message']]);
-    } 
-    else 
-    {
-        echo json_encode(['success' => true, 'result' => $result]);
-    }
 
-    $stmt->close();
-    close_connection_to_database($conn);
-}
+        // Open a connection to the database
+        $conn = open_connection_to_database();
+        if ($conn === null) 
+        {
 
-/**
- * Update a user in the database.
- *
- * @param int $user_id
- * @param string $username
- * @param string $password
- * @param string $first_name
- * @param string $last_name
- */
-function update_user($user_id, $username, $password, $first_name, $last_name) 
-{
-    $conn = open_connection_to_database();
-    if ($conn === null) 
-    {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::DATABASE_CONNECTION_FAILED['code'], 'error_message' => ErrorCodes::DATABASE_CONNECTION_FAILED['message']]);
-        return;
-    }
+            // If the connection failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::DATABASE_CONNECTION_FAILED['code'], 
+                'error_message' => ErrorCodes::DATABASE_CONNECTION_FAILED['message']
+            ]);
+            return;
 
-    $stmt = $conn->prepare("CALL update_user(?, ?, ?, ?, ?)");
-    if (!$stmt) 
-    {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::STATEMENT_PREPARATION_FAILED['code'], 'error_message' => ErrorCodes::STATEMENT_PREPARATION_FAILED['message']]);
-        close_connection_to_database($conn);
-        return;
-    }
+        }
 
-    $stmt->bind_param("issss", $user_id, $username, $password, $first_name, $last_name);
-    if (!$stmt->execute()) 
-    {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::STATEMENT_EXECUTION_FAILED['code'], 'error_message' => ErrorCodes::STATEMENT_EXECUTION_FAILED['message']]);
+        // Prepare the SQL statement to call the stored procedure for updating a user
+        $stmt = $conn->prepare("CALL update_user(?, ?, ?, ?, ?)");
+        if (!$stmt) 
+        {
+
+            // If the statement preparation failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::STATEMENT_PREPARATION_FAILED['code'], 
+                'error_message' => ErrorCodes::STATEMENT_PREPARATION_FAILED['message']
+            ]);
+            close_connection_to_database($conn);
+            return;
+
+        }
+
+        // Bind the parameters to the SQL statement
+        $stmt->bind_param("issss", $user_id, $username, $password, $first_name, $last_name);
+        if (!$stmt->execute()) 
+        {
+
+            // If the statement execution failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::STATEMENT_EXECUTION_FAILED['code'], 
+                'error_message' => ErrorCodes::STATEMENT_EXECUTION_FAILED['message']
+            ]);
+            $stmt->close();
+            close_connection_to_database($conn);
+            return;
+
+        }
+
+        // Fetch the result of the statement execution
+        $result = $stmt->get_result()->fetch_assoc();
+        if ($result === null || $result['exit_status'] == FALSE) 
+        {
+
+            // If the user update failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::USER_UPDATE_FAILED['code'], 
+                'error_message' => ErrorCodes::USER_UPDATE_FAILED['message']
+            ]);
+
+        } 
+        else 
+        {
+
+            // If the user update was successful, return a success response
+            echo json_encode([
+                'success' => true
+            ]);
+
+        }
+
+        // Close the statement and the database connection
         $stmt->close();
         close_connection_to_database($conn);
-        return;
+
     }
 
-    $result = $stmt->get_result()->fetch_assoc();
-    if ($result === null || $result['exit_status'] == FALSE) 
+    function delete_user($user_id) 
     {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::USER_UPDATE_FAILED['code'], 'error_message' => ErrorCodes::USER_UPDATE_FAILED['message']]);
-    } 
-    else 
-    {
-        echo json_encode(['success' => true]);
-    }
 
-    $stmt->close();
-    close_connection_to_database($conn);
-}
+        // Open a connection to the database
+        $conn = open_connection_to_database();
+        if ($conn === null) 
+        {
 
-/**
- * Delete a user from the database.
- *
- * @param int $user_id
- */
-function delete_user($user_id) 
-{
-    $conn = open_connection_to_database();
-    if ($conn === null) 
-    {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::DATABASE_CONNECTION_FAILED['code'], 'error_message' => ErrorCodes::DATABASE_CONNECTION_FAILED['message']]);
-        return;
-    }
+            // If the connection failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::DATABASE_CONNECTION_FAILED['code'], 
+                'error_message' => ErrorCodes::DATABASE_CONNECTION_FAILED['message']
+            ]);
+            return;
 
-    $stmt = $conn->prepare("CALL delete_user(?)");
-    if (!$stmt) 
-    {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::STATEMENT_PREPARATION_FAILED['code'], 'error_message' => ErrorCodes::STATEMENT_PREPARATION_FAILED['message']]);
-        close_connection_to_database($conn);
-        return;
-    }
+        }
 
-    $stmt->bind_param("i", $user_id);
-    if (!$stmt->execute()) 
-    {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::STATEMENT_EXECUTION_FAILED['code'], 'error_message' => ErrorCodes::STATEMENT_EXECUTION_FAILED['message']]);
+        // Prepare the SQL statement to call the stored procedure for deleting a user
+        $stmt = $conn->prepare("CALL delete_user(?)");
+        if (!$stmt) 
+        {
+
+            // If the statement preparation failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::STATEMENT_PREPARATION_FAILED['code'], 
+                'error_message' => ErrorCodes::STATEMENT_PREPARATION_FAILED['message']
+            ]);
+            close_connection_to_database($conn);
+            return;
+
+        }
+
+        // Bind the parameter to the SQL statement
+        $stmt->bind_param("i", $user_id);
+        if (!$stmt->execute()) 
+        {
+
+            // If the statement execution failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::STATEMENT_EXECUTION_FAILED['code'], 
+                'error_message' => ErrorCodes::STATEMENT_EXECUTION_FAILED['message']
+            ]);
+            $stmt->close();
+            close_connection_to_database($conn);
+            return;
+
+        }
+
+        // Fetch the result of the statement execution
+        $result = $stmt->get_result()->fetch_assoc();
+        if ($result === null || $result['affected_rows'] === 0) 
+        {
+
+            // If the user deletion failed, return an error response
+            echo json_encode([
+                'success' => false, 
+                'error_code' => ErrorCodes::USER_DELETION_FAILED['code'], 
+                'error_message' => ErrorCodes::USER_DELETION_FAILED['message']
+            ]);
+
+        } 
+        else 
+        {
+
+            // If the user deletion was successful, return a success response with the number of affected rows
+            echo json_encode([
+                'success' => true
+            ]);
+
+        }
+
+        // Close the statement and the database connection
         $stmt->close();
         close_connection_to_database($conn);
-        return;
-    }
 
-    $result = $stmt->get_result()->fetch_assoc();
-    if ($result === null || $result['affected_rows'] === 0) 
-    {
-        echo json_encode(['success' => false, 'error_code' => ErrorCodes::USER_DELETION_FAILED['code'], 'error_message' => ErrorCodes::USER_DELETION_FAILED['message']]);
-    } 
-    else 
-    {
-        echo json_encode(['success' => true, 'affected_rows' => $result['affected_rows']]);
     }
-
-    $stmt->close();
-    close_connection_to_database($conn);
-}
+    
 ?>
