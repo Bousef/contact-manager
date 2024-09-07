@@ -4,8 +4,8 @@
     header('Content-Type: application/json');
 
     // Include the database connection and error handling files
-    require_once 'database.php';
-    require_once 'errors.php';
+    require_once '../database.php';
+    require_once '../errors.php';
 
     function create_contact_for_user($user_id, $first_name, $last_name, $phone_number) 
     {
@@ -375,15 +375,15 @@
 
     $json_req = file_get_contents('php://input');
     //Turn input data into Object
-    $json_decoded = json_decode($json, true);
+    parse_str($_SERVER['QUERY_STRING'], $json_decoded);
 
     //Null checks
     if($json_decoded == null){
-        send_error_response(ErrorCodes::INVALID_JSON);
+        send_error_response(ErrorCodes::INVALID_REQUEST);
         return;
     }
     if(!isset($json_decoded['req_type'])){
-        send_error_response(ErrorCodes::INVALID_JSON);
+        send_error_response(ErrorCodes::INVALID_REQUEST);
         return;
     }
 

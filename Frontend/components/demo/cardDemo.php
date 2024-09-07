@@ -34,6 +34,24 @@
         $company = $companyarr[$i];
         include '../contactCard.php'; 
     }
+
+    //Test output for requests
+    $url = "http://localhost:8888/Frontend/LAMPAPI/contacts/contacts.php";
+
+    $test_Obj = [
+      'req_type' => "read",
+      'user_id' => "456",
+      'contact_id' => "567"
+    ];
+
+    $json_encoded = json_encode($test_Obj);
+    $urlReq = $url . '?' . http_build_query($test_Obj);
+
+    $response = file_get_contents($urlReq);
+
+    $jsonDecoded = json_decode($response, true);
+    print_r($jsonDecoded);
+
     ?>
 </div>
 </body>
