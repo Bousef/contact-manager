@@ -350,15 +350,14 @@
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $user_id = $_POST['user_id'];
         $username = $_POST['username'];
         $password = $_POST['password'];
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
     
-        update_user($user_id, $username, $password, $first_name, $last_name);
+        create_user($1, $username, $password, $first_name, $last_name);
     
-        echo "User updated successfully!";
+        echo "User created successfully!";
     }
 
 ?>
