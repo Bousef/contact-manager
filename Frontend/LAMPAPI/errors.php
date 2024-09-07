@@ -2,6 +2,7 @@
 
     class ErrorCodes 
     {
+
         const DATABASE_CONNECTION_FAILED = ['code' => 1, 'message' => 'Database connection failed'];
         const STATEMENT_PREPARATION_FAILED = ['code' => 2, 'message' => 'Failed to prepare statement'];
         const STATEMENT_EXECUTION_FAILED = ['code' => 3, 'message' => 'Failed to execute statement'];
@@ -15,6 +16,16 @@
         // Added error codes for contact-related operations
         const CONTACT_CREATION_FAILED = ['code' => 10, 'message' => 'Failed to create contact'];
         const CONTACT_NOT_FOUND = ['code' => 11, 'message' => 'Contact not found'];
+        
     }
-    
+
+    function send_error_response($error_code) 
+    {
+        echo json_encode([
+            'success' => false, 
+            'error_code' => $error_code['code'], 
+            'error_message' => $error_code['message']
+        ]);
+    }
+
 ?>

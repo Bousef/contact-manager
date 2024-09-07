@@ -9,18 +9,14 @@
 
     function create_user($username, $password, $first_name, $last_name) 
     {
-        
+
         // Open a connection to the database
         $conn = open_connection_to_database();
         if ($conn === null) 
         {
 
             // If the connection failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::DATABASE_CONNECTION_FAILED['code'], 
-                'error_message' => ErrorCodes::DATABASE_CONNECTION_FAILED['message']
-            ]);
+            send_error_response(ErrorCodes::DATABASE_CONNECTION_FAILED);
             return;
 
         }
@@ -34,11 +30,7 @@
         {
 
             // If the statement preparation failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::STATEMENT_PREPARATION_FAILED['code'], 
-                'error_message' => ErrorCodes::STATEMENT_PREPARATION_FAILED['message']
-            ]);
+            send_error_response(ErrorCodes::STATEMENT_PREPARATION_FAILED);
             close_connection_to_database($conn);
             return;
 
@@ -50,11 +42,7 @@
         {
 
             // If the statement execution failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::STATEMENT_EXECUTION_FAILED['code'], 
-                'error_message' => ErrorCodes::STATEMENT_EXECUTION_FAILED['message']
-            ]);
+            send_error_response(ErrorCodes::STATEMENT_EXECUTION_FAILED);
             $stmt->close();
             close_connection_to_database($conn);
             return;
@@ -67,11 +55,7 @@
         {
 
             // If the user creation failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::USER_CREATION_FAILED['code'], 
-                'error_message' => ErrorCodes::USER_CREATION_FAILED['message']
-            ]);
+            send_error_response(ErrorCodes::USER_CREATION_FAILED);
 
         } 
         else 
@@ -80,7 +64,7 @@
             // If the user creation was successful, return a success response with the user ID
             echo json_encode([
                 'success' => true, 
-                'result' => $result['insert_id']
+                'result' => $result['user_id']
             ]);
 
         }
@@ -93,17 +77,14 @@
 
     function read_user($user_id) 
     {
+
         // Open a connection to the database
         $conn = open_connection_to_database();
         if ($conn === null) 
         {
 
             // If the connection failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::DATABASE_CONNECTION_FAILED['code'], 
-                'error_message' => ErrorCodes::DATABASE_CONNECTION_FAILED['message']
-            ]);
+            send_error_response(ErrorCodes::DATABASE_CONNECTION_FAILED);
             return;
 
         }
@@ -114,31 +95,23 @@
         {
 
             // If the statement preparation failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::STATEMENT_PREPARATION_FAILED['code'], 
-                'error_message' => ErrorCodes::STATEMENT_PREPARATION_FAILED['message']
-            ]);
+            send_error_response(ErrorCodes::STATEMENT_PREPARATION_FAILED);
             close_connection_to_database($conn);
             return;
 
         }
 
-        // Bind the parameter to the SQL statement
+        // Bind the parameters to the SQL statement
         $stmt->bind_param("i", $user_id);
         if (!$stmt->execute()) 
         {
 
             // If the statement execution failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::STATEMENT_EXECUTION_FAILED['code'], 
-                'error_message' => ErrorCodes::STATEMENT_EXECUTION_FAILED['message']
-            ]);
+            send_error_response(ErrorCodes::STATEMENT_EXECUTION_FAILED);
             $stmt->close();
             close_connection_to_database($conn);
             return;
-
+            
         }
 
         // Fetch the result of the statement execution
@@ -147,11 +120,7 @@
         {
 
             // If the user was not found, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::USER_NOT_FOUND['code'], 
-                'error_message' => ErrorCodes::USER_NOT_FOUND['message']
-            ]);
+            send_error_response(ErrorCodes::USER_NOT_FOUND);
 
         } 
         else 
@@ -160,7 +129,7 @@
             // If the user was found, return a success response with the user data
             $filtered_result = 
             [
-                'id' => $result['id'],
+                'id' => $result['user_id'],
                 'username' => $result['username'],
                 'password' => $result['password'],
                 'first_name' => $result['first_name'],
@@ -189,11 +158,7 @@
         {
 
             // If the connection failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::DATABASE_CONNECTION_FAILED['code'], 
-                'error_message' => ErrorCodes::DATABASE_CONNECTION_FAILED['message']
-            ]);
+            send_error_response(ErrorCodes::DATABASE_CONNECTION_FAILED);
             return;
 
         }
@@ -204,44 +169,31 @@
         {
 
             // If the statement preparation failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::STATEMENT_PREPARATION_FAILED['code'], 
-                'error_message' => ErrorCodes::STATEMENT_PREPARATION_FAILED['message']
-            ]);
+            send_error_response(ErrorCodes::STATEMENT_PREPARATION_FAILED);
             close_connection_to_database($conn);
             return;
 
         }
 
         // Bind the parameters to the SQL statement
-        $stmt->bind_param("issss", $user_id, $username, $password, $first_name, $last_name);
+        $stmt->bind_param("issss", $user_id, $password, $username, $first_name, $last_name);
         if (!$stmt->execute()) 
         {
 
             // If the statement execution failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::STATEMENT_EXECUTION_FAILED['code'], 
-                'error_message' => ErrorCodes::STATEMENT_EXECUTION_FAILED['message']
-            ]);
+            send_error_response(ErrorCodes::STATEMENT_EXECUTION_FAILED);
             $stmt->close();
             close_connection_to_database($conn);
             return;
-
         }
 
         // Fetch the result of the statement execution
         $result = $stmt->get_result()->fetch_assoc();
-        if ($result === null || $result['exit_status'] == FALSE) 
+        if ($result['exit_status'] == 0) 
         {
 
-            // If the user update failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::USER_UPDATE_FAILED['code'], 
-                'error_message' => ErrorCodes::USER_UPDATE_FAILED['message']
-            ]);
+            // If no rows were updated, return an error response
+            send_error_response(ErrorCodes::NO_ROWS_UPDATED);
 
         } 
         else 
@@ -249,7 +201,7 @@
 
             // If the user update was successful, return a success response
             echo json_encode([
-                'success' => true
+                'success' => (bool) $result['exit_status']
             ]);
 
         }
@@ -269,11 +221,7 @@
         {
 
             // If the connection failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::DATABASE_CONNECTION_FAILED['code'], 
-                'error_message' => ErrorCodes::DATABASE_CONNECTION_FAILED['message']
-            ]);
+            send_error_response(ErrorCodes::DATABASE_CONNECTION_FAILED);
             return;
 
         }
@@ -284,27 +232,19 @@
         {
 
             // If the statement preparation failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::STATEMENT_PREPARATION_FAILED['code'], 
-                'error_message' => ErrorCodes::STATEMENT_PREPARATION_FAILED['message']
-            ]);
+            send_error_response(ErrorCodes::STATEMENT_PREPARATION_FAILED);
             close_connection_to_database($conn);
             return;
 
         }
 
-        // Bind the parameter to the SQL statement
+        // Bind the parameters to the SQL statement
         $stmt->bind_param("i", $user_id);
         if (!$stmt->execute()) 
         {
 
             // If the statement execution failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::STATEMENT_EXECUTION_FAILED['code'], 
-                'error_message' => ErrorCodes::STATEMENT_EXECUTION_FAILED['message']
-            ]);
+            send_error_response(ErrorCodes::STATEMENT_EXECUTION_FAILED);
             $stmt->close();
             close_connection_to_database($conn);
             return;
@@ -313,23 +253,19 @@
 
         // Fetch the result of the statement execution
         $result = $stmt->get_result()->fetch_assoc();
-        if ($result === null || $result['affected_rows'] === 0) 
+        if ($result['exit_status'] == 0) 
         {
 
-            // If the user deletion failed, return an error response
-            echo json_encode([
-                'success' => false, 
-                'error_code' => ErrorCodes::USER_DELETION_FAILED['code'], 
-                'error_message' => ErrorCodes::USER_DELETION_FAILED['message']
-            ]);
+            // If no rows were deleted, return an error response
+            send_error_response(ErrorCodes::NO_ROWS_DELETED);
 
         } 
         else 
         {
 
-            // If the user deletion was successful, return a success response with the number of affected rows
+            // If the user deletion was successful, return a success response
             echo json_encode([
-                'success' => true
+                'success' => (bool) $result['exit_status']
             ]);
 
         }
@@ -339,5 +275,5 @@
         close_connection_to_database($conn);
 
     }
-    
+
 ?>
