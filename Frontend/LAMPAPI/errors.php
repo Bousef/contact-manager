@@ -18,7 +18,7 @@
         const CONTACT_NOT_FOUND = ['code' => 11, 'message' => 'Contact not found'];
         
         //Added error codes for JSON related operation
-        const INVALID_JSON = ['code' => 20, 'message' => 'Invalid Query Request'];
+        const INVALID_REQUEST = ['code' => 20, 'message' => 'Invalid Query Request'];
         const MISSING_PARAMETERS = ['code' => 21, 'message' => 'Query Request Missing Parameters'];
         
     }
