@@ -26,6 +26,9 @@
     ?>
   <div class = 'cardGrid'>
     <?php
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
     //For each example contact, reference the invidivuals components and inject the php card with those vars
     for($i = 0; $i < 4; $i++ ){      
         $name = $namearr[$i];
@@ -46,8 +49,16 @@
 
     $json_encoded = json_encode($test_Obj);
     $urlReq = $url . '?' . http_build_query($test_Obj);
+    
+    $ch = curl_init();
 
-    $response = file_get_contents($urlReq);
+    // Set the cURL options
+    curl_setopt($ch, CURLOPT_URL, $urlReq);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPGET, true); // Specify that this is a GET request
+
+    // Execute the cURL session
+    $response = curl_exec($ch);
 
     $jsonDecoded = json_decode($response, true);
     print_r($jsonDecoded);
