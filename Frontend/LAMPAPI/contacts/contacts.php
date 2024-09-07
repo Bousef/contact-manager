@@ -307,11 +307,11 @@
         }
     
         // Fetch the result of the statement execution
-        $address_result = $stmt->get_result()->fetch_assoc();
+        $result = $stmt->get_result()->fetch_assoc();
         $stmt->close();
     
         // Check if the address deletion was successful
-        if ($address_result['exit_status'] != 1) 
+        if ($result['exit_status'] != 1) 
         {
 
             // If the address deletion failed, return an error response

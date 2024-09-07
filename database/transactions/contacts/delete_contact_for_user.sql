@@ -6,7 +6,6 @@ CREATE PROCEDURE delete_contact_for_user(
 )
 SQL SECURITY DEFINER
 BEGIN
-    DECLARE current_address_id INT DEFAULT NULL;
 
     -- Error handler
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -25,12 +24,6 @@ BEGIN
 
     -- Start transaction
     START TRANSACTION;
-
-    -- Get the address ID of the contact
-    SELECT address_id INTO current_address_id
-    FROM cop4331_contact_manager.contacts
-    WHERE id = in_contact_id
-    FOR UPDATE;
 
     -- Delete from users_contacts table
     DELETE FROM cop4331_contact_manager.users_contacts
