@@ -26,9 +26,6 @@
     ?>
   <div class = 'cardGrid'>
     <?php
-    ini_set('display_errors', '1');
-    ini_set('display_startup_errors', '1');
-    error_reporting(E_ALL);
     //For each example contact, reference the invidivuals components and inject the php card with those vars
     for($i = 0; $i < 4; $i++ ){      
         $name = $namearr[$i];
