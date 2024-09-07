@@ -372,5 +372,5 @@
         close_connection_to_database($conn);
 
     }
-
+    read_contact_for_user(567, 890);
 ?>
