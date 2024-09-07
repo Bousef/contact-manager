@@ -36,7 +36,7 @@
     }
 
     //Test output for requests
-    $url = "http://localhost:8888/Frontend/LAMPAPI/contacts/contacts.php";
+    $url = "http://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php";
 
     $test_Obj = [
       'req_type' => "read",
