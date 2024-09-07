@@ -13,16 +13,11 @@ BEGIN
     -- Error handler
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
-
         -- Rollback the transaction in case of an error
         ROLLBACK;
 
         -- Return failure as a boolean-like value
         SELECT NULL AS user_id;
-
-        -- Exit the procedure after rollback
-        RETURN;
-
     END;
 
     -- Start transaction

@@ -15,16 +15,11 @@ BEGIN
     -- Error handler
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
-
         -- Rollback the transaction in case of an error
         ROLLBACK;
 
         -- Return failure as a boolean-like value
         SELECT FALSE AS exit_status;
-
-        -- Exit the procedure after rollback
-        RETURN;
-
     END;
 
     -- Start transaction
@@ -41,14 +36,11 @@ BEGIN
     FOR UPDATE;
 
     IF new_address_id IS NOT NULL THEN
-
         -- Address exists, use the existing address ID
         UPDATE cop4331_contact_manager.contacts
         SET id_address = new_address_id
         WHERE id = in_contact_id;
-
     ELSE
-
         -- Address does not exist, create a new address
         INSERT INTO cop4331_contact_manager.addresses (
             address_line_01, address_line_02, city, state, zip_code
@@ -63,7 +55,6 @@ BEGIN
         UPDATE cop4331_contact_manager.contacts
         SET id_address = new_address_id
         WHERE id = in_contact_id;
-
     END IF;
 
     -- Commit the transaction

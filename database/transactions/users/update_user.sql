@@ -1,7 +1,7 @@
 DELIMITER //
 
 CREATE PROCEDURE update_user(
-    IN in_user_id INT NOT NULL,
+    IN in_user_id INT,
     IN in_username VARCHAR(255),
     IN in_password VARCHAR(255),
     IN in_first_name VARCHAR(255),
@@ -17,16 +17,11 @@ BEGIN
     -- Error handler
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
-
         -- Rollback the transaction in case of an error
         ROLLBACK;
 
         -- Return failure as a boolean-like value
         SELECT FALSE AS exit_status;
-
-        -- Exit the procedure after rollback
-        RETURN;
-
     END;
 
     -- Start transaction

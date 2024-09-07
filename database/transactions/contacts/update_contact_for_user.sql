@@ -1,8 +1,8 @@
 DELIMITER //
 
 CREATE PROCEDURE update_contact_for_user(
-    IN in_user_id INT NOT NULL,
-    IN in_contact_id INT NOT NULL,
+    IN in_user_id INT,
+    IN in_contact_id INT,
     IN in_first_name VARCHAR(255),
     IN in_last_name VARCHAR(255),
     IN in_phone_number VARCHAR(20)
@@ -21,9 +21,6 @@ BEGIN
 
         -- Return failure as a boolean-like value
         SELECT FALSE AS exit_status;
-
-        -- Exit the procedure after rollback
-        RETURN;
     END;
 
     -- Start transaction
