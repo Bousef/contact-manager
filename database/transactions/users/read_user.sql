@@ -1,7 +1,7 @@
 DELIMITER //
 
 CREATE PROCEDURE read_user(
-    IN in_user_id INT NOT NULL
+    IN in_user_id INT
 )
 SQL SECURITY DEFINER
 BEGIN

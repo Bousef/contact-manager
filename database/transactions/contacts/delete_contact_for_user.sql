@@ -1,8 +1,8 @@
 DELIMITER //
 
 CREATE PROCEDURE delete_contact_for_user(
-    IN in_user_id INT NOT NULL,
-    IN in_contact_id INT NOT NULL
+    IN in_user_id INT,
+    IN in_contact_id INT
 )
 SQL SECURITY DEFINER
 BEGIN
@@ -16,9 +16,6 @@ BEGIN
 
         -- Return failure as a boolean-like value
         SELECT FALSE AS exit_status;
-
-        -- Exit the procedure after rollback
-        RETURN;
 
     END;
 

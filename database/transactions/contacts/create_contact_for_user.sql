@@ -1,10 +1,10 @@
 DELIMITER //
 
 CREATE PROCEDURE create_contact_for_user(
-    IN in_user_id INT NOT NULL,
-    IN in_first_name VARCHAR(255) NOT NULL,
-    IN in_last_name VARCHAR(255) DEFAULT NULL,
-    IN in_phone_number VARCHAR(20) DEFAULT NULL,
+    IN in_user_id INT,
+    IN in_first_name VARCHAR(255),
+    IN in_last_name VARCHAR(255),
+    IN in_phone_number VARCHAR(20)
 )
 SQL SECURITY DEFINER
 BEGIN
@@ -13,16 +13,11 @@ BEGIN
     -- Error handler
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
-
         -- Rollback the transaction in case of an error
         ROLLBACK;
 
         -- Return failure as a boolean-like value
         SELECT NULL AS contact_id;
-
-        -- Exit the procedure after rollback
-        RETURN;
-
     END;
 
     -- Start transaction
@@ -44,7 +39,7 @@ BEGIN
 
     -- Return the last inserted ID
     SELECT contact_id AS contact_id;
-    
+
 END //
 
 DELIMITER ;

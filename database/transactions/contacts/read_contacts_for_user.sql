@@ -1,7 +1,7 @@
 DELIMITER //
 
 CREATE PROCEDURE read_contacts_for_user(
-    IN in_user_id INT NOT NULL,
+    IN in_user_id INT,
     IN in_search_string VARCHAR(255)
 )
 SQL SECURITY DEFINER
