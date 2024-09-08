@@ -47,18 +47,18 @@
     $json_encoded = json_encode($test_Obj);
     $urlReq = $url . '?' . http_build_query($test_Obj);
     
+    //Using cURL to do the Browser URL query rather than json packets
     $ch = curl_init();
 
-    // Set the cURL options
+    //cURL config stuff
     curl_setopt($ch, CURLOPT_URL, $urlReq);
+    curl_setopt($ch, CURLOPT_HTTPGET, true);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPGET, true); // Specify that this is a GET request
+    
 
-    // Execute the cURL session
+    //Submit request and parse the returned JSON
     $response = curl_exec($ch);
-
     $jsonDecoded = json_decode($response, true);
-    print_r($jsonDecoded);
 
     ?>
 </div>
