@@ -3,10 +3,10 @@
     function open_connection_to_database()
     {
 
-        $servername = $_SERVER['DB_SERVER_NAME'];
-        $username = $_SERVER['DB_USER'];
-        $password = $_SERVER['DB_PWD'];
-        $database = $_SERVER['DB_NAME'];
+        $servername = "localhost";
+        $username = "bitnami";
+        $password = "X7g9#4vZ1$2cQ5";
+        $database = "cop4331_contact_manager";
 
         $conn = @mysqli_connect($servername, $username, $password, $database);
 

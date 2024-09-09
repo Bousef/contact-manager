@@ -34,6 +34,32 @@
         $company = $companyarr[$i];
         include '../contactCard.php'; 
     }
+
+    //Test output for requests
+    $url = "http://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php";
+
+    $test_Obj = [
+      'req_type' => "read",
+      'user_id' => "456",
+      'contact_id' => "567"
+    ];
+
+    $json_encoded = json_encode($test_Obj);
+    $urlReq = $url . '?' . http_build_query($test_Obj);
+    
+    //Using cURL to do the Browser URL query rather than json packets
+    $ch = curl_init();
+
+    //cURL config stuff
+    curl_setopt($ch, CURLOPT_URL, $urlReq);
+    curl_setopt($ch, CURLOPT_HTTPGET, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+
+    //Submit request and parse the returned JSON
+    $response = curl_exec($ch);
+    $jsonDecoded = json_decode($response, true);
+
     ?>
 </div>
 </body>
