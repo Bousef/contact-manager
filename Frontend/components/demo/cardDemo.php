@@ -17,6 +17,7 @@
   <link href="../styles/card.css" rel="stylesheet">
   <link href="../styles/searchBar.css" rel="stylesheet">
   <link href="../styles/navBar.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
   <body>
@@ -24,7 +25,8 @@
       include '../navBar.php';
       include '../searchBar.php';
     ?>
-  <div class = 'cardGrid'>
+    <div class = 'cardGrid'>
+    <!--
     <?php
     //For each example contact, reference the invidivuals components and inject the php card with those vars
     for($i = 0; $i < 4; $i++ ){      
@@ -61,6 +63,30 @@
     $jsonDecoded = json_decode($response, true);
 
     ?>
+    -->
+      <script>
+      $(".searchSubmitBtn").click(function(){
+        let nameVar = "Joseph Smith";
+        let numberVar = "67890";
+        let emailVar = "gary@gmail.com";
+        let companyVar = "UCF Knights";
+
+        $.ajax({
+           url: '../contactCard.php',
+           method: 'GET',
+          success: function(response) {
+          response = response.replaceAll('*CONTACT_NAME*', nameVar)
+                             .replaceAll('*CONTACT_NUMBER*', numberVar)
+                             .replaceAll('*CONTACT_EMAIL*', emailVar)
+                             .replaceAll('*CONTACT_COMPANY*', companyVar);
+
+          $('.cardGrid').append(response);
+        }
+      }
+      )
+    });
+
+      </script>
 </div>
 </body>
 </html>
