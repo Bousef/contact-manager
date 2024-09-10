@@ -41,7 +41,8 @@
           },
           method: 'GET',
         })
-        .then(response => console.log(response.json()))
+        .then(response => response.json())
+        .then(response => console.log(JSON.stringify(response)))
 
         $.ajax({
            url: '../contactCard.php',
