@@ -22,6 +22,12 @@
 
       <script>
       $(".searchSubmitBtn").click(function(){
+        let elements = document.getElementsByClassName("contactWrapper");
+    
+        while(elements.length > 0) {
+            elements[0].parentNode.removeChild(elements[0]);
+        }
+        
         let emailVar = "placeholder@placeholder.com";
         let companyVar = "University of Central Florida";
         let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
@@ -29,7 +35,7 @@
         
         urlRequest.searchParams.append('req_type', 'search');
         urlRequest.searchParams.append('user_id', 1);
-        urlRequest.searchParams.append('search_string', "Michael");
+        urlRequest.searchParams.append('search_string', document.getElementById("searchText").value);
         
 
         console.log(urlRequest.toString());
@@ -55,7 +61,7 @@
             responseHTML = responseHTML.replaceAll('*CONTACT_NAME*', (contact.first_name + " " + contact.last_name))
                                        .replaceAll('*CONTACT_NUMBER*', contact.phone_number)
                                        .replaceAll('*CONTACT_EMAIL*', emailVar)
-                                       .replaceAll('*CONTACT_COMPANY*', companyVar);
+                                       .replaceAll('*CONTACT_COMPANY*', companyVar)
                                        //Replace undefined fields with empty
                                        .replaceAll("undefined", "");
             $('.cardGrid').append(responseHTML);
