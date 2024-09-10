@@ -27,6 +27,7 @@
         let emailVar = "gary@gmail.com";
         let companyVar = "UCF Knights";
         let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+        let data;
         
         urlRequest.searchParams.append('req_type', 'read');
         urlRequest.searchParams.append('user_id', 456);
@@ -42,7 +43,7 @@
           method: 'GET',
         })
         .then((response) => {
-          let data = response.json();
+          data = response.json();
         });
 
         console.log(data);
