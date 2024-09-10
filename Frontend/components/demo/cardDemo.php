@@ -32,15 +32,16 @@
         urlRequest.searchParams.append('user_id', 456);
         urlRequest.searchParams.append('contact_id', 567);
         
-        const options = {
-          method: 'GET',
-          mode: 'no-cors'
-        };
 
         console.log(urlRequest.toString());
 
-        fetch(urlRequest, options)
-        .then((json) => console.log(json));
+        fetch(urlRequest, {
+          headers: {
+          "Content-Type": "application/json",
+          },
+          method: 'GET',
+        })
+        .then(response => console.log(response.json()))
 
         $.ajax({
            url: '../contactCard.php',
