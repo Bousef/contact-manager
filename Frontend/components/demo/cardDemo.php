@@ -43,7 +43,7 @@
           method: 'GET',
         })
         .then(async (response) => {
-          data = response.json();
+          data = await response.json();
           console.log(data);
           if(data.success == false){
             $('.cardGrid').append("<p>No Contacts Found</p>");
