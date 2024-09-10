@@ -53,9 +53,11 @@
             method: 'GET',
             success: function(responseHTML) {
             responseHTML = responseHTML.replaceAll('*CONTACT_NAME*', (contact.first_name + " " + contact.last_name))
-                                       .replaceAll('*CONTACT_NUMBER*', contact.number)
+                                       .replaceAll('*CONTACT_NUMBER*', contact.phone_number)
                                        .replaceAll('*CONTACT_EMAIL*', emailVar)
                                        .replaceAll('*CONTACT_COMPANY*', companyVar);
+                                       //Replace undefined fields with empty
+                                       .replaceAll("undefined", "");
             $('.cardGrid').append(responseHTML);
           }
         }
