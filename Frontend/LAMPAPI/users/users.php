@@ -1,15 +1,11 @@
 <?php
 
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
     // Set the content type to JSON
     header('Content-Type: application/json');
 
     // Include the database connection and error handling files
-    require_once 'database.php';
-    require_once 'errors.php';
+    require_once '../database.php';
+    require_once '../errors.php';
 
     function create_user($username, $password, $first_name, $last_name) 
     {
@@ -351,17 +347,6 @@
         // Close the statement and the database connection
         $stmt->close();
         close_connection_to_database($conn);
-    }
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
-    
-        create_user($1, $username, $password, $first_name, $last_name);
-    
-        echo "User created successfully!";
     }
 
 ?>

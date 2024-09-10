@@ -373,90 +373,149 @@
 
     }
 
+    // Get the request data
     $json_req = file_get_contents('php://input');
-    //Turn input data into Object
+
+    // Turn input data into Object
     parse_str($_SERVER['QUERY_STRING'], $json_decoded);
 
-    //Null checks
-    if($json_decoded == null){
-        send_error_response(ErrorCodes::INVALID_REQUEST);
-        return;
-    }
-    if(!isset($json_decoded['req_type'])){
+    // Null check for JSON
+    if($json_decoded == null)
+    {
         send_error_response(ErrorCodes::INVALID_REQUEST);
         return;
     }
 
-    //Switch case to handle the different kinds of actions taken on contacts
-    switch($json_decoded['req_type']){
-        case 'create':
-            //Ensure all necessary parameters are set (including parameters not yet handled by function)
-            if (
-                isset($json_decoded['user_id']) &&
-                isset($json_decoded['first_name']) &&
-                isset($json_decoded['last_name']) &&
-                isset($json_decoded['phone_number']) &&
-                isset($json_decoded['email']) &&
-                isset($json_decoded['img_url'])
-            ){
-                create_contact_for_user($json_decoded['user_id'], $json_decoded['first_name'], $json_decoded['last_name'], $json_decoded['phone_number']);
-            }else{
-                send_error_response(ErrorCodes::MISSING_PARAMETERS);
-                return;
-            }
-            break;
-        case 'read':
-            //Ensure all necessary parameters are set
-            if (
-                isset($json_decoded['user_id']) &&
-                isset($json_decoded['contact_id'])
-            ){
-                read_contact_for_user($json_decoded['user_id'], $json_decoded['contact_id']);
-            }else{
-                send_error_response(ErrorCodes::MISSING_PARAMETERS);
-                return;
-            }
-            break;
-        case 'search':
-            //Ensure all necessary parameters are set
-            if (
-                isset($json_decoded['user_id']) &&
-                isset($json_decoded['search_string'])
-            ){
-                read_contacts_for_user($json_decoded['user_id'], $json_decoded['search_string']);
-            }else{
-                send_error_response(ErrorCodes::MISSING_PARAMETERS);
-                return;
-            }
-            break;
-        case 'update':
-            //Ensure all necessary parameters are set
-            if (
-                isset($json_decoded['user_id']) &&
-                isset($json_decoded['contact_id']) &&
-                isset($json_decoded['first_name']) &&
-                isset($json_decoded['last_name']) &&
-                isset($json_decoded['phone_number']) &&
-                isset($json_decoded['email']) &&
-                isset($json_decoded['img_url'])
-            ){
-                update_contact_for_user($json_decoded['user_id'], $json_decoded['contact_id'], $json_decoded['first_name'], $json_decoded['last_name'], $json_decoded['phone_number']);
-            }else{
-                send_error_response(ErrorCodes::MISSING_PARAMETERS);
-                return;
-            }
-            break;
-        case 'delete':
-            //Ensure all necessary parameters are set
-            if (
-                isset($json_decoded['user_id']) &&
-                isset($json_decoded['contact_id'])
-            ){
-                delete_contact_for_user($json_decoded['user_id'], $json_decoded['contact_id']);
-            }else{
-                send_error_response(ErrorCodes::MISSING_PARAMETERS);
-                return;
-            }
-            break;
+    // Ensure the request type is set
+    if(!isset($json_decoded['req_type']))
+    {
+        send_error_response(ErrorCodes::INVALID_REQUEST);
+        return;
     }
+
+    // Switch case to handle the different kinds of actions taken on contacts
+    switch($json_decoded['req_type'])
+    {
+
+        case 'create':
+        {
+
+            // Ensure all necessary parameters are set (including parameters not yet handled by function)
+            if 
+            (
+                isset($json_decoded['user_id'])         &&
+                isset($json_decoded['first_name'])      &&
+                isset($json_decoded['last_name'])       &&
+                isset($json_decoded['phone_number'])    &&
+                isset($json_decoded['email'])           &&
+                isset($json_decoded['img_url'])
+            )
+            {
+                create_contact_for_user($json_decoded['user_id'], $json_decoded['first_name'], $json_decoded['last_name'], $json_decoded['phone_number']);
+            }
+            else
+            {
+                send_error_response(ErrorCodes::MISSING_PARAMETERS);
+                return;
+            }
+
+            break;
+
+        }
+
+        case 'read':
+        {
+
+            // Ensure all necessary parameters are set
+            if 
+            (
+                isset($json_decoded['user_id']) &&
+                isset($json_decoded['contact_id'])
+            )
+            {
+                read_contact_for_user($json_decoded['user_id'], $json_decoded['contact_id']);
+            }
+            else
+            {
+                send_error_response(ErrorCodes::MISSING_PARAMETERS);
+                return;
+            }
+
+            break;
+
+        }
+
+        case 'search':
+        {
+
+            // Ensure all necessary parameters are set
+            if 
+            (
+                isset($json_decoded['user_id'])         &&
+                isset($json_decoded['search_string'])
+            )
+            {
+                read_contacts_for_user($json_decoded['user_id'], $json_decoded['search_string']);
+            }
+            else
+            {
+                send_error_response(ErrorCodes::MISSING_PARAMETERS);
+                return;
+            }
+
+            break;
+
+        }
+
+        case 'update':
+        {
+
+            // Ensure all necessary parameters are set
+            if 
+            (
+                isset($json_decoded['user_id'])         &&
+                isset($json_decoded['contact_id'])      &&
+                isset($json_decoded['first_name'])      &&
+                isset($json_decoded['last_name'])       &&
+                isset($json_decoded['phone_number'])    &&
+                isset($json_decoded['email'])           &&
+                isset($json_decoded['img_url'])
+            )
+            {
+                update_contact_for_user($json_decoded['user_id'], $json_decoded['contact_id'], $json_decoded['first_name'], $json_decoded['last_name'], $json_decoded['phone_number']);
+            }
+            else
+            {
+                send_error_response(ErrorCodes::MISSING_PARAMETERS);
+                return;
+            }
+
+            break;
+
+        }
+
+        case 'delete':
+        {
+
+            // Ensure all necessary parameters are set
+            if 
+            (
+                isset($json_decoded['user_id'])         &&
+                isset($json_decoded['contact_id'])
+            )
+            {
+                delete_contact_for_user($json_decoded['user_id'], $json_decoded['contact_id']);
+            }
+            else
+            {
+                send_error_response(ErrorCodes::MISSING_PARAMETERS);
+                return;
+            }
+
+            break;
+
+        }
+
+    }
+
 ?>
