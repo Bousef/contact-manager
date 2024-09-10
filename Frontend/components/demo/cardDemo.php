@@ -47,13 +47,13 @@
             $('.cardGrid').append("<p>No Contacts Found</p>");
           }
           else if(data.success == true){
-            data.results.forEach((result) => {
+            data.result.forEach((contact) => {
               $.ajax({
             url: '../contactCard.php',
             method: 'GET',
             success: function(responseHTML) {
-            responseHTML = responseHTML.replaceAll('*CONTACT_NAME*', (result.first_name + " " + result.last_name))
-                                       .replaceAll('*CONTACT_NUMBER*', result.number)
+            responseHTML = responseHTML.replaceAll('*CONTACT_NAME*', (contact.first_name + " " + contact.last_name))
+                                       .replaceAll('*CONTACT_NUMBER*', contact.number)
                                        .replaceAll('*CONTACT_EMAIL*', emailVar)
                                        .replaceAll('*CONTACT_COMPANY*', companyVar);
 
