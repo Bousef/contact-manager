@@ -27,9 +27,9 @@
         let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
         let data;
         
-        urlRequest.searchParams.append('req_type', 'read');
-        urlRequest.searchParams.append('user_id', 456);
-        urlRequest.searchParams.append('contact_id', 567);
+        urlRequest.searchParams.append('req_type', 'search');
+        urlRequest.searchParams.append('user_id', 1);
+        urlRequest.searchParams.append('search_string', "Michael");
         
 
         console.log(urlRequest.toString());
