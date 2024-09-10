@@ -44,23 +44,29 @@
         })
         .then((response) => {
           data = response.json();
+          if(data.success == false){
+            $('.cardGrid').append("<p>No Contacts Found</p>");
+          }
+          else if(data.success == true){
+            data.results.forEach((result) => {
+              $.ajax({
+            url: '../contactCard.php',
+            method: 'GET',
+            success: function(responseHTML) {
+            responseHTML = responseHTML.replaceAll('*CONTACT_NAME*', result.first_name)
+                                       .replaceAll('*CONTACT_NUMBER*', result.number)
+                                       .replaceAll('*CONTACT_EMAIL*', emailVar)
+                                       .replaceAll('*CONTACT_COMPANY*', companyVar);
+
+            $('.cardGrid').append(response);
+          }
+        }
+        )
+            });
+        }
         });
 
-        console.log(data);
-
-        $.ajax({
-           url: '../contactCard.php',
-           method: 'GET',
-          success: function(response) {
-          response = response.replaceAll('*CONTACT_NAME*', nameVar)
-                             .replaceAll('*CONTACT_NUMBER*', numberVar)
-                             .replaceAll('*CONTACT_EMAIL*', emailVar)
-                             .replaceAll('*CONTACT_COMPANY*', companyVar);
-
-          $('.cardGrid').append(response);
-        }
-      }
-      )
+        
     });
 
       </script>
