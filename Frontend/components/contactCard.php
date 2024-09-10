@@ -1,15 +1,15 @@
 <div class="contactWrapper">
-  <h2 class="name"><?php echo $name ?></h2>
-  <p class="number"><?php echo $number ?></p>
-  <p class="email"><?php echo $email ?></p>
-  <h4 class="company"><?php echo $company ?></h4>
-  <a href="mailto:<?php echo $email ?>" class="contactBtn">
+  <h2 class="name">*CONTACT_NAME*</h2>
+  <p class="number">*CONTACT_NUMBER*</p>
+  <p class="email">*CONTACT_EMAIL*</p>
+  <h4 class="company">*CONTACT_COMPANY*</h4>
+  <a href="mailto:*CONTACT_EMAIL*" class="contactBtn">
     <i class="fa-solid fa-envelope icon"></i>
   </a>
-  <a href="tel:+<?php echo $number ?>" class="contactBtn">
+  <a href="tel:+*CONTACT_NUMBER*" class="contactBtn">
     <i class="fa-solid fa-phone icon"></i>
   </a>
-  <a href="sms:+<?php echo $number ?>" class="contactBtn">
+  <a href="sms:+*CONTACT_NUMBER*" class="contactBtn">
     <i class="fa-solid fa-message icon"></i>
   </a>
 </div>

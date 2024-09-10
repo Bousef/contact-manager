@@ -6,17 +6,11 @@
     <title><?php echo $pageTitle; ?></title>
   </head>
   <link rel='stylesheet' href="../styles/pageGrid.css">
-<?php
-  // Define variables for test array
-  $namearr = array("Joseph Smith", "Johnny Appleseed", "Oprah Winfrey", "Bill Belichek");
-  $numberarr = array("772-789-0987", "561-909-6547", "765-278-3827", "278-940-3513");
-  $emailarr = array("skibbidi@yahoo.com", "nfl@nba.com", "test123@google.edu", "fakeemail@com.com");
-  $companyarr = array("Mr. Beast Media", "PGA Tour", "Ultimate Fighting Championship", "McDonalds");
-  ?>
   <script src="https://kit.fontawesome.com/ac1c3ec324.js" crossorigin="anonymous"></script>
   <link href="../styles/card.css" rel="stylesheet">
   <link href="../styles/searchBar.css" rel="stylesheet">
   <link href="../styles/navBar.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
   <body>
@@ -24,8 +18,63 @@
       include '../navBar.php';
       include '../searchBar.php';
     ?>
-  <div class = 'cardGrid'>
-    <?php
+    <div class = 'cardGrid'>
+
+      <script>
+      $(".searchSubmitBtn").click(function(){
+        let emailVar = "placeholder@placeholder.com";
+        let companyVar = "University of Central Florida";
+        let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+        let data;
+        
+        urlRequest.searchParams.append('req_type', 'search');
+        urlRequest.searchParams.append('user_id', 1);
+        urlRequest.searchParams.append('search_string', "Michael");
+        
+
+        console.log(urlRequest.toString());
+
+        fetch(urlRequest, {
+          headers: {
+          "Content-Type": "application/json",
+          },
+          method: 'GET',
+        })
+        .then(async (response) => {
+          data = await response.json();
+          console.log(data);
+          if(data.success == false){
+            $('.cardGrid').append("<p>No Contacts Found</p>");
+          }
+          else if(data.success == true){
+            data.results.forEach((result) => {
+              $.ajax({
+            url: '../contactCard.php',
+            method: 'GET',
+            success: function(responseHTML) {
+            responseHTML = responseHTML.replaceAll('*CONTACT_NAME*', (result.first_name + " " + result.last_name)
+                                       .replaceAll('*CONTACT_NUMBER*', result.number)
+                                       .replaceAll('*CONTACT_EMAIL*', emailVar)
+                                       .replaceAll('*CONTACT_COMPANY*', companyVar);
+
+            $('.cardGrid').append(response);
+          }
+        }
+        )
+            });
+        }
+        });
+
+        
+    });
+
+      </script>
+</div>
+
+
+
+<!--
+<?php
     //For each example contact, reference the invidivuals components and inject the php card with those vars
     for($i = 0; $i < 4; $i++ ){      
         $name = $namearr[$i];
@@ -61,6 +110,7 @@
     $jsonDecoded = json_decode($response, true);
 
     ?>
-</div>
+    -->
+
 </body>
 </html>
