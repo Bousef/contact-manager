@@ -26,7 +26,7 @@
         let numberVar = "67890";
         let emailVar = "gary@gmail.com";
         let companyVar = "UCF Knights";
-        let urlRequest = new URL("http://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+        let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
         
         urlRequest.searchParams.append('req_type', 'read');
         urlRequest.searchParams.append('user_id', 456);
