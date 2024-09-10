@@ -52,7 +52,7 @@
             url: '../contactCard.php',
             method: 'GET',
             success: function(responseHTML) {
-            responseHTML = responseHTML.replaceAll('*CONTACT_NAME*', (result.first_name + " " + result.last_name)
+            responseHTML = responseHTML.replaceAll('*CONTACT_NAME*', (result.first_name + " " + result.last_name))
                                        .replaceAll('*CONTACT_NUMBER*', result.number)
                                        .replaceAll('*CONTACT_EMAIL*', emailVar)
                                        .replaceAll('*CONTACT_COMPANY*', companyVar);
