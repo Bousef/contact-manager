@@ -3,6 +3,6 @@
     Contact Manager
   </h1>
   <button type="submit" class="profileBtn">
-    <i class="fa-solid fa-user icon profileIcon"></i>
+    <i class="fa-solid fa-door-open icon profileIcon"></i>
   </button>
 </div>
