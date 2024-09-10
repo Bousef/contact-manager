@@ -22,10 +22,8 @@
 
       <script>
       $(".searchSubmitBtn").click(function(){
-        let nameVar = "Joseph Smith";
-        let numberVar = "67890";
-        let emailVar = "gary@gmail.com";
-        let companyVar = "UCF Knights";
+        let emailVar = "placeholder@placeholder.com";
+        let companyVar = "University of Central Florida";
         let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
         let data;
         
@@ -54,7 +52,7 @@
             url: '../contactCard.php',
             method: 'GET',
             success: function(responseHTML) {
-            responseHTML = responseHTML.replaceAll('*CONTACT_NAME*', result.first_name)
+            responseHTML = responseHTML.replaceAll('*CONTACT_NAME*', (result.first_name + " " + result.last_name)
                                        .replaceAll('*CONTACT_NUMBER*', result.number)
                                        .replaceAll('*CONTACT_EMAIL*', emailVar)
                                        .replaceAll('*CONTACT_COMPANY*', companyVar);
