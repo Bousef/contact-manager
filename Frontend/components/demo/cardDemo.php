@@ -56,12 +56,11 @@
                                        .replaceAll('*CONTACT_NUMBER*', contact.number)
                                        .replaceAll('*CONTACT_EMAIL*', emailVar)
                                        .replaceAll('*CONTACT_COMPANY*', companyVar);
-
-            $('.cardGrid').append(response);
+            $('.cardGrid').append(responseHTML);
           }
         }
         )
-            });
+        });
         }
         });
 
