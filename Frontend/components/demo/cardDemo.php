@@ -41,8 +41,11 @@
           },
           method: 'GET',
         })
-        .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
+        .then((response) => {
+          let data = response.json();
+        });
+
+        console.log(data);
 
         $.ajax({
            url: '../contactCard.php',
