@@ -8,6 +8,56 @@
 </head>
 <body id="body">
 
+
+    <script>
+      $(".searchSubmitBtn").click(function(){
+        let elements = document.getElementsByClassName("contactWrapper");
+    
+        while(elements.length > 0) {
+            elements[0].parentNode.removeChild(elements[0]);
+        }
+        
+        let emailVar = "placeholder@placeholder.com";
+        let companyVar = "University of Central Florida";
+        let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+        let data;
+        
+        urlRequest.searchParams.append('req_type', 'create');
+        urlRequest.searchParams.append('user_id', 1);
+        urlRequest.searchParams.append('first_name',document.getElementById("first_name").value);
+        urlRequest.searchParams.append('last_name',document.getElementById("last_name").value);
+        urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value );
+        urlRequest.searchParams.append('email', document.getElementById("email").value);
+        urlRequest.searchParams.append('street_address', document.getElementById("street_address").value + " "
+    + document.getElementById("state").value + " " + document.getElementById("zip_code"));
+
+        
+        
+
+        console.log(urlRequest.toString());
+
+        fetch(urlRequest, {
+          headers: {
+          "Content-Type": "application/json",
+          },
+          method: 'GET',
+        })
+        .then(async (response) => {
+          data = await response.json();
+          console.log(data);
+          if(data.success == false){
+            $('.cardGrid').append("<p>No Contacts Found</p>");
+          }
+          else if(data.success == true){
+
+        }
+        });
+
+        
+    });
+
+      </script>
+
     <div class="login-title">
         <h2 id="title">Add Contact</h2>
     </div>
@@ -18,13 +68,13 @@
             <!-- First Name -->
             <div class="form-group">
                 <label for="firstname">First Name:</label>
-                <input type="text" id="firstname" name="firstname" required>
+                <input type="text" id="first_name" name="first_name" required>
             </div>
 
             <!-- Last Name -->
             <div class="form-group">
                 <label for="lastname">Last Name:</label>
-                <input type="text" id="lastname" name="lastname" required>
+                <input type="text" id="last_name" name="last_name" required>
             </div>
 
             <!-- Email -->
@@ -36,7 +86,7 @@
             <!-- Phone Number -->
             <div class="form-group">
                 <label for="phonenumber">Phone Number:</label>
-                <input type="tel" id="phonenumber" name="phonenumber" 
+                <input type="tel" id="phone_number" name="phonenumber" 
                        pattern="\d{3}[-.\s]?\d{3}[-.\s]?\d{4}" 
                        placeholder="xxx-xxx-xxxx"  required>
             </div>
@@ -44,16 +94,16 @@
             <!-- Address -->
             <div class="form-group">
                 <label for="address">Unit or apartment number and street address:</label>
-                <input type="text" id="streetaddress" name ="streetaddress" placeholder="123 Candyland Ln" required>
+                <input type="text" id="street_address" name ="street_address" placeholder="123 Candyland Ln" required>
                 <label for="'state">State:</label>
                 <input type="text" id="state" name="state" placeholder="FL" required>
                 <label for="zipcode">Zip code:</label>
-                <input type="text" id="zipcode" name="zipcode" placeholder="12345" required>
+                <input type="text" id="zip_code" name="zip_code" placeholder="12345" required>
             </div>
 
             <!-- Submit Button -->
             <div class="form-group">
-                <input type="submit" value="Add Contact">
+                <input type="button" value="Add Contact" onclick="">
                 <span id="loginResult"></span>
             </div>
         </form>
