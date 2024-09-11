@@ -12,13 +12,12 @@
     <script>
       $(".searchSubmitBtn").click(function(){
         let elements = document.getElementsByClassName("contactWrapper");
+        document.getElementById("loginResult").innerHTML = " ";
     
         while(elements.length > 0) {
             elements[0].parentNode.removeChild(elements[0]);
         }
         
-        let emailVar = "placeholder@placeholder.com";
-        let companyVar = "University of Central Florida";
         let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
         let data;
         
@@ -28,11 +27,7 @@
         urlRequest.searchParams.append('last_name',document.getElementById("last_name").value);
         urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value );
         urlRequest.searchParams.append('email', document.getElementById("email").value);
-        urlRequest.searchParams.append('street_address', document.getElementById("street_address").value + " "
-    + document.getElementById("state").value + " " + document.getElementById("zip_code"));
-
-        
-        
+        urlRequest.searchParams.append('street_address', document.getElementById("street_address").value);
 
         console.log(urlRequest.toString());
 
@@ -46,10 +41,10 @@
           data = await response.json();
           console.log(data);
           if(data.success == false){
-            $('.cardGrid').append("<p>No Contacts Found</p>");
+            $("#loginResult").append("<p>ERROR: Contact not created </p>")
           }
           else if(data.success == true){
-
+            window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
         }
         });
 
@@ -85,8 +80,8 @@
 
             <!-- Phone Number -->
             <div class="form-group">
-                <label for="phonenumber">Phone Number:</label>
-                <input type="tel" id="phone_number" name="phonenumber" 
+                <label for="phone_number">Phone Number:</label>
+                <input type="tel" id="phone_number" name="phone_number" 
                        pattern="\d{3}[-.\s]?\d{3}[-.\s]?\d{4}" 
                        placeholder="xxx-xxx-xxxx"  required>
             </div>
@@ -102,9 +97,10 @@
             </div>
 
             <!-- Submit Button -->
+             <span id="loginResult"></span>
             <div class="form-group">
                 <input type="button" value="Add Contact" onclick="">
-                <span id="loginResult"></span>
+                
             </div>
         </form>
     </div>
