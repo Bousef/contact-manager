@@ -82,7 +82,7 @@
               $('#loginResult').append("<p>Invalid Registration<p>");
             }
             else if(data.success == true){
-              sessionStorage.setItem("userID", data.result[0].user_id);
+              sessionStorage.setItem("userID", data.result);
               window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
             }
           })
