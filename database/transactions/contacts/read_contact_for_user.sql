@@ -1,3 +1,7 @@
+
+-- Drop the existing procedure if it exists
+DROP PROCEDURE IF EXISTS read_contact_for_user;
+
 DELIMITER //
 
 CREATE PROCEDURE read_contact_for_user(
@@ -11,7 +15,8 @@ BEGIN
     SELECT c.id AS contact_id,
         c.first_name,
         c.last_name,
-        c.phone_number
+        c.phone_number,
+        c.email_address
     FROM cop4331_contact_manager.contacts c
     WHERE c.id = in_contact_id AND c.id_user = in_user_id;
 

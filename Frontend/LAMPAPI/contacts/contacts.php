@@ -7,7 +7,7 @@
     require_once '../database.php';
     require_once '../errors.php';
 
-    function create_contact_for_user($user_id, $first_name, $last_name, $phone_number) 
+    function create_contact_for_user($user_id, $first_name, $last_name, $phone_number, $email_address) 
     {
 
         // Open a connection to the database
@@ -22,7 +22,7 @@
         }
 
         // Prepare the SQL statement to call the stored procedure for creating a contact
-        $stmt = $conn->prepare("CALL create_contact_for_user(?, ?, ?, ?)");
+        $stmt = $conn->prepare("CALL create_contact_for_user(?, ?, ?, ?, ?)");
         if (!$stmt) 
         {
 
@@ -34,7 +34,7 @@
         }
 
         // Bind the parameters to the SQL statement
-        $stmt->bind_param("isss", $user_id, $first_name, $last_name, $phone_number);
+        $stmt->bind_param("issss", $user_id, $first_name, $last_name, $phone_number, $email_address);
         if (!$stmt->execute()) 
         {
 
@@ -131,7 +131,8 @@
                 'id' => $result['contact_id'],
                 'first_name' => $result['first_name'],
                 'last_name' => $result['last_name'],
-                'phone_number' => $result['phone_number']
+                'phone_number' => $result['phone_number'],
+                'email_address' => $result['email_address']
             ];
 
             echo json_encode([
@@ -197,7 +198,8 @@
                 'id' => $row['id'],
                 'first_name' => $row['first_name'],
                 'last_name' => $row['last_name'],
-                'phone_number' => $row['phone_number']
+                'phone_number' => $row['phone_number'],
+                'email_address' => $row['email_address']
             ];
             
         }
@@ -229,7 +231,7 @@
         }
 
         // Prepare the SQL statement to call the stored procedure for updating a contact
-        $stmt = $conn->prepare("CALL update_contact_for_user(?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("CALL update_contact_for_user(?, ?, ?, ?, ?, ?)");
         if (!$stmt) 
         {
 
@@ -241,7 +243,7 @@
         }
 
         // Bind the parameters to the SQL statement
-        $stmt->bind_param("iisss", $user_id, $contact_id, $first_name, $last_name, $phone_number);
+        $stmt->bind_param("iissss", $user_id, $contact_id, $first_name, $last_name, $phone_number, $email_address);
         if (!$stmt->execute()) 
         {
 
@@ -411,7 +413,7 @@
                 isset($json_decoded['img_url'])
             )
             {
-                create_contact_for_user($json_decoded['user_id'], $json_decoded['first_name'], $json_decoded['last_name'], $json_decoded['phone_number']);
+                create_contact_for_user($json_decoded['user_id'], $json_decoded['first_name'], $json_decoded['last_name'], $json_decoded['phone_number'], $json_decoded['email']);
             }
             else
             {
@@ -482,7 +484,7 @@
                 isset($json_decoded['img_url'])
             )
             {
-                update_contact_for_user($json_decoded['user_id'], $json_decoded['contact_id'], $json_decoded['first_name'], $json_decoded['last_name'], $json_decoded['phone_number']);
+                update_contact_for_user($json_decoded['user_id'], $json_decoded['contact_id'], $json_decoded['first_name'], $json_decoded['last_name'], $json_decoded['phone_number'], $json_decoded['email']);
             }
             else
             {

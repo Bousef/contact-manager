@@ -1,6 +1,10 @@
+
+-- Drop the existing procedure if it exists
+DROP PROCEDURE IF EXISTS read_contact_for_user;
+
 DELIMITER //
 
-CREATE PROCEDURE create_address_for_contact(
+CREATE PROCEDURE read_contact_for_user(
     IN in_contact_id INT,
     IN in_address_line_01 VARCHAR(255),
     IN in_address_line_02 VARCHAR(255),

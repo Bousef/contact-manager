@@ -1,3 +1,7 @@
+
+-- Drop the existing procedure if it exists
+DROP PROCEDURE IF EXISTS read_address_for_contact;
+
 DELIMITER //
 
 CREATE PROCEDURE read_address_for_contact(

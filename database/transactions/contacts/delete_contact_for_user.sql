@@ -1,3 +1,7 @@
+
+-- Drop the existing procedure if it exists
+DROP PROCEDURE IF EXISTS delete_contact_for_user;
+
 DELIMITER //
 
 CREATE PROCEDURE delete_contact_for_user(

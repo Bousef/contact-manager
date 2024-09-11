@@ -1,3 +1,7 @@
+
+-- Drop the existing procedure if it exists
+DROP PROCEDURE IF EXISTS read_user_login_data;
+
 DELIMITER //
 
 CREATE PROCEDURE read_user_login_data(

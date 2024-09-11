@@ -1,3 +1,7 @@
+
+-- Drop the existing procedure if it exists
+DROP PROCEDURE IF EXISTS create_user;
+
 DELIMITER //
 
 CREATE PROCEDURE create_user(
