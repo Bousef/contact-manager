@@ -30,10 +30,6 @@ BEGIN
     -- Get the last inserted ID
     SET contact_id = LAST_INSERT_ID();
 
-    -- Insert into users_contacts table
-    INSERT INTO cop4331_contact_manager.users_contacts (id_user, id_contact)
-    VALUES (in_user_id, contact_id);
-
     -- Commit the transaction
     COMMIT;
 

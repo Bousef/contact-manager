@@ -22,13 +22,9 @@ BEGIN
     -- Start transaction
     START TRANSACTION;
 
-    -- Delete from users_contacts table
-    DELETE FROM cop4331_contact_manager.users_contacts
-    WHERE id_user = in_user_id AND id_contact = in_contact_id;
-
     -- Delete from contacts table
     DELETE FROM cop4331_contact_manager.contacts
-    WHERE id = in_contact_id;
+    WHERE id = in_contact_id AND id_user = in_user_id; 
 
     -- Commit the transaction
     COMMIT;

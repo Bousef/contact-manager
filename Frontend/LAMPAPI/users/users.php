@@ -310,6 +310,7 @@
             return;
         }
 
+        // Close the statement
         $delete_contacts_stmt->close();
 
         // Prepare the SQL statement to delete the user
@@ -336,7 +337,7 @@
         if ($result['exit_status'] == 0) 
         {
             send_error_response(ErrorCodes::NO_ROWS_DELETED);
-        } 
+        }
         else 
         {
             echo json_encode([
@@ -347,6 +348,99 @@
         // Close the statement and the database connection
         $stmt->close();
         close_connection_to_database($conn);
+
+    }
+
+    function login_user($username, $password)
+    {
+
+        // Open a connection to the database
+        $conn = open_connection_to_database();
+        if ($conn === null) 
+        {
+
+            // If the connection failed, return an error response
+            send_error_response(ErrorCodes::DATABASE_CONNECTION_FAILED);
+            return;
+
+        }
+
+        // Hash the user's password using bcrypt (same as in create_user)
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+        // Prepare the SQL statement to call the stored procedure for logging in a user
+        $stmt = $conn->prepare("CALL login_user(?, ?)");
+        if (!$stmt) 
+        {
+
+            // If the statement preparation failed, return an error response
+            send_error_response(ErrorCodes::STATEMENT_PREPARATION_FAILED);
+            close_connection_to_database($conn);
+            return;
+
+        }
+
+        // Bind the parameters to the SQL statement
+        $stmt->bind_param("ss", $username, $hashed_password);
+        if (!$stmt->execute()) 
+        {
+
+            // If the statement execution failed, return an error response
+            send_error_response(ErrorCodes::STATEMENT_EXECUTION_FAILED);
+            $stmt->close();
+            close_connection_to_database($conn);
+            return;
+
+        }
+
+        // Fetch the result of the statement execution
+        $result = $stmt->get_result()->fetch_assoc();
+        if ($result === null) 
+        {
+
+            // If the result is null, return a generic error response
+            send_error_response(ErrorCodes::STATEMENT_EXECUTION_FAILED);
+
+        } 
+        else 
+        {
+
+            // Check the error code returned by the stored procedure
+            switch ($result['error_code']) 
+            {
+
+                case 1:
+                {
+                    send_error_response(ErrorCodes::USER_NOT_FOUND);
+                    break;
+                }
+
+                case 2:
+                {
+                    send_error_response(ErrorCodes::INVALID_PASSWORD);
+                    break;
+                }
+
+                default:
+                {
+
+                    // If the login was successful, return a success response with the user ID
+                    echo json_encode([
+                        'success' => true, 
+                        'result' => $result['user_id']
+                    ]);
+                    break;
+                
+                }
+
+            }
+
+        }
+
+        // Close the statement and the database connection
+        $stmt->close();
+        close_connection_to_database($conn);
+
     }
 
 ?>

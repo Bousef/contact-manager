@@ -10,11 +10,8 @@ BEGIN
     SELECT 
         id,
         username,
-        password, -- Include the password column
         first_name,
-        last_name,
-        date_created,
-        last_logged_in
+        last_name
     FROM cop4331_contact_manager.users
     WHERE id = in_user_id;
 
