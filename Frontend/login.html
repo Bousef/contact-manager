@@ -6,7 +6,7 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body id="body">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <div class="login-title">
         <h2 id="title">Contact Manager</h2>
         <br>
@@ -82,7 +82,7 @@
               $('#loginResult').append("<p>Invalid Registration<p>");
             }
             else if(data.success == true){
-              sessionStorage.setItem("userID", data.result[0].user_id);
+              sessionStorage.setItem("userID", data.result);
               window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
             }
           })
@@ -100,9 +100,9 @@
             <div class="form-group">
           <!-- <a href="forgotPassword.php">Forgot password?</a> -->
             </div>
+            <span id="loginResult"></span>
             <div class="form-group">
-                <input type="submit" value="Login" onclick="doLogin()">
-                <span id="loginResult"></span>
+                <button type="button" value="Login" onclick="doLogin()">Login</button>
             </div>
             <div class="form-group">
                 <button type="button" onclick="doRegister()">Create Account</button>

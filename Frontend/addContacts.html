@@ -14,7 +14,7 @@
 
     <div class="login-form">
         <h3>Add New Contact</h3>
-        <form id="addContact" onsubmit="return doAddContact(event)">
+        <form id="addContact" onsubmit="return doAddContact()">
             <!-- First Name -->
             <div class="form-group">
                 <label for="firstname">First Name:</label>
@@ -38,13 +38,17 @@
                 <label for="phonenumber">Phone Number:</label>
                 <input type="tel" id="phonenumber" name="phonenumber" 
                        pattern="\d{3}[-.\s]?\d{3}[-.\s]?\d{4}" 
-                       placeholder="123-456-7890"  required>
+                       placeholder="xxx-xxx-xxxx"  required>
             </div>
 
             <!-- Address -->
             <div class="form-group">
-                <label for="address">Address:</label>
-                <textarea id="address" name="address" rows="3" required></textarea>
+                <label for="address">Unit or apartment number and street address:</label>
+                <input type="text" id="streetaddress" name ="streetaddress" placeholder="123 Candyland Ln" required>
+                <label for="'state">State:</label>
+                <input type="text" id="state" name="state" placeholder="FL" required>
+                <label for="zipcode">Zip code:</label>
+                <input type="text" id="zipcode" name="zipcode" placeholder="12345" required>
             </div>
 
             <!-- Submit Button -->
