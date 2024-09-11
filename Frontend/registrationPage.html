@@ -10,16 +10,17 @@
 <body>
     <div class="login-title">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        
         <script>
         function doRegister() {
-        userName = document.getElementById("Username").value;
-        passWord = document.getElementById("Password").value;
-        firstName = document.getElementById("First Name").value;
-        lastName = document.getElementById("Last Name").value;
+        userName = document.getElementById("username").value;
+        passWord = document.getElementById("password").value;
+        firstName = document.getElementById("first_name").value;
+        lastName = document.getElementById("last_name").value;
         
         document.getElementById("loginResult").innerHTML = "";
 
-        if(userName == null || email == null || passWord == null){
+        if(userName == null || passWord == null || firstName == null || lastName == null){
           $('#loginResult').append("<p>Please Enter Username and Password<p>");
           return;
         }
