@@ -568,7 +568,7 @@
                 isset($json_decoded['password'])
             )
             {
-                delete_contact_for_user($json_decoded['username'], $json_decoded['password']);
+                delete_user($json_decoded['username'], $json_decoded['password']);
             }
             else
             {
