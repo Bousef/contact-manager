@@ -23,8 +23,6 @@ CREATE TABLE IF NOT EXISTS cop4331_contact_manager.users
     password VARCHAR(255) NOT NULL, -- Secure hashed password
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) DEFAULT NULL,
-    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    last_logged_in TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT unique_users_username UNIQUE (username),
     PRIMARY KEY (id)
 );
@@ -37,6 +35,7 @@ CREATE TABLE IF NOT EXISTS cop4331_contact_manager.contacts
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) DEFAULT NULL,
     phone_number VARCHAR(255) DEFAULT NULL,
+    email_address VARCHAR(255) DEFAULT NULL,
     id_address INT DEFAULT NULL,
     CONSTRAINT fk_contacts_id_user FOREIGN KEY (id_user) 
         REFERENCES cop4331_contact_manager.users(id) 
@@ -45,18 +44,4 @@ CREATE TABLE IF NOT EXISTS cop4331_contact_manager.contacts
         REFERENCES cop4331_contact_manager.addresses(id) 
         ON DELETE SET NULL,
     PRIMARY KEY (id)
-);
-
--- Create 'users_contacts' table
-CREATE TABLE IF NOT EXISTS cop4331_contact_manager.users_contacts 
-(
-    id_user INT,
-    id_contact INT,
-    CONSTRAINT fk_users_contacts_id_user FOREIGN KEY (id_user) 
-        REFERENCES cop4331_contact_manager.users(id) 
-        ON DELETE CASCADE,
-    CONSTRAINT fk_users_contacts_id_contact FOREIGN KEY (id_contact) 
-        REFERENCES cop4331_contact_manager.contacts(id) 
-        ON DELETE CASCADE,
-    PRIMARY KEY (id_user, id_contact)
 );

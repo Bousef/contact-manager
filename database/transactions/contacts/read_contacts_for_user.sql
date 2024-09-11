@@ -15,8 +15,7 @@ BEGIN
         c.phone_number,
         c.id_address
     FROM cop4331_contact_manager.contacts c
-    JOIN cop4331_contact_manager.users_contacts uc ON c.id = uc.id_contact
-    WHERE uc.id_user = in_user_id
+    WHERE c.id_user = in_user_id
     AND (
         c.first_name LIKE CONCAT('%', in_search_string, '%') OR
         c.last_name LIKE CONCAT('%', in_search_string, '%') OR
