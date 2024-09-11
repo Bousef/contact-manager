@@ -10,7 +10,7 @@
 <body>
     <div class="login-title">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        
+
         <script>
         function doRegister() {
         userName = document.getElementById("username").value;
@@ -58,7 +58,7 @@
     </div>
     <div class="login-form">
         <section id="register">
-            <form id="registerForm">
+            <form id="registerForm" onsubmit="doRegister(event)>
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username">
@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" onclick="doRegister()">Register</button>
+                    <button type="submit">Register</button>
                 </div>
             </form>
             <p>Already have an account? <a href="index.html">Login here</a></p>
