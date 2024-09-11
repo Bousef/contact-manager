@@ -216,7 +216,7 @@
         
     }
 
-    function update_contact_for_user($user_id, $contact_id, $first_name, $last_name, $phone_number) 
+    function update_contact_for_user($user_id, $contact_id, $first_name, $last_name, $phone_number, $email_address) 
     {
 
         // Open a connection to the database
