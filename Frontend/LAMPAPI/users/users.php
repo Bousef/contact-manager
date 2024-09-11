@@ -255,7 +255,7 @@
     
         while ($contact = $result->fetch_assoc()) 
         {
-            
+
             // Get the ID of the contact
             $contact_id = $contact['id'];
         
@@ -417,6 +417,7 @@
                         'success' => true, 
                         'result' => $result['user_id']
                     ]);
+
                     break;
                 
                 }
@@ -556,7 +557,7 @@
                 isset($json_decoded['password'])
             )
             {
-                delete_user($json_decoded['username'], $json_decoded['password']);
+                login_user($json_decoded['username'], $json_decoded['password']);
             }
             else
             {
