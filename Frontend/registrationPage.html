@@ -9,17 +9,18 @@
 
 <body>
     <div class="login-title">
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
         <script>
         function doRegister() {
-        userName = document.getElementById("Username").value;
-        passWord = document.getElementById("Password").value;
-        firstName = document.getElementById("First Name").value;
-        lastName = document.getElementById("Last Name").value;
+        userName = document.getElementById("username").value;
+        passWord = document.getElementById("password").value;
+        firstName = document.getElementById("first_name").value;
+        lastName = document.getElementById("last_name").value;
         
         document.getElementById("loginResult").innerHTML = "";
 
-        if(userName == null || email == null || passWord == null){
+        if(userName == null || passWord == null || firstName == null || lastName == null){
           $('#loginResult').append("<p>Please Enter Username and Password<p>");
           return;
         }
@@ -57,16 +58,15 @@
     </div>
     <div class="login-form">
         <section id="register">
-            <form id="registerForm">
+            <form id="registerForm" onsubmit="doRegister(event)"></form>
 
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username">
                 </div>
-                
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password">
+                    <input type="text" id="password" name="password">
                 </div>
 
                 <div class="form-group">
@@ -81,10 +81,10 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" onclick="doRegister()">Register</button>
+                    <button type="submit">Register</button>
                 </div>
             </form>
-            <p>Already have an account? <a href="index.html">Login here</a></p>
+            <p>Already have an account? <a href="login.html">Login here</a></p>
         </section>
     </div>
         
