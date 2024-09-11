@@ -409,8 +409,7 @@
                 isset($json_decoded['first_name'])      &&
                 isset($json_decoded['last_name'])       &&
                 isset($json_decoded['phone_number'])    &&
-                isset($json_decoded['email'])           &&
-                isset($json_decoded['img_url'])
+                isset($json_decoded['email'])
             )
             {
                 create_contact_for_user($json_decoded['user_id'], $json_decoded['first_name'], $json_decoded['last_name'], $json_decoded['phone_number'], $json_decoded['email']);
@@ -480,8 +479,7 @@
                 isset($json_decoded['first_name'])      &&
                 isset($json_decoded['last_name'])       &&
                 isset($json_decoded['phone_number'])    &&
-                isset($json_decoded['email'])           &&
-                isset($json_decoded['img_url'])
+                isset($json_decoded['email'])
             )
             {
                 update_contact_for_user($json_decoded['user_id'], $json_decoded['contact_id'], $json_decoded['first_name'], $json_decoded['last_name'], $json_decoded['phone_number'], $json_decoded['email']);
