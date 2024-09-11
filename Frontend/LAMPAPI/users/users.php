@@ -352,12 +352,9 @@
             return;
 
         }
-
-        // Hash the user's password using bcrypt (same as in create_user)
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-        // Prepare the SQL statement to call the stored procedure for logging in a user
-        $stmt = $conn->prepare("CALL login_user(?, ?)");
+    
+        // Prepare the SQL statement to call the stored procedure for fetching user details
+        $stmt = $conn->prepare("CALL read_user_login_data(?)");
         if (!$stmt) 
         {
 
@@ -367,9 +364,9 @@
             return;
 
         }
-
+    
         // Bind the parameters to the SQL statement
-        $stmt->bind_param("ss", $username, $hashed_password);
+        $stmt->bind_param("s", $username);
         if (!$stmt->execute()) 
         {
 
@@ -380,52 +377,40 @@
             return;
 
         }
-
+    
         // Fetch the result of the statement execution
         $result = $stmt->get_result()->fetch_assoc();
         if ($result === null) 
         {
 
-            // If the result is null, return a generic error response
-            send_error_response(ErrorCodes::STATEMENT_EXECUTION_FAILED);
+            // If the result is null, return a user not found error response
+            send_error_response(ErrorCodes::USER_NOT_FOUND);
 
         } 
         else 
         {
 
-            // Check the error code returned by the stored procedure
-            switch ($result['error_code']) 
+            // Verify the password using password_verify
+            if (password_verify($password, $result['hashed_password'])) 
             {
 
-                case 1:
-                {
-                    send_error_response(ErrorCodes::USER_NOT_FOUND);
-                    break;
-                }
+                // If the password is correct, return a success response with the user ID
+                echo json_encode([
+                    'success' => true, 
+                    'result' => $result['user_id']
+                ]);
 
-                case 2:
-                {
-                    send_error_response(ErrorCodes::INVALID_PASSWORD);
-                    break;
-                }
+            } 
+            else 
+            {
 
-                default:
-                {
-
-                    // If the login was successful, return a success response with the user ID
-                    echo json_encode([
-                        'success' => true, 
-                        'result' => $result['user_id']
-                    ]);
-
-                    break;
-                
-                }
+                // If the password is incorrect, return an invalid password error response
+                send_error_response(ErrorCodes::INVALID_PASSWORD);
 
             }
-
+            
         }
-
+    
         // Close the statement and the database connection
         $stmt->close();
         close_connection_to_database($conn);
