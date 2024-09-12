@@ -60,25 +60,25 @@
             <!-- First Name -->
             <div class="form-group">
                 <label for="firstname">First Name:</label>
-                <input type="text" id="first_name" name="first_name" required>
+                <input class="textForm" type="text" id="first_name" name="first_name" required>
             </div>
 
             <!-- Last Name -->
             <div class="form-group">
                 <label for="lastname">Last Name:</label>
-                <input type="text" id="last_name" name="last_name" required>
+                <input class="textForm" type="text" id="last_name" name="last_name" required>
             </div>
 
             <!-- Email -->
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input class="textForm" type="email" id="email" name="email" required>
             </div>
 
             <!-- Phone Number -->
             <div class="form-group">
                 <label for="phone_number">Phone Number:</label>
-                <input type="tel" id="phone_number" name="phone_number" 
+                <input class="textForm" type="tel" id="phone_number" name="phone_number" 
                        pattern="\d{3}[-.\s]?\d{3}[-.\s]?\d{4}" 
                        placeholder="xxx-xxx-xxxx"  required>
             </div>
@@ -86,17 +86,17 @@
             <!-- Address -->
             <div class="form-group">
                 <label for="address">Unit or apartment number and street address:</label>
-                <input type="text" id="street_address" name ="street_address" placeholder="123 Candyland Ln" required>
+                <input class="textForm" type="text" id="street_address" name ="street_address" placeholder="123 Candyland Ln" required>
                 <label for="'state">State:</label>
-                <input type="text" id="state" name="state" placeholder="FL" required>
+                <input class="textForm" type="text" id="state" name="state" placeholder="FL" required>
                 <label for="zipcode">Zip code:</label>
-                <input type="text" id="zip_code" name="zip_code" placeholder="12345" required>
+                <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="12345" required>
             </div>
 
             <!-- Submit Button -->
              <span id="loginResult"></span>
             <div class="form-group">
-                <input type="button" value="Add Contact" class="addContactBtn">
+                <input class="buttonAdd" type="button" value="Add Contact" class="addContactBtn">
                 
             </div>
         </form>

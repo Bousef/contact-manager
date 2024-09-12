@@ -109,3 +109,15 @@ a:hover {
 #param{
     margin-left: 50%;
 }
+
+.textForm {
+    border-radius: 15px;
+    border: 0.2px solid #000;
+    background: #F1F1F1;
+}
+
+.buttonAdd {
+    border-radius: 20px;
+    border: 0.2px solid #000;
+    background: #8FB1E2;
+}
