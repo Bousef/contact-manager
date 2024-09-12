@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <title>Add Contacts Page</title>
     <link href="css/style.css" rel="stylesheet">
+    <link href="components/styles/navBar.css" rel="stylesheet">
 </head>
 <body id="body">
-
+    <?php
+        include '../navBar.php';
+    ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       $(".addContactBtn").click(function(){

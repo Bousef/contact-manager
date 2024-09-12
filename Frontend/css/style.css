@@ -1,8 +1,10 @@
+/*
 body{
     background:linear-gradient(cornflowerblue,aquamarine);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+*/
 
 .login-title
 {
@@ -18,7 +20,7 @@ body{
     width: 50%;
     margin: auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #D7DEE9;
     border-radius: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
