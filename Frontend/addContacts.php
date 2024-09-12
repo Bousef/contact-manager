@@ -8,7 +8,7 @@
 </head>
 <body id="body">
     <?php
-        include '../navBar.php';
+        include 'components/navBar.php';
     ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
