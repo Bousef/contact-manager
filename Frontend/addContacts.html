@@ -9,13 +9,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-      $(".searchSubmitBtn").click(function(){
-        let elements = document.getElementsByClassName("contactWrapper");
+      $(".addContactBtn").click(function(){
         document.getElementById("loginResult").innerHTML = " ";
-    
-        while(elements.length > 0) {
-            elements[0].parentNode.removeChild(elements[0]);
-        }
         
         let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
         let data;
@@ -98,7 +93,7 @@
             <!-- Submit Button -->
              <span id="loginResult"></span>
             <div class="form-group">
-                <input type="button" value="Add Contact" onclick="">
+                <input type="button" value="Add Contact" class="addContactBtn">
                 
             </div>
         </form>
