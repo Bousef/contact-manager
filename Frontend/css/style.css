@@ -125,3 +125,7 @@ a:hover {
     border: 0.2px solid #000;
     background: #8FB1E2;
 }
+
+.buttonAdd:hover {
+    background: #708ab0;
+}
