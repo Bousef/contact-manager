@@ -71,6 +71,56 @@
   background: #5E94E0;
 }
 
+.buttonGroup {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contactGroup {
+  display: inline-block;
+  align-items: center;
+  margin-right: 55px;
+}
+
+.modifyGroup {
+  display: inline-block;
+  align-items: center;
+}
+
+.editButton {
+  display: inline-flex;
+  border-radius: 30px;
+  border: 0.2px solid #000;
+  background: #5bc75f;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+}
+
+.editButton:hover {
+  background: #318f3d;
+}
+
+.deleteButton:hover {
+  background: #96322f;
+}
+
+.deleteButton {
+  display: inline-flex;
+  border-radius: 30px;
+  border: 0.2px solid #000;
+  background: #e05555;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+}
+
 i {
   color: rgb(0, 0, 0);
 }

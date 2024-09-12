@@ -17,6 +17,7 @@
     <?php
       include '../navBar.php';
       include '../searchBar.php';
+      include '../contactCard.php';
     ?>
     <div class = 'cardGrid'>
 
@@ -62,6 +63,7 @@
                                        .replaceAll('*CONTACT_NUMBER*', contact.phone_number)
                                        .replaceAll('*CONTACT_EMAIL*', emailVar)
                                        .replaceAll('*CONTACT_COMPANY*', companyVar)
+                                       .replaceAll('*CONTACT_ID*', contact.id)
                                        //Replace undefined fields with empty
                                        .replaceAll("undefined", "");
             $('.cardGrid').append(responseHTML);
