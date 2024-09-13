@@ -77,12 +77,12 @@
                 <input class="textForm" type="email" id="email" name="email" required>
             </div>
 
-            <!-- Phone Number -->
+            <!-- Phone Number pattern="\d{3}[-.\s]?\d{3}[-.\s]?\d{4}"
+                       placeholder="xxx-xxx-xxxx"  required -->
             <div class="form-group">
                 <label for="phone_number">Phone Number:</label>
                 <input class="textForm" type="tel" id="phone_number" name="phone_number" 
-                       pattern="\d{3}[-.\s]?\d{3}[-.\s]?\d{4}" 
-                       placeholder="xxx-xxx-xxxx"  required>
+                    >
             </div>
 
             <!-- Address -->
