@@ -61,8 +61,8 @@
             success: function(responseHTML) {
             responseHTML = responseHTML.replaceAll('*CONTACT_NAME*', (contact.first_name + " " + contact.last_name))
                                        .replaceAll('*CONTACT_NUMBER*', contact.phone_number)
-                                       .replaceAll('*CONTACT_EMAIL*', emailVar)
-                                       .replaceAll('*CONTACT_COMPANY*', companyVar)
+                                       .replaceAll('*CONTACT_EMAIL*', contact.email_address)
+                                       .replaceAll('*CONTACT_COMPANY*', "*ADDRESS PLACEHOLDER*")
                                        .replaceAll('*CONTACT_ID*', contact.id)
                                        //Replace undefined fields with empty
                                        .replaceAll("undefined", "");
