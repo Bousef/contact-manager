@@ -34,9 +34,7 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 				});
 
 				const outputREMOVEME = JSON.stringify(outputObj, null, 2);
-	
-				// REMOVE AND SEND TO SERVER INSTEAD
-				document.getElementById("output").textContent = outputREMOVEME;
+				console.log(outputREMOVEME);
 			}
 		});
 
@@ -51,9 +49,7 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 			const outputObj = vcfCards.map(vCard => vCardToObj(vCard));
 
 			const outputREMOVEME = JSON.stringify(outputObj, null, 2);
-	
-			// REMOVE AND SEND TO SERVER INSTEAD
-			document.getElementById("output").textContent = outputREMOVEME;
+			console.log(outputREMOVEME);
 		}
 		// Read file and call above function to parse into cards and then into JSON.
 		reader.readAsText(file);
