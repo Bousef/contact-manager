@@ -22,6 +22,12 @@
     <div class = 'cardGrid'>
 
       <script>
+        $(document).ready(function() {
+    $(".deleteButton").click(function() {
+        let contactId = $(this).data("contact-id");
+        doDelete(contactId);
+    });
+  });
       $(".searchSubmitBtn").click(function(){
         let elements = document.getElementsByClassName("contactWrapper");
     
@@ -78,6 +84,7 @@
     });
 
     //Jose editing from this point
+    
     function doEdit(contactId) {
         //Implement the edit functionality
         console.log("Edit contact with ID:", contactId);
