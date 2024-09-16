@@ -77,6 +77,45 @@
         
     });
 
+    //Jose editing from this point
+    function doEdit(contactId) {
+        //Implement the edit functionality
+        console.log("Edit contact with ID:", contactId);
+        //Code here to redirect to edit page.
+
+      }
+
+      function doDelete(contactId) {
+        if (confirm("Are you sure you want to delete this contact?")) {
+          let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+          urlRequest.searchParams.append('req_type', 'delete');
+          urlRequest.searchParams.append('user_id', 1); //Replace with actual user ID
+          urlRequest.searchParams.append('contact_id', contactId);
+
+          fetch(urlRequest, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            method: 'POST',
+          })
+          .then(async (response) => {
+            let data = await response.json();
+            if (data.success) {
+              alert("Contact deleted successfully.");
+              location.reload(); //Reload the page to get changes
+            } else {
+              alert("Failed to delete contact.");
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            alert("An error occurred while deleting the contact.");
+          });
+        }
+      }
+
+    //End Jose edits
+
       </script>
 </div>
 

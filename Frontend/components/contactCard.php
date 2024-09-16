@@ -16,10 +16,10 @@
       </a>
     </div>
     <div class="modifyGroup">
-      <button class="contactBtn editButton" onclick="doEdit(*CONTACT_ID*)">
+      <button class="contactBtn editButton" onclick="doEdit(<?php echo $contactId; ?>)">
         <i class="fa-solid fa-pencil icon"></i>
       </button>
-      <button class="contactBtn deleteButton" onclick="doDelete(*CONTACT_ID*)">
+      <button class="contactBtn deleteButton" onclick="doDelete(<?php echo $contactId; ?>)">
         <i class="fa-solid fa-trash icon"></i>
       </button>
     </div>
