@@ -92,6 +92,8 @@
           urlRequest.searchParams.append('user_id', 1); //Replace with actual user ID
           urlRequest.searchParams.append('contact_id', contactId);
 
+          console.log("URL req: ", urlRequest.toString());//Debugging
+
           fetch(urlRequest, {
             headers: {
               "Content-Type": "application/json",
@@ -100,6 +102,7 @@
           })
           .then(async (response) => {
             let data = await response.json();
+            console.log("Response data: ", data);//Debbuging
             if (data.success) {
               alert("Contact deleted successfully.");
               location.reload(); //Reload the page to get changes
