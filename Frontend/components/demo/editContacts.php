@@ -13,7 +13,7 @@
         include 'components/navBar.php';
         include 'components/demo/cardDemo.php';
 
-        $contactId = $_GET['contac_id'];
+        $contactId = $_GET['contact_id'];
 
         //Fetch details of the contact
         
