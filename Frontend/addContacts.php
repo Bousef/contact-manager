@@ -71,6 +71,11 @@
         function doAddContact(event) {
             event.preventDefault();
 
+            //Temp solution to prevent multiple submissions
+            if (isSubbmitting) {
+                return false;
+            }
+
             document.getElementById("loginResult").innerHTML = " ";
 
             let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
@@ -105,6 +110,9 @@
             .catch(error => {
                 console.error('Error:', error);
                 $("#loginResult").append("<p>ERROR: Contact not created </p>");
+            })
+            .finally(() => {
+                isSubbmitting = false;
             });
 
             // Return false to prevent the default form submission
@@ -113,9 +121,9 @@
 
         document.addEventListener('DOMContentLoaded', function() {
            
-            document.getElementById('addContact').addEventListener('submit', doAddContact, {once: true});
+            document.getElementById('addContact').addEventListener('submit', doAddContact);
         });
-        
+
     </script>
 </body>
 </html>
