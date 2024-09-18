@@ -13,7 +13,7 @@
     require_once 'read_contacts_for_user.php';
     require_once 'update_contact_for_user.php';
     require_once 'delete_contact_for_user.php';
-    require_once 'create_address_for_contact.php';
+    require_once './addresses/create_address_for_contact.php';
 
     // Get the request data
     $json_req = file_get_contents('php://input');
