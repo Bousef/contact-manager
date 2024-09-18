@@ -29,10 +29,8 @@
             elements[0].parentNode.removeChild(elements[0]);
         }
         
-        let emailVar = "placeholder@placeholder.com";
-        let companyVar = "University of Central Florida";
         let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
-        let data;
+        let data, addressData, addressStr;
         
         urlRequest.searchParams.append('req_type', 'search');
         urlRequest.searchParams.append('user_id', 1);
@@ -59,10 +57,29 @@
             url: '../contactCard.php',
             method: 'GET',
             success: function(responseHTML) {
+            let addressRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
+            addressRequest.searchParams.append('req_type',"read")
+            addressRequest.searchParams.append('contact_id', contact.id);
+            fetch(urlRequest, {
+            headers: {
+            "Content-Type": "application/json",
+            },
+            method: 'GET',
+            })
+            .then(async (response) => {
+              addressData = await response.json();
+              if(addressData.success == false){
+                addressStr = "";
+              }
+              else{
+                addressStr = addressData.address_line_01 + addressData.city + addressData.state + ", " + addressData.zip_code;
+              }
+            })
+
             responseHTML = responseHTML.replaceAll('*CONTACT_NAME*', (contact.first_name + " " + contact.last_name))
                                        .replaceAll('*CONTACT_NUMBER*', contact.phone_number)
                                        .replaceAll('*CONTACT_EMAIL*', contact.email_address)
-                                       .replaceAll('*CONTACT_COMPANY*', "*ADDRESS PLACEHOLDER*")
+                                       .replaceAll('*CONTACT_COMPANY*', addressStr)
                                        .replaceAll('*CONTACT_ID*', contact.id)
                                        //Replace undefined fields with empty
                                        .replaceAll("undefined", "");
