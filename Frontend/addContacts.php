@@ -84,6 +84,7 @@
                 urlRequest.searchParams.append('last_name', document.getElementById("last_name").value);
                 urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value);
                 urlRequest.searchParams.append('email', document.getElementById("email").value);
+                
 
                 console.log(urlRequest.toString());
 
