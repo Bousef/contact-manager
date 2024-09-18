@@ -49,7 +49,7 @@
                 <label for="street_address">Unit or apartment number and street address:</label>
                 <input class="textForm" type="text" id="street_address" name="street_address" placeholder="123 Candyland Ln" required>
                 <label for="street_address">Unit or apartment number and street address 2:</label>
-                <input class="textForm" type="text" id="street_address" name="street_address" placeholder="123 Candyland Ln" required>
+                <input class="textForm" type="text" id="street_address" name="street_address" placeholder="Apt 1A" required>
                 <label for="city">City:</label>
                 <input class="textForm" type="text" id="city" name="city" placeholder="Orlando" required>
                 <label for="state">State:</label>
@@ -75,20 +75,20 @@
 
                 document.getElementById("loginResult").innerHTML = " ";
 
-                let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
-                let data;
+                let contactUrl = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/create_contact.php");
+                let addressUrl = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/create_address.php");
 
-                urlRequest.searchParams.append('req_type', 'create');
-                urlRequest.searchParams.append('user_id', 1);
-                urlRequest.searchParams.append('first_name', document.getElementById("first_name").value);
-                urlRequest.searchParams.append('last_name', document.getElementById("last_name").value);
-                urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value);
-                urlRequest.searchParams.append('email', document.getElementById("email").value);
-                urlRequest.searchParams.append('street_address', document.getElementById("street_address").value);
-                urlRequest.searchParams.append('street_address_2', document.getElementById("street_address_2").value);
-                urlRequest.searchParams.append('city', document.getElementById("city").value);
-                urlRequest.searchParams.append('state', document.getElementById("state").value);
-                urlRequest.searchParams.append('zip_code', document.getElementById("zip_code").value);
+                contactUrl.searchParams.append('req_type', 'create');
+                contactUrl.searchParams.append('user_id', 1);
+                contactUrl.searchParams.append('first_name', document.getElementById("first_name").value);
+                contactUrl.searchParams.append('last_name', document.getElementById("last_name").value);
+                contactUrl.searchParams.append('phone_number', document.getElementById("phone_number").value);
+                contactUrl.searchParams.append('email', document.getElementById("email").value);
+                addressUrl.searchParams.append('street_address', document.getElementById("street_address").value);
+                addressUrl.searchParams.append('street_address_2', document.getElementById("street_address_2").value);
+                addressUrl.searchParams.append('city', document.getElementById("city").value);
+                addressUrl.searchParams.append('state', document.getElementById("state").value);
+                addressUrl.searchParams.append('zip_code', document.getElementById("zip_code").value);
 
                 console.log(urlRequest.toString());
 
