@@ -26,7 +26,7 @@
         urlRequest.searchParams.append('last_name',document.getElementById("last_name").value);
         urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value );
         urlRequest.searchParams.append('email', document.getElementById("email").value);
-        urlRequest.searchParams.append('street_address', document.getElementById("street_address").value);
+        //urlRequest.searchParams.append('street_address', document.getElementById("street_address").value);
 
         console.log(urlRequest.toString());
 
@@ -40,18 +40,54 @@
           data = await response.json();
           console.log(data);
           if(data.success == false){
-            $("#loginResult").append("<p>ERROR: Contact not created </p>")
-          }
-          else if(data.success == true){
+            $("#loginResult").append("<p>ERROR: Contact not created </p>");
+          } else if(data.success == true){
             window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
-        }
+          }
         });
 
         
     });
+    function doAddContact(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            
+            let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+            let data;
+
+            urlRequest.searchParams.append('req_type', 'create');
+            urlRequest.searchParams.append('user_id', 1);
+            urlRequest.searchParams.append('first_name',document.getElementById("first_name").value);
+            urlRequest.searchParams.append('last_name',document.getElementById("last_name").value);
+            urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value );
+            urlRequest.searchParams.append('email', document.getElementById("email").value);
+
+
+            console.log(urlRequest.toString()); 
+
+            fetch(urlRequest, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: 'GET',
+            })
+            .then(async (response) => {
+                data = await response.json();
+                console.log(data);
+                if (data.success == false) {
+                    $("#loginResult").append("<p>ERROR: Contact not created </p>");
+                } else if (data.success == true) {
+                    window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
+                }
+            });
+
+            //Return false to prevent the default form submission
+            return false;
+        }
+         
 
       </script>
-
     <div class="login-title">
         <h2 id="title">Add Contact</h2>
     </div>
@@ -86,14 +122,14 @@
             </div>
 
             <!-- Address -->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="address">Unit or apartment number and street address:</label>
                 <input class="textForm" type="text" id="street_address" name ="street_address" placeholder="123 Candyland Ln" required>
                 <label for="'state">State:</label>
                 <input class="textForm" type="text" id="state" name="state" placeholder="FL" required>
                 <label for="zipcode">Zip code:</label>
                 <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="12345" required>
-            </div>
+            </div> -->
 
             <!-- Submit Button -->
              <span id="loginResult"></span>
