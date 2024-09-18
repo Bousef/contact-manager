@@ -19,7 +19,6 @@
     <div class="login-form">
         <h3>Add New Contact</h3>
         <form id="addContact" onsubmit="return doAddContact(event)">
-        
             <!-- First Name -->
             <div class="form-group">
                 <label for="firstname">First Name:</label>
@@ -44,18 +43,14 @@
                 <input class="textForm" type="tel" id="phone_number" name="phone_number" required>
             </div>
 
-            <!-- Address
-            <div class="form-group">
-                <label for="street_address">Street Address:</label>
-                <input class="textForm" type="text" id="street_address" name="street_address" placeholder="123 Candyland Ln" >
-                <label for="street_address_2">Street Address 2:</label>
-                <input class="textForm" type="text" id="street_address_2" name="street_address_2" placeholder="Apt 4B">
-                <label for="city">City:</label>
-                <input class="textForm" type="text" id="city" name="city" placeholder="Orlando" >
-                <label for="state">State:</label>
-                <input class="textForm" type="text" id="state" name="state" placeholder="FL" >
-                <label for="zip_code">Zip code:</label>
-                <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="12345" >
+            <!-- Address -->
+            <!-- <div class="form-group">
+                <label for="address">Unit or apartment number and street address:</label>
+                <input class="textForm" type="text" id="street_address" name ="street_address" placeholder="123 Candyland Ln" required>
+                <label for="'state">State:</label>
+                <input class="textForm" type="text" id="state" name="state" placeholder="FL" required>
+                <label for="zipcode">Zip code:</label>
+                <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="12345" required>
             </div> -->
 
             <!-- Submit Button -->
@@ -66,7 +61,7 @@
         </form>
     </div>
 
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function doAddContact(event) {
@@ -84,7 +79,6 @@
                 urlRequest.searchParams.append('last_name', document.getElementById("last_name").value);
                 urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value);
                 urlRequest.searchParams.append('email', document.getElementById("email").value);
-                
 
                 console.log(urlRequest.toString());
 
