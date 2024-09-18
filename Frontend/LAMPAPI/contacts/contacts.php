@@ -49,21 +49,21 @@
                 isset($json_decoded['first_name'])      &&
                 isset($json_decoded['last_name'])       &&
                 isset($json_decoded['phone_number'])    &&
-                isset($json_decoded['email'])
-                // isset($json_decoded['address_line_01']) &&
-                // isset($json_decoded['address_line_02']) &&
-                // isset($json_decoded['city']) &&
-                // isset($json_decoded['state']) &&
-                // isset($json_decoded['zip_code'])
+                isset($json_decoded['email']) &&
+                isset($json_decoded['address_line_01']) &&
+                isset($json_decoded['address_line_02']) &&
+                isset($json_decoded['city']) &&
+                isset($json_decoded['state']) &&
+                isset($json_decoded['zip_code'])
                 //&&
                // isset($json_decoded['street_address'])
             )
             {
                 create_contact_for_user($json_decoded['user_id'], $json_decoded['first_name'],
-                $json_decoded['last_name'], $json_decoded['phone_number'], $json_decoded['email']);
-                //  , $json_decoded['address_line_01'],
-                //   $json_decoded['address_line_02'], $json_decoded['city'],
-                //   $json_decoded['state'], $json_decoded['zip_code']);
+                $json_decoded['last_name'], $json_decoded['phone_number'],
+                $json_decoded['email'], $json_decoded['address_line_01'],
+                $json_decoded['address_line_02'], $json_decoded['city'],
+                $json_decoded['state'], $json_decoded['zip_code']);
             }
             else
             {
