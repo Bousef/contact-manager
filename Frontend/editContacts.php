@@ -11,14 +11,18 @@
 <body id="body">
     <?php
         include 'components/navBar.php';
+        include 'components/demo/cardDemo.php';
+
+        $contactId = $_GET['contactId'];
+        
     ?>
     <div class="login-title">
-        <h2 id="title">Add Contact</h2>
+        <h2 id="title">Edit Contact</h2>
     </div>
 
     <div class="login-form">
-        <h3>Add New Contact</h3>
-        <form id="addContact" onsubmit="return doEdit(event)">
+        <h3>Edit Contact</h3>
+        <form id="addContact" onsubmit="return doEdit(contactId)">
         
             <!-- First Name -->
             <div class="form-group">
@@ -68,7 +72,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        function doEdit(event) {
+        function doEdit(contactId) {
             event.preventDefault();
 
             
