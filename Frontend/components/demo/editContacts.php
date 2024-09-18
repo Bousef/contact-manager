@@ -13,7 +13,7 @@
         include 'components/navBar.php';
         include 'components/demo/cardDemo.php';
 
-        $contactId = $_GET['contactId'];
+        $contactId = $_GET['contac_id'];
         
     ?>
     <div class="login-title">
@@ -22,7 +22,7 @@
 
     <div class="login-form">
         <h3>Edit Contact</h3>
-        <form id="addContact" onsubmit="return doEdit(contactId)">
+        <form id="editContactForm" method = "POST" onsubmit="return doEdit(contactId)">
         
             <!-- First Name -->
             <div class="form-group">
