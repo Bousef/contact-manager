@@ -65,84 +65,49 @@
             </div>
         </form>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function doAddContact(event) {
+                
                 event.preventDefault();
 
                 document.getElementById("loginResult").innerHTML = " ";
 
-                let contactUrl = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/create_contact.php");
-                let addressUrl = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/create_address.php");
+                let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+                let data;
 
-                contactUrl.searchParams.append('req_type', 'create');
-                contactUrl.searchParams.append('user_id', 1);
-                contactUrl.searchParams.append('first_name', document.getElementById("first_name").value);
-                contactUrl.searchParams.append('last_name', document.getElementById("last_name").value);
-                contactUrl.searchParams.append('phone_number', document.getElementById("phone_number").value);
-                contactUrl.searchParams.append('email', document.getElementById("email").value);
+                urlRequest.searchParams.append('req_type', 'create');
+                urlRequest.searchParams.append('user_id', 1);
+                urlRequest.searchParams.append('first_name', document.getElementById("first_name").value);
+                urlRequest.searchParams.append('last_name', document.getElementById("last_name").value);
+                urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value);
+                urlRequest.searchParams.append('email', document.getElementById("email").value);
 
-                fetch(contactUrl, {
+                console.log(urlRequest.toString());
+
+                fetch(urlRequest, {
                     headers: {
                         "Content-Type": "application/json",
                     },
                     method: 'GET',
                 })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
+                .then(async (response) => {
+                    data = await response.json();
+                    console.log(data);
                     if (data.success == false) {
                         $("#loginResult").append("<p>ERROR: Contact not created </p>");
-                    } else {
-                        let contact_id = data.contact_id;
-                        addressUrl.searchParams.append('contact_id', contact_id);
-                        addressUrl.searchParams.append('address_line_01', document.getElementById("address_line_01").value);
-                        addressUrl.searchParams.append('address_line_02', document.getElementById("address_line_02").value);
-                        addressUrl.searchParams.append('city', document.getElementById("city").value);
-                        addressUrl.searchParams.append('state', document.getElementById("state").value);
-                        addressUrl.searchParams.append('zip_code', document.getElementById("zip_code").value);
-
-                        fetch(addressUrl, {
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            method: 'GET',
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (data.success == false) {
-                                $("#loginResult").append("<p>ERROR: Address not created </p>");
-                            } else {
-                                window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            $("#loginResult").append("<p>ERROR: Address not created </p>");
-                        });
+                    } else if (data.success == true) {
+                        window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
                     }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    $("#loginResult").append("<p>ERROR: Contact not created </p>");
                 });
 
-                // Return false to prevent the default form submission
+                //Return false to prevent the default form submission
                 return false;
             }
 
-
+            //Attach the function to the form's submit event
             document.getElementById('addContact').addEventListener('submit', doAddContact);
         });
     </script>
