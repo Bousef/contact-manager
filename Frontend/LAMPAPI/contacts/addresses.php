@@ -18,6 +18,8 @@
 
     // Turn input data into Object
     $json_decoded = json_decode($json_req, true);
+    
+    parse_str($_SERVER['QUERY_STRING'], $json_decoded);
 
     // Null check for JSON
     if($json_decoded == null)
