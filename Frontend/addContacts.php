@@ -113,7 +113,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
            
-            document.getElementById('addContact').addEventListener('submit', doAddContact);
+            document.getElementById('addContact').addEventListener('submit', doAddContact, {once: true});
         });
     </script>
 </body>
