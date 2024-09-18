@@ -113,10 +113,10 @@
             return false;
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        // document.addEventListener('DOMContentLoaded', function() {
            
-            document.getElementById('addContact').addEventListener('submit', doAddContact);
-        });
+        //     document.getElementById('addContact').addEventListener('submit', doAddContact);
+        // });
 
     </script>
 </body>
