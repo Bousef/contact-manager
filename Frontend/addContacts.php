@@ -113,11 +113,6 @@
             return false;
         }
 
-        // document.addEventListener('DOMContentLoaded', function() {
-           
-        //     document.getElementById('addContact').addEventListener('submit', doAddContact);
-        // });
-
     </script>
 </body>
 </html>
