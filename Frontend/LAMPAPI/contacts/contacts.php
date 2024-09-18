@@ -13,7 +13,7 @@
     require_once 'read_contacts_for_user.php';
     require_once 'update_contact_for_user.php';
     require_once 'delete_contact_for_user.php';
-    require_once 'create_address_for_contact.php';
+    //require_once 'create_address_for_contact.php';
 
     // Get the request data
     $json_req = file_get_contents('php://input');
@@ -60,8 +60,7 @@
             )
             {
                 create_contact_for_user($json_decoded['user_id'], $json_decoded['first_name'],
-                $json_decoded['last_name'], $json_decoded['phone_number'],
-                 $json_decoded['email']);
+                $json_decoded['last_name'], $json_decoded['phone_number'], $json_decoded['email']);
                 //  , $json_decoded['address_line_01'],
                 //   $json_decoded['address_line_02'], $json_decoded['city'],
                 //   $json_decoded['state'], $json_decoded['zip_code']);
@@ -190,5 +189,4 @@
         //     }
 
     }
-
 ?>
