@@ -64,7 +64,7 @@
             } 
             else 
             {
-                send_error_response(ErrorCodes::INVALID_REQUEST);
+                send_error_response(ErrorCodes::ADDRESS_NOT_FOUND);
             }
 
             break;
