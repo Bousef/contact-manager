@@ -72,7 +72,7 @@
             event.preventDefault();
 
             //Temp solution to prevent multiple submissions
-            if (isSubbmitting) {
+            if (isSubmitting) {
                 return false;
             }
 
@@ -112,7 +112,7 @@
                 $("#loginResult").append("<p>ERROR: Contact not created </p>");
             })
             .finally(() => {
-                isSubbmitting = false;
+                isSubmitting = false;
             });
 
             // Return false to prevent the default form submission
