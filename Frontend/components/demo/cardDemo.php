@@ -66,6 +66,7 @@
             let addressRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
             addressRequest.searchParams.append('req_type', 'read')
             addressRequest.searchParams.append('contact_id', contact.id.toString());
+            console.log(addressRequest.toString())
             fetch(addressRequest, {
             headers: {
             "Content-Type": "application/json",
