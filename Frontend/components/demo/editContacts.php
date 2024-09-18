@@ -14,6 +14,8 @@
         include 'components/demo/cardDemo.php';
 
         $contactId = $_GET['contac_id'];
+
+        //Fetch details of the contact
         
     ?>
     <div class="login-title">
@@ -27,6 +29,7 @@
             <!-- First Name -->
             <div class="form-group">
                 <label for="firstname">First Name:</label>
+                <!-- It would be nice to have placeholders of the current details of the contact -->
                 <input class="textForm" type="text" id="first_name" name="first_name">
             </div>
 
