@@ -74,6 +74,7 @@
             })
             .then(async (response) => {
               addressData = await response.json();
+              console.log(addressData);
               if(addressData.success == false){
                 addressStr = "";
               }
