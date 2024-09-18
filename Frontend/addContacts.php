@@ -13,7 +13,7 @@
         include 'components/navBar.php';
     ?>
     <div class="login-title">
-        <h2 id="title">Add Contact!</h2>
+        <h2 id="title">Add Contact</h2>
     </div>
 
     <div class="login-form">
@@ -119,6 +119,10 @@
             return false;
         }
 
+        document.addEventListener('DOMContentLoaded', function() {
+           
+            document.getElementById('addContact').addEventListener('submit', doAddContact);
+        });
 
     </script>
 </body>
