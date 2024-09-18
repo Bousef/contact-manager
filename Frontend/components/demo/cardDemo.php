@@ -83,8 +83,7 @@
                 addressStr = "" + addressData.result.address_line_01.toString() + " " + addressData.result.city.toString() + " " + addressData.result.state.toString() + ", " + addressData.result.zip_code.toString();
               }
               console.log(addressStr);
-            })
-            console.log(addressStr);
+            
             responseHTML = responseHTML.replaceAll('*CONTACT_NAME*', (contact.first_name + " " + contact.last_name))
                                        .replaceAll('*CONTACT_NUMBER*', contact.phone_number)
                                        .replaceAll('*CONTACT_EMAIL*', contact.email_address)
@@ -93,6 +92,7 @@
                                        //Replace undefined fields with empty
                                        .replaceAll("undefined", "");
             $('.cardGrid').append(responseHTML);
+          })
           }
         }
         )
