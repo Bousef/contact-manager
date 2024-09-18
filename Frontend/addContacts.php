@@ -46,10 +46,10 @@
 
             <!-- Address -->
             <div class="form-group">
-                <label for="street_address">Unit or apartment number and street address:</label>
+                <label for="street_address">Street Address:</label>
                 <input class="textForm" type="text" id="street_address" name="street_address" placeholder="123 Candyland Ln" required>
-                <label for="street_address">Unit or apartment number and street address 2:</label>
-                <input class="textForm" type="text" id="street_address" name="street_address" placeholder="Apt 1A" required>
+                <label for="street_address_2">Street Address 2:</label>
+                <input class="textForm" type="text" id="street_address_2" name="street_address_2" placeholder="Apt 4B">
                 <label for="city">City:</label>
                 <input class="textForm" type="text" id="city" name="city" placeholder="Orlando" required>
                 <label for="state">State:</label>
@@ -70,13 +70,12 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function doAddContact(event) {
-                
                 event.preventDefault();
 
                 document.getElementById("loginResult").innerHTML = " ";
 
                 let contactUrl = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/create_contact.php");
-                let addressUrl = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses/create_address.php");
+                let addressUrl = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/create_address.php");
 
                 contactUrl.searchParams.append('req_type', 'create');
                 contactUrl.searchParams.append('user_id', 1);
@@ -84,35 +83,66 @@
                 contactUrl.searchParams.append('last_name', document.getElementById("last_name").value);
                 contactUrl.searchParams.append('phone_number', document.getElementById("phone_number").value);
                 contactUrl.searchParams.append('email', document.getElementById("email").value);
-                addressUrl.searchParams.append('address_line_01', document.getElementById("address_line_01").value);
-                addressUrl.searchParams.append('address_line_02', document.getElementById("address_line_02").value);
-                addressUrl.searchParams.append('city', document.getElementById("city").value);
-                addressUrl.searchParams.append('state', document.getElementById("state").value);
-                addressUrl.searchParams.append('zip_code', document.getElementById("zip_code").value);
 
-                console.log(urlRequest.toString());
-
-                fetch(urlRequest, {
+                fetch(contactUrl, {
                     headers: {
                         "Content-Type": "application/json",
                     },
                     method: 'GET',
                 })
-                .then(async (response) => {
-                    data = await response.json();
-                    console.log(data);
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
                     if (data.success == false) {
                         $("#loginResult").append("<p>ERROR: Contact not created </p>");
-                    } else if (data.success == true) {
-                        window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
+                    } else {
+                        let contact_id = data.contact_id;
+                        addressUrl.searchParams.append('contact_id', contact_id);
+                        addressUrl.searchParams.append('address_line_01', document.getElementById("address_line_01").value);
+                        addressUrl.searchParams.append('address_line_02', document.getElementById("address_line_02").value);
+                        addressUrl.searchParams.append('city', document.getElementById("city").value);
+                        addressUrl.searchParams.append('state', document.getElementById("state").value);
+                        addressUrl.searchParams.append('zip_code', document.getElementById("zip_code").value);
+
+                        fetch(addressUrl, {
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            method: 'GET',
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.success == false) {
+                                $("#loginResult").append("<p>ERROR: Address not created </p>");
+                            } else {
+                                window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            $("#loginResult").append("<p>ERROR: Address not created </p>");
+                        });
                     }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    $("#loginResult").append("<p>ERROR: Contact not created </p>");
                 });
 
-                //Return false to prevent the default form submission
+                // Return false to prevent the default form submission
                 return false;
             }
 
-            //Attach the function to the form's submit event
+
             document.getElementById('addContact').addEventListener('submit', doAddContact);
         });
     </script>
