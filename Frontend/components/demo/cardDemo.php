@@ -17,7 +17,6 @@
     <?php
       include '../navBar.php';
       include '../searchBar.php';
-      
     ?>
     <div class = 'cardGrid'>
 
@@ -106,9 +105,7 @@
     //Jose editing from this point
     
     function doEdit(contactId) {
-        //Implement the edit functionality
-        console.log("Edit contact with ID:", contactId);
-        //Code here to redirect to edit page.
+    window.location.href = `editContact.php?contact_id=${contactId}`;
 
       }
 
