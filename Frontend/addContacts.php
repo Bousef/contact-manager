@@ -68,70 +68,51 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        function doAddContact(event) {
-            event.preventDefault();
-
-            document.getElementById("loginResult").innerHTML = " ";
-
-            let contactUrl = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/create_contact.php");
-            let addressUrl = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/create_address.php");
-
-            let contactData = {
-                req_type: 'create',
-                user_id: 1,
-                first_name: document.getElementById("first_name").value,
-                last_name: document.getElementById("last_name").value,
-                phone_number: document.getElementById("phone_number").value,
-                email: document.getElementById("email").value
-            };
-
-            fetch(contactUrl, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                method: 'POST',
-                body: JSON.stringify(contactData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success == false) {
-                    $("#loginResult").append("<p>ERROR: Contact not created </p>");
-                } else {
-                    let contact_id = data.contact_id;
-                    let addressData = {
-                        req_type: 'create',
-                        contact_id: contact_id,
-                        street_address: document.getElementById("street_address").value,
-                        street_address_2: document.getElementById("street_address_2").value,
-                        city: document.getElementById("city").value,
-                        state: document.getElementById("state").value,
-                        zip_code: document.getElementById("zip_code").value
-                    };
-
-                    fetch(addressUrl, {
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        method: 'POST',
-                        body: JSON.stringify(addressData)
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success == false) {
-                            $("#loginResult").append("<p>ERROR: Address not created </p>");
-                        } else {
-                            window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
-                        }
-                    });
-                }
-            });
-
-            //Return false to prevent the default form submission
-            return false;
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
-     
+            function doAddContact(event) {
+                
+                event.preventDefault();
+
+                document.getElementById("loginResult").innerHTML = " ";
+
+                let contactUrl = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/create_contact.php");
+                let addressUrl = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses/create_address.php");
+
+                contactUrl.searchParams.append('req_type', 'create');
+                contactUrl.searchParams.append('user_id', 1);
+                contactUrl.searchParams.append('first_name', document.getElementById("first_name").value);
+                contactUrl.searchParams.append('last_name', document.getElementById("last_name").value);
+                contactUrl.searchParams.append('phone_number', document.getElementById("phone_number").value);
+                contactUrl.searchParams.append('email', document.getElementById("email").value);
+                addressUrl.searchParams.append('address_line_01', document.getElementById("address_line_01").value);
+                addressUrl.searchParams.append('address_line_02', document.getElementById("address_line_02").value);
+                addressUrl.searchParams.append('city', document.getElementById("city").value);
+                addressUrl.searchParams.append('state', document.getElementById("state").value);
+                addressUrl.searchParams.append('zip_code', document.getElementById("zip_code").value);
+
+                console.log(urlRequest.toString());
+
+                fetch(urlRequest, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    method: 'GET',
+                })
+                .then(async (response) => {
+                    data = await response.json();
+                    console.log(data);
+                    if (data.success == false) {
+                        $("#loginResult").append("<p>ERROR: Contact not created </p>");
+                    } else if (data.success == true) {
+                        window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
+                    }
+                });
+
+                //Return false to prevent the default form submission
+                return false;
+            }
+
+            //Attach the function to the form's submit event
             document.getElementById('addContact').addEventListener('submit', doAddContact);
         });
     </script>
