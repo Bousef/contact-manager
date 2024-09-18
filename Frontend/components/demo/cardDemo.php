@@ -76,14 +76,13 @@
             .then(async (response) => {
               addressData = await response.json();
               console.log(addressData);
-              console.log(addressData.success);
-              console.log(addressData.result.address_line_01);
               if(addressData.success == false){
                 addressStr = " ";
               }
               else{
-                addressStr = addressData.result.address_line_01 + addressData.result.city + addressData.result.state + ", " + addressData.result.zip_code;
+                addressStr = "" + addressData.result.address_line_01.toString() + addressData.result.city.toString() + addressData.result.state.toString() + ", " + addressData.result.zip_code.toString();
               }
+              console.log(addressStr);
             })
 
             responseHTML = responseHTML.replaceAll('*CONTACT_NAME*', (contact.first_name + " " + contact.last_name))
