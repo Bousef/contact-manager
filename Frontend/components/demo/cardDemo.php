@@ -17,7 +17,7 @@
     <?php
       include '../navBar.php';
       include '../searchBar.php';
-      include '../contactCard.php';
+      
     ?>
     <div class = 'cardGrid'>
 
