@@ -19,6 +19,7 @@
     <div class="login-form">
         <h3>Add New Contact</h3>
         <form id="addContact" onsubmit="return doAddContact(event)">
+        
             <!-- First Name -->
             <div class="form-group">
                 <label for="firstname">First Name:</label>
@@ -55,6 +56,7 @@
                 <input class="textForm" type="text" id="state" name="state" placeholder="FL" >
                 <label for="zip_code">Zip code:</label>
                 <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="12345" >
+            </div> -->
 
             <!-- Submit Button -->
             <span id="loginResult"></span>
@@ -66,46 +68,51 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
+        function doAddContact(event) {
+            event.preventDefault();
+
+            document.getElementById("loginResult").innerHTML = " ";
+
+            let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+
+            urlRequest.searchParams.append('req_type', 'create');
+            urlRequest.searchParams.append('user_id', 1);
+            urlRequest.searchParams.append('first_name', document.getElementById("first_name").value);
+            urlRequest.searchParams.append('last_name', document.getElementById("last_name").value);
+            urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value);
+            urlRequest.searchParams.append('email', document.getElementById("email").value);
+
+            console.log(urlRequest.toString());
+
+            fetch(urlRequest, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: 'GET',
+            })
+            .then(async (response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                let data = await response.json();
+                console.log(data);
+                if (data.success == false) {
+                    $("#loginResult").append("<p>ERROR: Contact not created </p>");
+                } else if (data.success == true) {
+                    window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                $("#loginResult").append("<p>ERROR: Contact not created </p>");
+            });
+
+            // Return false to prevent the default form submission
+            return false;
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
-            function doAddContact(event) {
-                
-                event.preventDefault();
-
-                document.getElementById("loginResult").innerHTML = " ";
-
-                let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
-                let data;
-
-                urlRequest.searchParams.append('req_type', 'create');
-                urlRequest.searchParams.append('user_id', 1);
-                urlRequest.searchParams.append('first_name', document.getElementById("first_name").value);
-                urlRequest.searchParams.append('last_name', document.getElementById("last_name").value);
-                urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value);
-                urlRequest.searchParams.append('email', document.getElementById("email").value);
-
-                console.log(urlRequest.toString());
-
-                fetch(urlRequest, {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    method: 'POST',
-                })
-                .then(async (response) => {
-                    data = await response.json();
-                    console.log(data);
-                    if (data.success == false) {
-                        $("#loginResult").append("<p>ERROR: Contact not created </p>");
-                    } else if (data.success == true) {
-                        window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
-                    }
-                });
-
-                //Return false to prevent the default form submission
-                return false;
-            }
-
-            //Attach the function to the form's submit event
+           
             document.getElementById('addContact').addEventListener('submit', doAddContact);
         });
     </script>
