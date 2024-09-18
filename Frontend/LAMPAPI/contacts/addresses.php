@@ -18,7 +18,7 @@
 
     // Turn input data into Object
     $json_decoded = json_decode($json_req, true);
-    
+
     parse_str($_SERVER['QUERY_STRING'], $json_decoded);
 
     // Null check for JSON
@@ -66,7 +66,7 @@
             } 
             else 
             {
-                send_error_response(ErrorCodes::ADDRESS_NOT_FOUND);
+                send_error_response(ErrorCodes::INVALID_REQUEST);
             }
 
             break;
