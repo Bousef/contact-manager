@@ -77,12 +77,12 @@
               addressData = await response.json();
               console.log(addressData);
               console.log(addressData.success);
-              console.log(addressData.address_line_01);
+              console.log(addressData.result.address_line_01);
               if(addressData.success == false){
                 addressStr = " ";
               }
               else{
-                addressStr = addressData.address_line_01 + addressData.city + addressData.state + ", " + addressData.zip_code;
+                addressStr = addressData.result.address_line_01 + addressData.result.city + addressData.result.state + ", " + addressData.result.zip_code;
               }
             })
 
