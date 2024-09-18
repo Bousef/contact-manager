@@ -14,7 +14,7 @@
     ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-      $(".addContactBtn").click(function(){
+    //   $(".addContactBtn").click(function(){
         document.getElementById("loginResult").innerHTML = " ";
         
         let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
@@ -47,7 +47,7 @@
         });
 
         
-    });
+   // });
     function doAddContact(event) {
             // Prevent the default form submission
             event.preventDefault();
@@ -94,7 +94,7 @@
 
     <div class="login-form">
         <h3>Add New Contact</h3>
-        <form id="addContact" onsubmit="return doAddContact()">
+        <form id="addContact" onsubmit="return doAddContact(event)">
             <!-- First Name -->
             <div class="form-group">
                 <label for="firstname">First Name:</label>
@@ -134,7 +134,8 @@
             <!-- Submit Button -->
              <span id="loginResult"></span>
             <div class="form-group">
-                <input class="buttonAdd" type="button" value="Add Contact" class="addContactBtn">
+            <input class="buttonAdd" type="submit" value="Add Contact">
+                <!-- <input class="buttonAdd" type="button" value="Add Contact" class="addContactBtn"> -->
                 
             </div>
         </form>
