@@ -19,6 +19,7 @@
     <div class="login-form">
         <h3>Add New Contact</h3>
         <form id="addContact" onsubmit="return doAddContact(event)">
+        
             <!-- First Name -->
             <div class="form-group">
                 <label for="firstname">First Name:</label>
@@ -44,14 +45,18 @@
             </div>
 
             <!-- Address -->
-            <!-- <div class="form-group">
-                <label for="address">Unit or apartment number and street address:</label>
-                <input class="textForm" type="text" id="street_address" name ="street_address" placeholder="123 Candyland Ln" required>
-                <label for="'state">State:</label>
+            <div class="form-group">
+                <label for="street_address">Unit or apartment number and street address:</label>
+                <input class="textForm" type="text" id="street_address" name="street_address" placeholder="123 Candyland Ln" required>
+                <label for="street_address">Unit or apartment number and street address 2:</label>
+                <input class="textForm" type="text" id="street_address" name="street_address" placeholder="123 Candyland Ln" required>
+                <label for="city">City:</label>
+                <input class="textForm" type="text" id="city" name="city" placeholder="Orlando" required>
+                <label for="state">State:</label>
                 <input class="textForm" type="text" id="state" name="state" placeholder="FL" required>
-                <label for="zipcode">Zip code:</label>
+                <label for="zip_code">Zip code:</label>
                 <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="12345" required>
-            </div> -->
+            </div>
 
             <!-- Submit Button -->
             <span id="loginResult"></span>
@@ -79,6 +84,11 @@
                 urlRequest.searchParams.append('last_name', document.getElementById("last_name").value);
                 urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value);
                 urlRequest.searchParams.append('email', document.getElementById("email").value);
+                urlRequest.searchParams.append('street_address', document.getElementById("street_address").value);
+                urlRequest.searchParams.append('street_address_2', document.getElementById("street_address_2").value);
+                urlRequest.searchParams.append('city', document.getElementById("city").value);
+                urlRequest.searchParams.append('state', document.getElementById("state").value);
+                urlRequest.searchParams.append('zip_code', document.getElementById("zip_code").value);
 
                 console.log(urlRequest.toString());
 

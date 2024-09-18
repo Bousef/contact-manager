@@ -13,6 +13,7 @@
     require_once 'read_contacts_for_user.php';
     require_once 'update_contact_for_user.php';
     require_once 'delete_contact_for_user.php';
+    require_once 'create_address_for_contact.php';
 
     // Get the request data
     $json_req = file_get_contents('php://input');
@@ -156,6 +157,27 @@
             break;
 
         }
+        case 'address':
+            {
+                if
+                (
+                    isset($json_decoded['contact_id']) &&
+                    isset($json_decoded['street_address']) &&
+                    isset($json_decoded['street_address_2']) &&
+                    isset($json_decoded['city']) &&
+                    isset($json_decoded['state']) &&
+                    isset($json_decoded['zip_code'])
+                )
+                {
+                    create_address_for_contact($json_decoded['contact_id'], $json_decoded['street_address'],$json_decoded['street_address_2'],$json_decoded['city'], $json_decoded['state'], $json_decoded['zip_code']);
+                }
+                else
+                {
+                    send_error_response(ErrorCodes::MISSING_PARAMETERS);
+                    return;
+                }
+                break;
+            }
 
     }
 
