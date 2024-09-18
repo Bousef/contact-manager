@@ -71,10 +71,7 @@
         function doAddContact(event) {
             event.preventDefault();
 
-            //Temp solution to prevent multiple submissions
-            if (isSubmitting) {
-                return false;
-            }
+            
 
             document.getElementById("loginResult").innerHTML = " ";
 
@@ -110,9 +107,6 @@
             .catch(error => {
                 console.error('Error:', error);
                 $("#loginResult").append("<p>ERROR: Contact not created </p>");
-            })
-            .finally(() => {
-                isSubmitting = false;
             });
 
             // Return false to prevent the default form submission
