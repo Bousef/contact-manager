@@ -44,7 +44,7 @@
                 <input class="textForm" type="tel" id="phone_number" name="phone_number" required>
             </div>
 
-            <!-- Address -->
+            <!-- Address
             <div class="form-group">
                 <label for="street_address">Street Address:</label>
                 <input class="textForm" type="text" id="street_address" name="street_address" placeholder="123 Candyland Ln" >
@@ -56,7 +56,7 @@
                 <input class="textForm" type="text" id="state" name="state" placeholder="FL" >
                 <label for="zip_code">Zip code:</label>
                 <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="12345" >
-            </div>
+            </div> -->
 
             <!-- Submit Button -->
             <span id="loginResult"></span>
