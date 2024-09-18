@@ -105,7 +105,7 @@
     //Jose editing from this point
     
     function doEdit(contactId) {
-    window.location.href = `editContact.php?contact_id=${contactId}`;
+    window.location.href = `../editContact.php?contact_id=${contactId}`;
 
       }
 
