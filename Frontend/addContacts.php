@@ -115,6 +115,7 @@
            
             document.getElementById('addContact').addEventListener('submit', doAddContact, {once: true});
         });
+        
     </script>
 </body>
 </html>
