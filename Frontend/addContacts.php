@@ -47,15 +47,15 @@
             <!-- Address -->
             <div class="form-group">
                 <label for="street_address">Street Address:</label>
-                <input class="textForm" type="text" id="street_address" name="street_address" placeholder="123 Candyland Ln" required>
+                <input class="textForm" type="text" id="street_address" name="street_address" placeholder="123 Candyland Ln" >
                 <label for="street_address_2">Street Address 2:</label>
                 <input class="textForm" type="text" id="street_address_2" name="street_address_2" placeholder="Apt 4B">
                 <label for="city">City:</label>
-                <input class="textForm" type="text" id="city" name="city" placeholder="Orlando" required>
+                <input class="textForm" type="text" id="city" name="city" placeholder="Orlando" >
                 <label for="state">State:</label>
-                <input class="textForm" type="text" id="state" name="state" placeholder="FL" required>
+                <input class="textForm" type="text" id="state" name="state" placeholder="FL" >
                 <label for="zip_code">Zip code:</label>
-                <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="12345" required>
+                <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="12345" >
             </div>
 
             <!-- Submit Button -->
@@ -65,7 +65,7 @@
             </div>
         </form>
     </div>
-    
+
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
