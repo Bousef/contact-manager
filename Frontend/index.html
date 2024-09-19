@@ -15,7 +15,31 @@
 
     <div class="login-form">
         <h3>User Login</h3>
-        <script>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+          <!-- <a href="forgotPassword.php">Forgot password?</a> -->
+            </div>
+            <span id="loginResult"></span>
+            <div class="form-group">
+                <button type="button" value="Login" onclick="doLogin()">Login</button>
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="goToRegister()">Create Account</button>
+            </div>
+        </form>
+    </div>
+       
+    </div>
+
+    <script>
       function doLogin() {
         userName = document.getElementById("username").value;
         passWord = document.getElementById("password").value;
@@ -53,10 +77,6 @@
 
       } 
 
-      function goToRegister() {
-            window.location.href = "registrationPage.html";
-        }
-
       function doRegister() {
         userName = document.getElementById("username").value;
         passWord = document.getElementById("password").value;
@@ -92,29 +112,11 @@
             }
           })
       }
+
+      function goToRegister() {
+            window.location.href = "registrationPage.html";
+        }
+
         </script>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-          <!-- <a href="forgotPassword.php">Forgot password?</a> -->
-            </div>
-            <span id="loginResult"></span>
-            <div class="form-group">
-                <button type="button" value="Login" onclick="doLogin()">Login</button>
-            </div>
-            <div class="form-group">
-                <button type="button" onclick="goToRegister()">Create Account</button>
-            </div>
-        </form>
-    </div>
-       
-    </div>
 </body>
 </html>
