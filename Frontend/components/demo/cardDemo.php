@@ -101,8 +101,6 @@
 
         
     });
-
-    //Jose editing from this point
     
     function doEdit(contactId) {
     window.location.href = "https://jo531962ucf.xyz/components/demo/editContacts.php?contact_id=" + contactId;
@@ -140,8 +138,6 @@
           });
         }
       }
-
-    //End Jose edits
 
       </script>
 </div>

@@ -16,6 +16,29 @@
         $contactId = $_GET['contact_id'];
 
         //Fetch details of the contact
+        $conn = new mysqli("localhost", "username", "password", "database");
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "SELECT * FROM contacts WHERE id = $contactId";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $firstName = $row['first_name'];
+            $lastName = $row['last_name'];
+            $email = $row['email'];
+            $phoneNumber = $row['phone_number'];
+            $addressLine1 = $row['address_line_01'];
+            $addressLine2 = $row['address_line_02'];
+            $city = $row['city'];
+            $state = $row['state'];
+            $zipCode = $row['zip_code'];
+        } else {
+            echo "No contact found";
+        }
+        $conn->close();
         
     ?>
     <div class="login-title">
@@ -102,7 +125,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                method: 'GET',
+                method: 'POST',
             })
             .then(async (response) => {
                 if (!response.ok) {
