@@ -1,14 +1,9 @@
 <div class="searchWrapper">
   <input type="text" placeholder="Search Contacts..." class="searchInput" id="searchText">
-  <button type="submit" class="searchSubmitBtn">
+  <button type="button" class="searchSubmitBtn">
     <i class="fa-solid fa-magnifying-glass icon"></i>
   </button>
-  <button type="submit" class="addContactBtn" onclick="doAdd()">
+  <button type="button" class="addContactBtn">
       <i class="fa-solid fa-plus icon plusIcon"></i>
     </button>
-    <script>
-    function doAdd() {
-        window.location.href = "https://jo531962ucf.xyz/addContacts.php";
-    }
-    </script>
 </div>

@@ -101,6 +101,10 @@
 
         
     });
+
+    $(".addContactBtn").click(function(){
+        window.location.href = "https://jo531962ucf.xyz/addContacts.php";
+    });
     
     function doEdit(contactId) {
     window.location.href = "https://jo531962ucf.xyz/components/demo/editContacts.php?contact_id=" + contactId;
