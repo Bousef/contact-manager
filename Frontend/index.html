@@ -47,7 +47,7 @@
         document.getElementById("loginResult").innerHTML = "";
 
         if(userName == "" || passWord == ""){
-          $('#loginResult').append("<p>Please Enter Username and Password<p>");
+          $('#loginResult').append("<p>Please Enter Username and Password</p>");
           return;
         }
         
@@ -71,7 +71,7 @@
             }
             else if(data.success == true){
               sessionStorage.setItem("userID", data.result);
-              window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
+              window.location.href = "https://jo531962ucf.xyz/contactsPage.php";
             }
           })
 
@@ -84,7 +84,7 @@
         document.getElementById("loginResult").innerHTML = "";
 
         if(userName == null || passWord == null){
-          $('#loginResult').append("<p>Please Enter Username and Password<p>");
+          $('#loginResult').append("<p>Please Enter Username and Password</p>");
           return;
         }
         

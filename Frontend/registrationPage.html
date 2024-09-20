@@ -15,7 +15,7 @@
       </div>
       <div class="login-form">
           <section id="register">
-              <form id="registerForm" onsubmit="doRegister()">
+              <form id="registerForm">
 
                   <div class="form-group">
                     <label for="username">Username:</label>
@@ -37,7 +37,7 @@
                   </div>
                   <span id="loginResult"></span>
                   <div class="form-group">
-                    <button type="submit">Register</button>
+                    <button type="button" onclick="doRegister()">Register</button>
                   </div>
 
               </form>
@@ -57,7 +57,7 @@
 
           if ((userName == "") || (passWord == "") || (firstName == "")) 
           {
-            $('#loginResult').append("<p>Please enter a username, password, and your first name<p>");
+            $('#loginResult').append("<p>Please enter a username, password, and your first name</p>");
             return;
           }
 
@@ -82,11 +82,11 @@
             console.log(data);
             if (data.success == false)
             {
-              $('#loginResult').append("<p>Invalid registration<p>");
+              $('#loginResult').append("<p>Invalid registration</p>");
             }
             else if (data.success == true)
             {
-              $('#loginResult').append("<p>Registration successful<p>");
+              $('#loginResult').append("<p>Registration successful</p>");
               sessionStorage.setItem("userID", data.result[0].user_id);
               window.location.href = "https://jo531962ucf.xyz/contactsPage.php";
             }
