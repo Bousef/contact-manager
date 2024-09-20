@@ -17,17 +17,19 @@
     </div>
 
     <div class="login-form">
-        <h3>Add New Contact</h3>
         <form id="addContact" onsubmit="return doAddContact(event)">
         
             <!-- Include contact form elements -->
             <?php include 'components/contactForm.php'; ?>
 
+            <!-- Submit result -->
+            <span id="addResult"></span>
+
             <!-- Submit Button -->
-            <span id="loginResult"></span>
             <div class="form-group">
-                <input class="buttonAdd" type="submit" value="Add Contact">
+                <input class="buttonAdd" type="button" value="Add Contact">
             </div>
+
         </form>
     </div>
 
@@ -37,7 +39,7 @@
         {
             event.preventDefault();
 
-            document.getElementById("loginResult").innerHTML = " ";
+            document.getElementById("addResult").innerHTML = " ";
 
             let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
             let addressRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
@@ -70,7 +72,7 @@
                 let data = await response.json();
                 console.log(data);
                 if (data.success == false) {
-                    $("#loginResult").append("<p>ERROR: Contact not created </p>");
+                    $("#addResult").append("<p>ERROR: Contact not created </p>");
                 } else if (data.success == true) {
                     addressRequest.searchParams.append('contact_id', data.result)
                     fetch(addressRequest, {
@@ -89,7 +91,7 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                $("#loginResult").append("<p>ERROR: Contact not created </p>");
+                $("#addResult").append("<p>ERROR: Contact not created </p>");
             });
 
             // Return false to prevent the default form submission
@@ -128,12 +130,12 @@
         email.placeholder = "Optional";
         address_line_02.placeholder = "Optional";
 
-        // Add requrired text/asterisk to the labels associated with the required fields
-        document.querySelector("label[for='first_name']").innerHTML += " *";
-        document.querySelector("label[for='address_line_01']").innerHTML += " *";
-        document.querySelector("label[for='city']").innerHTML += " *";
-        document.querySelector("label[for='state']").innerHTML += " *";
-        document.querySelector("label[for='zip_code']").innerHTML += " *";
+        // Add required placeholder text to the required fields
+        first_name.placeholder = "Required";
+        address_line_01.placeholder = "Required";
+        city.placeholder = "Required";
+        state.placeholder = "Required";
+        zip_code.placeholder = "Required";
 
     </script>
 </body>
