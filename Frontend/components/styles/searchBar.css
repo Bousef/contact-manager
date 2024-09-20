@@ -38,7 +38,7 @@
   background: #5E94E0;
 }
 
-.plusIcon {
+.addContactBtn {
   display: inline-block;
   width: 50px;
   margin: 2px;
@@ -51,6 +51,6 @@
   font-size: 24px;
 }
 
-.plusIcon {
+.addContactBtn:hover {
   background: #40a14d;
 }
