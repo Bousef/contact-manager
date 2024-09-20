@@ -86,6 +86,7 @@
             }
             else if (data.success == true)
             {
+              $('#loginResult').append("<p>Registration successful<p>");
               sessionStorage.setItem("userID", data.result[0].user_id);
               window.location.href = "https://jo531962ucf.xyz/contactsPage.php";
             }
