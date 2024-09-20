@@ -125,7 +125,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                method: 'POST',
+                method: 'GET',
             })
             .then(async (response) => {
                 if (!response.ok) {
