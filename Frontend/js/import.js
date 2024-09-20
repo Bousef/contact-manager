@@ -30,6 +30,57 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 						email: row["E-mail Address"] || row["E-mail 2 Address"] || row["E-mail 3 Address"] || null,
 						img_url: row["Photo"] || null
 					};
+
+                                        let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+                                        let addressRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
+                                        urlRequest.searchParams.append('req_type', 'create');
+                                        urlRequest.searchParams.append('user_id', sessionStorage.getItem("userID"));
+                                        urlRequest.searchParams.append('first_name', reformattedObj.first_name);
+                                        urlRequest.searchParams.append('last_name', reformattedObj.last_name);
+                                        urlRequest.searchParams.append('phone_number', reformattedObj.phone_number);
+                                        urlRequest.searchParams.append('email', reformattedObj.email);
+                                        addressRequest.searchParams.append('req_type', 'create');
+                                        addressRequest.searchParams.append('address_line_01', "");
+                                        addressRequest.searchParams.append('address_line_02', "");
+                                        addressRequest.searchParams.append('city', "");
+                                        addressRequest.searchParams.append('state', "");
+                                        addressRequest.searchParams.append('zip_code', "");
+
+                                        fetch(urlRequest, {
+                                                headers: {
+                                                        "Content-Type": "application/json",
+                                                },
+                                                method: 'GET',
+                                        })
+                                        .then(async (response) => {
+                                                if (!response.ok) {
+                                                        throw new Error('Network response was not ok');
+                                                }
+                                                let data = await response.json();
+                                                console.log(data);
+                                                if (data.success == false) {
+                                                        console.log("Request Failed");
+                                                } else if (data.success == true) {
+                                                        addressRequest.searchParams.append('contact_id', data.result)
+                                                        fetch(addressRequest, {
+                                                                headers: {
+                                                                        "Content-Type": "application/json",
+                                                                },
+                                                                method: 'GET',
+                                                        })
+                                                                .then(async (response) => {
+                                                                        addressData = await response.json();
+                                                                        console.log(addressData);
+                                                                })
+
+                                                        window.location.href = "https://jo531962ucf.xyz/contactsPage.php";
+                                                }
+                                        })
+                                        .catch(error => {
+                                                console.error('Error:', error);
+                                                console.log("Error During Request");
+                                        });
+
 					return reformattedObj;
 				});
 
