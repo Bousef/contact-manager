@@ -1,27 +1,20 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
-    <head>
-
-        <meta charset="UTF-8">
-        <title>Add Contacts Page</title>
-        <link href="css/style.css" rel="stylesheet">
-        <link href="components/styles/navBar.css" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/ac1c3ec324.js" crossorigin="anonymous"></script>
-        <link href="components/styles/card.css" rel="stylesheet">
-
-    </head>
-
-    <body id="body">
-
-        <!-- Include navigation bar -->
-        <?php include 'components/navBar.php'; ?>
-
-        <!-- Page title -->
-        <div class="login-title">
-            <h2 id="title">Add Contact</h2>
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <title>Add Contacts Page</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="components/styles/navBar.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ac1c3ec324.js" crossorigin="anonymous"></script>
+    <link href="components/styles/card.css" rel="stylesheet">
+</head>
+<body id="body">
+    <?php include 'components/navBar.php'; ?>
+    <?php include 'components/import.php'; ?>
+    <div class="login-title">
+        <h2 id="title">Add Contact</h2>
+    </div>
 
         <!-- Contact form -->
         <div class="login-form">
