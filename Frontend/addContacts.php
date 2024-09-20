@@ -40,7 +40,7 @@
 
                 <!-- Submit button -->
                 <div class="form-group">
-                    <input type="button" value="Add Contact" onclick="doAddContact()">
+                    <button type="button" onclick="doAddContact()">Add Contact</button>
                 </div>
 
                 <!-- Submit result -->
@@ -159,40 +159,42 @@
                 } 
                 else 
                 {
+                    
                     let newField = document.createElement('div');
                     newField.classList.add('addressField');
                     newField.innerHTML = `<?php include 'components/addressForm.php'; ?>`;
                     container.appendChild(newField);
                     button.textContent = 'Remove Address';
+
+                    // Required fields for address
+                    let address_line_01 = newField.querySelector(".address_line_01");
+                    let city = newField.querySelector(".city");
+                    let state = newField.querySelector(".state");
+                    let zip_code = newField.querySelector(".zip_code");
+
+                    // Optional fields for address
+                    let address_line_02 = newField.querySelector(".address_line_02");
+
+                    // Add required attribute to the required fields
+                    if (address_line_01) address_line_01.required = true;
+                    if (city) city.required = true;
+                    if (state) state.required = true;
+                    if (zip_code) zip_code.required = true;
+
+                    // Remove required attribute from the optional fields
+                    if (address_line_02) address_line_02.required = false;
+
+                    // Add placeholder text for the required fields
+                    if (address_line_01) address_line_01.placeholder = "Required";
+                    if (city) city.placeholder = "Required";
+                    if (state) state.placeholder = "Required";
+                    if (zip_code) zip_code.placeholder = "Required";
+
+                    // Add placeholder text for the optional fields
+                    if (address_line_02) address_line_02.placeholder = "Optional";
+
                 }
-                
-                // Required fields for address
-                let address_line_01 = document.querySelector(".address_line_01");
-                let city = document.querySelector(".city");
-                let state = document.querySelector(".state");
-                let zip_code = document.querySelector(".zip_code");
-
-                // Optional fields for address
-                let address_line_02 = document.querySelector(".address_line_02");
-
-                // Add required attribute to the required fields
-                if (address_line_01) address_line_01.required = true;
-                if (city) city.required = true;
-                if (state) state.required = true;
-                if (zip_code) zip_code.required = true;
-
-                // Remove required attribute from the optional fields
-                if (address_line_02) address_line_02.required = false;
-
-                // Add placeholder text for the required fields
-                if (address_line_01) address_line_01.placeholder = "Required";
-                if (city) city.placeholder = "Required";
-                if (state) state.placeholder = "Required";
-                if (zip_code) zip_code.placeholder = "Required";
-
-                // Add placeholder text for the optional fields
-                if (address_line_02) address_line_02.placeholder = "Optional";
-
+        
             }
 
             // Get the document elements of the form inputs for required fields
