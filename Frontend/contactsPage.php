@@ -59,7 +59,7 @@
           else if(data.success == true){
             data.result.forEach((contact) => {
               $.ajax({
-            url: '../contactCard.php',
+            url: 'components/contactCard.php',
             method: 'GET',
             success: function(responseHTML) {
             let addressRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
