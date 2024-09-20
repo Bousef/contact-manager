@@ -89,7 +89,8 @@
                                        .replaceAll('*CONTACT_COMPANY*', addressStr)
                                        .replaceAll('*CONTACT_ID*', contact.id)
                                        //Replace undefined fields with empty
-                                       .replaceAll("undefined", "");
+                                       .replaceAll("undefined", " ")
+                                       .replaceAll("null", " ");
             $('.cardGrid').append(responseHTML);
           })
           }
