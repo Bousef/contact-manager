@@ -76,6 +76,7 @@
             document.getElementById("loginResult").innerHTML = " ";
 
             let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+            let addressRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
 
             urlRequest.searchParams.append('req_type', 'create');
             urlRequest.searchParams.append('user_id', 1);
@@ -83,11 +84,12 @@
             urlRequest.searchParams.append('last_name', document.getElementById("last_name").value);
             urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value);
             urlRequest.searchParams.append('email', document.getElementById("email").value);
-            urlRequest.searchParams.append('address_line_01', document.getElementById("address_line_01").value);
-            urlRequest.searchParams.append('address_line_02', document.getElementById("address_line_02").value);
-            urlRequest.searchParams.append('city', document.getElementById("city").value);
-            urlRequest.searchParams.append('state', document.getElementById("state").value);
-            urlRequest.searchParams.append('zip_code', document.getElementById("zip_code").value);
+            addressRequest.searchParams.append('address_line_01', document.getElementById("address_line_01").value);
+            addressRequest.searchParams.append('address_line_02', document.getElementById("address_line_02").value);
+            addressRequest.searchParams.append('city', document.getElementById("city").value);
+            addressRequest.searchParams.append('state', document.getElementById("state").value);
+            addressRequest.searchParams.append('zip_code', document.getElementById("zip_code").value);
+            addressRequest.searchParams.append('req_type', 'create');
 
             console.log(urlRequest.toString());
 
@@ -106,6 +108,18 @@
                 if (data.success == false) {
                     $("#loginResult").append("<p>ERROR: Contact not created </p>");
                 } else if (data.success == true) {
+                    addressRequest.searchParams.append('contact_id', data.result)
+                    fetch(addressRequest, {
+                        headers: {
+                        "Content-Type": "application/json",
+                        },
+                        method: 'GET',
+                    })
+                    .then(async (response) => {
+                        addressData = await response.json();
+                        console.log(addressData);
+                    })
+                    
                     window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
                 }
             })
