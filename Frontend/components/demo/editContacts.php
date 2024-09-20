@@ -10,15 +10,25 @@
 </head>
 <body id="body">
     <?php
-        include 'components/navBar.php';
-        include 'components/demo/cardDemo.php';
+        include '../navBar.php';
+        include '../cardDemo.php';
+        //open database
+        include '../../LAMPAPI/database.php';
+
+
+        if(!isset($_GET['contact_id'])) {
+            echo "No contact ID provided";
+            exit();
+        }
 
         $contactId = $_GET['contact_id'];
 
         //Fetch details of the contact
-        $conn = new mysqli("localhost", "username", "password", "database");
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+        $conn = open_connection_to_database();
+
+        if(!$conn) {
+            echo "Error connecting to database";
+            exit();
         }
 
         $sql = "SELECT * FROM contacts WHERE id = $contactId";
@@ -26,19 +36,19 @@
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            $firstName = $row['first_name'];
-            $lastName = $row['last_name'];
+            $first_name = $row['first_name'];
+            $last_name = $row['last_name'];
             $email = $row['email'];
-            $phoneNumber = $row['phone_number'];
-            $addressLine1 = $row['address_line_01'];
-            $addressLine2 = $row['address_line_02'];
+            $phone_number = $row['phone_number'];
+            $address_line_01 = $row['address_line_01'];
+            $address_line_02 = $row['address_line_02'];
             $city = $row['city'];
             $state = $row['state'];
-            $zipCode = $row['zip_code'];
+            $zip_code = $row['zip_code'];
         } else {
             echo "No contact found";
         }
-        $conn->close();
+        close_connection_to_database($conn);
         
     ?>
     <div class="login-title">
