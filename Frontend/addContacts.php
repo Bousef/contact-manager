@@ -33,10 +33,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        function doAddContact(event) {
+        function doAddContact(event) 
+        {
             event.preventDefault();
-
-            
 
             document.getElementById("loginResult").innerHTML = " ";
 
@@ -96,6 +95,45 @@
             // Return false to prevent the default form submission
             return false;
         }
+
+        // Get the document elements of the form inputs for required fields
+        let first_name = document.getElementById("first_name");
+        let address_line_01 = document.getElementById("address_line_01");
+        let city = document.getElementById("city");
+        let state = document.getElementById("state");
+        let zip_code = document.getElementById("zip_code");
+
+        // Get the document elements of the form inputs for optional fields
+        let last_name = document.getElementById("last_name");
+        let phone_number = document.getElementById("phone_number");
+        let email = document.getElementById("email");
+        let address_line_02 = document.getElementById("address_line_02");
+
+        // Add required attributes to the required fields
+        first_name.required = true;
+        address_line_01.required = true;
+        city.required = true;
+        state.required = true;
+        zip_code.required = true;
+
+        // Remove required attributes from the optional fields
+        last_name.required = false;
+        phone_number.required = false;
+        email.required = false;
+        address_line_02.required = false;
+
+        // Add optional placeholder text to the optional fields
+        last_name.placeholder = "Optional";
+        phone_number.placeholder = "Optional";
+        email.placeholder = "Optional";
+        address_line_02.placeholder = "Optional";
+
+        // Add requrired text/asterisk to the labels associated with the required fields
+        document.querySelector("label[for='first_name']").innerHTML += " *";
+        document.querySelector("label[for='address_line_01']").innerHTML += " *";
+        document.querySelector("label[for='city']").innerHTML += " *";
+        document.querySelector("label[for='state']").innerHTML += " *";
+        document.querySelector("label[for='zip_code']").innerHTML += " *";
 
     </script>
 </body>

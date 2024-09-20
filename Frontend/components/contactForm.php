@@ -1,14 +1,14 @@
 
 <!-- First Name -->
 <div class="form-group">
-    <label for="firstname">First Name:</label>
-    <input class="textForm" type="text" id="first_name" name="first_name" required>
+    <label for="first_name">First Name:</label>
+    <input class="textForm" type="text" id="first_name" name="first_name">
 </div>
 
 <!-- Last Name -->
 <div class="form-group">
-    <label for="lastname">Last Name:</label>
-    <input class="textForm" type="text" id="last_name" name="last_name" required>
+    <label for="last_name">Last Name:</label>
+    <input class="textForm" type="text" id="last_name" name="last_name">
 </div>
 
 <!-- Email -->
@@ -25,14 +25,14 @@
 
 <!-- Address -->
 <div class="form-group">
-    <label for="street_address">Street Address:</label>
-    <input class="textForm" type="text" id="address_line_01" name="address_line_01" placeholder="123 Candyland Ln" required >
-    <label for="street_address_2">Street Address 2:</label>
-    <input class="textForm" type="text" id="address_line_02" name="address_line_02" placeholder="Apt 4B">
+    <label for="address_line_01">Street Address:</label>
+    <input class="textForm" type="text" id="address_line_01" name="address_line_01">
+    <label for="address_line_02">Street Address 2:</label>
+    <input class="textForm" type="text" id="address_line_02" name="address_line_02">
     <label for="city">City:</label>
-    <input class="textForm" type="text" id="city" name="city" placeholder="Orlando" required>
+    <input class="textForm" type="text" id="city" name="city">
     <label for="state">State:</label>
-    <input class="textForm" type="text" id="state" name="state" placeholder="FL" required>
+    <input class="textForm" type="text" id="state" name="state">
     <label for="zip_code">Zip code:</label>
-    <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="12345" required>
+    <input class="textForm" type="text" id="zip_code" name="zip_code">
 </div>
