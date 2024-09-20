@@ -79,7 +79,7 @@
             let addressRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
 
             urlRequest.searchParams.append('req_type', 'create');
-            urlRequest.searchParams.append('user_id', 1);
+            urlRequest.searchParams.append('user_id', sessionStorage.getItem("userID"));
             urlRequest.searchParams.append('first_name', document.getElementById("first_name").value);
             urlRequest.searchParams.append('last_name', document.getElementById("last_name").value);
             urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value);

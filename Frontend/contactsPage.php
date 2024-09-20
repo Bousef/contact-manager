@@ -111,7 +111,7 @@
         if (confirm("Are you sure you want to delete this contact?")) {
           let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
           urlRequest.searchParams.append('req_type', 'delete');
-          urlRequest.searchParams.append('user_id', 1); //Replace with actual user ID
+          urlRequest.searchParams.append('user_id', sessionStorage.getItem("userID")); //Replace with actual user ID
           urlRequest.searchParams.append('contact_id', contactId);
 
           console.log("URL req: ", urlRequest.toString());//Debugging
