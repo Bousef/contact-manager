@@ -97,8 +97,64 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 		reader.onload = function(event) {
 			const vcfCards = (event.target.result).split("END:VCARD").filter(x => x.trim()); // Trim to remove any blanks
 
-			const outputObj = vcfCards.map(vCard => vCardToObj(vCard));
+                        const outputObj = vcfCards.map(vCard => {
+                                const vCardJSON = vCardToObj(vCard);
 
+                                let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+                                let addressRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
+                                urlRequest.searchParams.append('req_type', 'create');
+                                urlRequest.searchParams.append('user_id', sessionStorage.getItem("userID"));
+                                urlRequest.searchParams.append('first_name', vCardJSON.first_name);
+                                urlRequest.searchParams.append('last_name', vCardJSON.last_name);
+                                urlRequest.searchParams.append('phone_number', vCardJSON.phone_number);
+                                urlRequest.searchParams.append('email', vCardJSON.email);
+                                addressRequest.searchParams.append('req_type', 'create');
+                                addressRequest.searchParams.append('address_line_01', "");
+                                addressRequest.searchParams.append('address_line_02', "");
+                                addressRequest.searchParams.append('city', "");
+                                addressRequest.searchParams.append('state', "");
+                                addressRequest.searchParams.append('zip_code', "");
+
+
+
+                                fetch(urlRequest, {
+                                        headers: {
+                                                "Content-Type": "application/jsonj",
+                                        },
+                                        method: 'GET',
+                                })
+                                .then(async (response) => {
+                                        if (!response.ok) {
+                                                throw new Error('Network response was not ok');
+                                        }
+                                        let data = await response.json();
+                                        console.log(data);
+                                        if (data.success == false) {
+                                                console.log("Request Failed");
+                                        } else if (data.success == true) {
+                                                addressRequest.searchParams.append('contact_id', data.result)
+                                                fetch(addressRequest, {
+                                                        headers: {
+                                                                "Content-Type": "application/json",
+                                                        },
+                                                        method: 'GET',
+                                                })
+                                                        .then(async (response) => {
+                                                                addressData = await response.json();
+                                                                console.log(addressData);
+                                                        })
+
+                                                window.location.href = "https://jo531962ucf.xyz/contactsPage.php";
+                                        }
+                                })
+                                .catch(error => {
+                                        console.error('Error:', error);
+                                        console.log("Error During Request");
+                                });
+
+                                return vCardJSON;
+                        });
+			
 			const outputREMOVEME = JSON.stringify(outputObj, null, 2);
 			console.log(outputREMOVEME);
 		}
