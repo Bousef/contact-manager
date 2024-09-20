@@ -120,7 +120,7 @@
                         console.log(addressData);
                     })
                     
-                    window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
+                    window.location.href = "https://jo531962ucf.xyz/contactsPage.php";
                 }
             })
             .catch(error => {
