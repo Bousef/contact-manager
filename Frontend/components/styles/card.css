@@ -1,5 +1,5 @@
 .contactWrapper {
-  border-radius: 13px;
+  border-radius: 10px;
   border: 0.2px solid #000;
   background: #D7DEE9;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -73,7 +73,7 @@
 }
 
 .buttonGroup {
-  align-items: center;
+  align-items: center, bottom;
   justify-content: space-between;
 }
 
