@@ -72,8 +72,6 @@ document.getElementById("importForm").addEventListener("submit", function(event)
                                                                         addressData = await response.json();
                                                                         console.log(addressData);
                                                                 })
-
-                                                        window.location.href = "https://jo531962ucf.xyz/contactsPage.php";
                                                 }
                                         })
                                         .catch(error => {
@@ -86,6 +84,8 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 
 				const outputREMOVEME = JSON.stringify(outputObj, null, 2);
 				console.log(outputREMOVEME);
+
+                                window.location.href = "https://jo531962ucf.xyz/contactsPage.php";
 			}
 		});
 
