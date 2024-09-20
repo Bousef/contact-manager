@@ -43,8 +43,20 @@
         {
 
             // Ensure all necessary parameters are set
-            if (isset($json_decoded['contact_id']) && isset($json_decoded['address_line_01']) && isset($json_decoded['address_line_02']) && isset($json_decoded['city']) && isset($json_decoded['state']) && isset($json_decoded['zip_code'])) 
+            if 
+            (
+                isset($json_decoded['contact_id'])      && 
+                isset($json_decoded['address_line_01']) && 
+                isset($json_decoded['city'])            && 
+                isset($json_decoded['state'])           && 
+                isset($json_decoded['zip_code'])
+            ) 
             {
+
+                // Optional parameters
+                $address_line_02 = isset($json_decoded['address_line_02']) ? $json_decoded['address_line_02'] : null;
+
+                // Call the function to create the address
                 create_address_for_contact($json_decoded['contact_id'], $json_decoded['address_line_01'], $json_decoded['address_line_02'], $json_decoded['city'], $json_decoded['state'], $json_decoded['zip_code']);
             } 
             else 
@@ -77,9 +89,19 @@
         {
 
             // Ensure all necessary parameters are set
-            if (isset($json_decoded['contact_id']) && isset($json_decoded['address_line_01']) && isset($json_decoded['address_line_02']) && isset($json_decoded['city']) && isset($json_decoded['state']) && isset($json_decoded['zip_code'])) 
+            if (isset($json_decoded['contact_id'])) 
             {
-                update_address_for_contact($json_decoded['contact_id'], $json_decoded['address_line_01'], $json_decoded['address_line_02'], $json_decoded['city'], $json_decoded['state'], $json_decoded['zip_code']);
+
+                // Optional parameters
+                $address_line_01 = isset($json_decoded['address_line_01']) ? $json_decoded['address_line_01'] : null;
+                $address_line_02 = isset($json_decoded['address_line_02']) ? $json_decoded['address_line_02'] : null;
+                $city = isset($json_decoded['city']) ? $json_decoded['city'] : null;
+                $state = isset($json_decoded['state']) ? $json_decoded['state'] : null;
+                $zip_code = isset($json_decoded['zip_code']) ? $json_decoded['zip_code'] : null;
+
+                // Call the function to update the address
+                update_address_for_contact($json_decoded['contact_id'], $address_line_01, $address_line_02, $city, $state, $zip_code);
+
             } 
             else 
             {
