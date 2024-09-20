@@ -44,13 +44,18 @@
             // Ensure all necessary parameters are set (including parameters not yet handled by function)
             if 
             (
-                isset($json_decoded['username'])         &&
+                isset($json_decoded['username'])      &&
                 isset($json_decoded['password'])      &&
-                isset($json_decoded['first_name'])       &&
-                isset($json_decoded['last_name'])
+                isset($json_decoded['first_name'])
             )
             {
-                create_user($json_decoded['username'], $json_decoded['password'], $json_decoded['first_name'], $json_decoded['last_name']);
+
+                // Optional parameters
+                $last_name = $json_decoded['last_name'] ?? null;
+
+                // Call the create_user function
+                create_user($json_decoded['username'], $json_decoded['password'], $json_decoded['first_name'], $last_name);
+                
             }
             else
             {
@@ -110,10 +115,10 @@
             // Ensure all necessary parameters are set
             if 
             (
-                isset($json_decoded['user_id'])         &&
+                isset($json_decoded['user_id'])       &&
                 isset($json_decoded['username'])      &&
                 isset($json_decoded['password'])      &&
-                isset($json_decoded['first_name'])       &&
+                isset($json_decoded['first_name'])    &&
                 isset($json_decoded['last_name'])
             )
             {
@@ -135,7 +140,7 @@
             // Ensure all necessary parameters are set
             if 
             (
-                isset($json_decoded['username'])         &&
+                isset($json_decoded['username'])    &&
                 isset($json_decoded['password'])
             )
             {

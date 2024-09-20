@@ -1,92 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Contact Manager</title>
-    <link href="css/style.css" rel="stylesheet">
-</head>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Register - Contact Manager</title>
+      <link href="css/style.css" rel="stylesheet">
+  </head>
 
-<body>
-    <div class="login-title">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <body>
+      <div class="login-title">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-        <h1>Registration</h1>
-    </div>
-    <div class="login-form">
-        <section id="register">
-            <form id="registerForm" onsubmit="doRegister(event)"></form>
+          <h1>Registration</h1>
+      </div>
+      <div class="login-form">
+          <section id="register">
+              <form id="registerForm" onsubmit="doRegister(event)"></form>
 
-                <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="text" id="password" name="password">
-                </div>
+                  <div class="form-group">
+                      <label for="username">Username:</label>
+                      <input type="text" id="username" name="username">
+                  </div>
+                  <div class="form-group">
+                      <label for="password">Password:</label>
+                      <input type="password" id="password" name="password">
+                  </div>
 
-                <div class="form-group">
-                    <label for="firstName">First Name:</label>
-                    <input type="text" id="first_name" name="first_name">
-                </div>
+                  <div class="form-group">
+                      <label for="firstName">First Name:</label>
+                      <input type="text" id="first_name" name="first_name">
+                  </div>
 
+                  <div class="form-group">
+                      <label for="lastName">Last Name:</label>
+                      <input type="text" id="last_name" name="last_name" placeholder="optional">
+                  </div>
 
-                <div class="form-group">
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" id="last_name" name="last_name">
-                </div>
+                  <div class="form-group">
+                      <button type="submit">Register</button>
+                  </div>
 
-                <div class="form-group">
-                    <button type="submit">Register</button>
-                </div>
-            </form>
-            <p>Already have an account? <a href="index.html">Login here</a></p>
-        </section>
-    </div>
-    <script>
-      function doRegister() {
-      userName = document.getElementById("username").value;
-      passWord = document.getElementById("password").value;
-      firstName = document.getElementById("first_name").value;
-      lastName = document.getElementById("last_name").value;
-      
-      document.getElementById("loginResult").innerHTML = "";
+              </form>
+              <p>Already have an account? <a href="index.html">Login here</a></p>
+          </section>
+      </div>
+      <script>
+        function doRegister() 
+        {
 
-      if(userName == null || passWord == null || firstName == null || lastName == null){
-        $('#loginResult').append("<p>Please Enter Username and Password<p>");
-        return;
-      }
-      
+          userName = document.getElementById("username").value;
+          passWord = document.getElementById("password").value;
+          firstName = document.getElementById("first_name").value;
+          lastName = document.getElementById("last_name").value;
 
-      let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/users/users.php")
-      urlRequest.searchParams.append('req_type', 'register');
-      urlRequest.searchParams.append('username', userName);
-      urlRequest.searchParams.append('password', passWord);
-      urlRequest.searchParams.append('password', firstName);
-      urlRequest.searchParams.append('password', lastName);
+          document.getElementById("loginResult").innerHTML = "";
 
-
-      fetch(urlRequest, {
-        headers: {
-          "Content-Type": "application/json"
-        },
-        method: 'GET',
-      })
-        .then(async (response) => {
-          data = await response.json();
-          console.log(data);
-          if(data.success == false){
-            $('#loginResult').append("<p>Invalid Registration<p>");
+          if ((userName == "") || (passWord == "") || (firstName == "")) 
+          {
+            $('#loginResult').append("<p>Please enter a username, password, and your first name<p>");
+            return;
           }
-          else if(data.success == true){
-            sessionStorage.setItem("userID", data.result[0].user_id);
-            window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
-          }
-        })
-    }
+
+          let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/users/users.php")
+          urlRequest.searchParams.append('req_type', 'register');
+          urlRequest.searchParams.append('username', userName);
+          urlRequest.searchParams.append('password', passWord);
+          urlRequest.searchParams.append('first_name', firstName);
+          urlRequest.searchParams.append('last_name', lastName);
+
+          fetch(urlRequest, 
+          {
+            headers: 
+            {
+              "Content-Type": "application/json"
+            },
+            method: 'GET',
+          })
+          .then(async (response) => 
+          {
+            data = await response.json();
+            console.log(data);
+            if (data.success == false)
+            {
+              $('#loginResult').append("<p>Invalid registration<p>");
+            }
+            else if (data.success == true)
+            {
+              sessionStorage.setItem("userID", data.result[0].user_id);
+              window.location.href = "https://jo531962ucf.xyz/contactsPage.php";
+            }
+          })
+        }
       </script>
-</body>
+  </body>
 </html>
-
-
