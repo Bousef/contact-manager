@@ -21,6 +21,7 @@
         <form id="addContact" onsubmit="return doAddContact(event)">
         
             <!-- Include contact form elements -->
+            <?php include 'components/contactForm.php'; ?>
 
             <!-- Submit Button -->
             <span id="loginResult"></span>
