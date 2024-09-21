@@ -61,7 +61,7 @@
         <script>
 
             // Function to handle form submission
-            function doAddContact(event) 
+            function doEditContact(event) 
             {
 
                 event.preventDefault();
@@ -169,7 +169,7 @@
                     
                     let newField = document.createElement('div');
                     newField.classList.add('addressField');
-                    newField.innerHTML = `<?php include 'components/addressForm.php'; ?>`;
+                    newField.innerHTML = `<?php include '../addressForm.php'; ?>`;
                     container.appendChild(newField);
                     button.textContent = 'Remove Address';
 
