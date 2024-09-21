@@ -7,13 +7,13 @@
   </div>
   <div class="buttonGroup">
     <div class="contactGroup">
-  <a href="mailto:*CONTACT_EMAIL*" class="contactBtn">
+  <a href="mailto:*CONTACT_EMAIL*" class="contactBtn" id = "emailBtn">
     <i class="fa-solid fa-envelope icon"></i>
   </a>
-  <a href="tel:+*CONTACT_NUMBER*" class="contactBtn">
+  <a href="tel:+*CONTACT_NUMBER*" class="contactBtn" id = "callBtn">
     <i class="fa-solid fa-phone icon"></i>
   </a>
-  <a href="sms:+*CONTACT_NUMBER*" class="contactBtn">
+  <a href="sms:+*CONTACT_NUMBER*" class="contactBtn" id = "textBtn">
     <i class="fa-solid fa-message icon"></i>
       </a>
     </div>
@@ -26,4 +26,18 @@
       </button>
     </div>
   </div>
+  
+  <script>
+    function greyOutButton(inputString)  {
+      const inputID = document.getElementById(inputString);
+      const inputRef = inputID.href;
+      if(!inputRef || inputRef === "" || inputRef === " ") {
+        inputID.classList.add("greyBtn");
+      }
+      return;
+    }
+    greyOutButton("emailBtn");
+    greyOutButton("callBtn");
+    greyOutButton("textBtn");
+  </script>
 </div>
