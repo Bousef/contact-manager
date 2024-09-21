@@ -11,7 +11,7 @@
 <body id="body">
     <?php
         include '../navBar.php';
-        include '../demo/cardDemo.php';
+        //include '../demo/cardDemo.php';
         //open database
         include '../../LAMPAPI/database.php';
 
@@ -49,7 +49,8 @@
 
     <div class="login-form">
         <h3>Edit Contact</h3>
-        <form id="editContactForm" method = "POST" onsubmit="return doEdit(contactId)">
+        <!-- Should be able to echo the current details of the contact -->
+        <form id="editContactForm" method = "POST" onsubmit="return doEdit(<?php echo $contactId; ?>)">
         
             <!-- First Name -->
             <div class="form-group">
@@ -61,33 +62,33 @@
             <!-- Last Name -->
             <div class="form-group">
                 <label for="lastname">Last Name:</label>
-                <input class="textForm" type="text" id="last_name" name="last_name">
+                <input class="textForm" type="text" id="last_name" name="last_name" placeholder="<?php echo $lastName; ?>">
             </div>
 
             <!-- Email -->
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input class="textForm" type="email" id="email" name="email">
+                <input class="textForm" type="email" id="email" name="email" placeholder="<?php echo $email; ?>">
             </div>
 
             <!-- Phone Number -->
             <div class="form-group">
                 <label for="phone_number">Phone Number:</label>
-                <input class="textForm" type="tel" id="phone_number" name="phone_number" >
+                <input class="textForm" type="tel" id="phone_number" name="phone_number"  placeholder="<?php echo $phoneNumber ?>">
             </div>
 
             <!-- Address -->
             <div class="form-group">
                 <label for="street_address">Street Address:</label>
-                <input class="textForm" type="text" id="address_line_01" name="address_line_01" placeholder="123 Candyland Ln"  >
+                <input class="textForm" type="text" id="address_line_01" name="address_line_01" placeholder="123 Candyland Ln" placeholder="<?php echo $addressLine1; ?>" >
                 <label for="street_address_2">Street Address 2:</label>
-                <input class="textForm" type="text" id="address_line_02" name="address_line_02" placeholder="Apt 4B">
+                <input class="textForm" type="text" id="address_line_02" name="address_line_02" placeholder="Apt 4B" placeholder="<?php echo $addressLine2; ?>">
                 <label for="city">City:</label>
-                <input class="textForm" type="text" id="city" name="city" placeholder="Orlando" >
+                <input class="textForm" type="text" id="city" name="city" placeholder="Orlando" placeholder="<?php echo $city; ?>">
                 <label for="state">State:</label>
-                <input class="textForm" type="text" id="state" name="state" placeholder="FL" >
+                <input class="textForm" type="text" id="state" name="state" placeholder="FL" placeholder="<?php echo $state; ?>">
                 <label for="zip_code">Zip code:</label>
-                <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="12345" >
+                <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="12345" placeholder="<?php echo $zipCode; ?>" >
             </div>
 
             <!-- Submit Button -->
