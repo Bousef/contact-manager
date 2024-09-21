@@ -1,156 +1,233 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    
     <meta charset="UTF-8">
-    <title>Edit Contacts Page</title>
-    <!-- <link href="css/style.css" rel="stylesheet">
-    <link href="components/styles/navBar.css" rel="stylesheet"> -->
-    <!-- <script src="https://kit.fontawesome.com/ac1c3ec324.js" crossorigin="anonymous"></script> -->
-    <!-- <link href="components/styles/card.css" rel="stylesheet"> -->
+    <title>Contacts</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="components/styles/navBar.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ac1c3ec324.js" crossorigin="anonymous"></script>
+    <link href="components/styles/card.css" rel="stylesheet">
 </head>
 <body id="body">
-    <?php
-        include '../navBar.php';
-        include '../demo/cardDemo.php';
-        //open database
-        include '../../LAMPAPI/database.php';
-
-
-        if(!isset($_GET['contact_id'])) {
-            echo "No contact ID provided";
-            exit();
-        }
-
-        $contactId = $_GET['contact_id'];
-
-        //Fetch details of the contact
-        $url = "https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php?req_type=get&contact_id=$contactId";
-        $response = file_get_contents($url);
-        $contact = json_decode($response, true);
-
-        // if (!$contact) {
-        //     echo "No contact found!";
-        //     exit();
-        // }
-
-        $firstName = $contact['first_name'];
-        $lastName = $contact['last_name'];
-        $email = $contact['email'];
-        $phoneNumber = $contact['phone_number'];
-        $addressLine1 = $contact['address_line_01'];
-        $addressLine2 = $contact['address_line_02'];
-        $city = $contact['city'];
-        $state = $contact['state'];
-        $zipCode = $contact['zip_code'];
-    ?>
+    <?php include 'components/navBar.php'; ?>
+    <?php include 'components/import.php'; ?>
     <div class="login-title">
         <h2 id="title">Edit Contact</h2>
     </div>
 
-    <div class="login-form">
-        <h3>Edit Contact</h3>
-        <!-- Should be able to echo the current details of the contact -->
-        <form id="editContactForm" method = "POST" onsubmit="return doEdit(<?php echo $contactId; ?>)">
+        <!-- Contact form -->
+        <div class="login-form">
+
+            <h3>Edit Contact</h3>
+
+            <form id="editContact">
+                
+                <!-- Include contact form elements -->
+                <?php include 'components/contactForm.php'; ?>
+                
+                <!-- Address fields container -->
+                <div id="addressFieldsContainer">
+
+                    <!-- Initially empty, address form will be added dynamically -->
+
+                </div>
+
+                <!-- Button to toggle address fields -->
+                <div class="form-group">
+                    <button type="button" id="toggleAddressButton" onclick="toggleAddressField()">Edit Address</button>
+                </div>
+
+                <!-- Submit button -->
+                <div class="form-group">
+                    <button type="button" onclick="doEditContact(<?php echo $_GET['contact_id'];?>)">Edit Contact</button>
+                </div>
+
+                <!-- Submit result -->
+                <span id="editResult"></span>
+
+            </form>
+
+        </div>
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <script>
+
+            // Function to handle form submission
+            function doAddContact(event) 
+            {
+
+                event.preventDefault();
+                document.getElementById("editResult").innerHTML = "";
+
+                let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+                let addressRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
+
+                urlRequest.searchParams.append('req_type', 'update');
+                urlRequest.searchParams.append('user_id', sessionStorage.getItem("userID"));
+                urlRequest.searchParams.append('first_name', document.getElementById("first_name").value);
+                urlRequest.searchParams.append('last_name', document.getElementById("last_name").value);
+                urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value);
+                urlRequest.searchParams.append('email', document.getElementById("email").value);
+
+                let addressField = document.querySelector('.addressField');
+
+                if (addressField) 
+                {
+                    addressRequest.searchParams.append('req_type', 'update');
+                    addressRequest.searchParams.append('address_line_01', addressField.querySelector('.address_line_01').value);
+                    addressRequest.searchParams.append('address_line_02', addressField.querySelector('.address_line_02').value);
+                    addressRequest.searchParams.append('city', addressField.querySelector('.city').value);
+                    addressRequest.searchParams.append('state', addressField.querySelector('.state').value);
+                    addressRequest.searchParams.append('zip_code', addressField.querySelector('.zip_code').value);
+                }
+
+                fetch(urlRequest, 
+                {
+                    headers: 
+                    {
+                        "Content-Type": "application/json",
+                    },
+                    method: 'GET',
+                })
+                .then(async (response) => 
+                {
+
+                    if (!response.ok) 
+                    {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    let data = await response.json();
+
+                    if (data.success == false) 
+                    {
+                        $("#editResult").append("<p>ERROR: Contact not edited </p>");
+                    } 
+                    else if (data.success == true) 
+                    {
+
+                        if (addressField) 
+                        {
+                            addressRequest.searchParams.append('contact_id', data.result);
+                            fetch(addressRequest, 
+                            {
+                                headers: 
+                                {
+                                    "Content-Type": "application/json",
+                                },
+                                method: 'GET',
+                            })
+                            .then(async (response) => 
+                            {
+                                await response.json();
+                            })
+                            .catch(error => 
+                            {
+                                $("#editResult").append("<p>ERROR: Contact not edited </p>");
+                            });
+                        }
+
+                        $("#editResult").append("<p>Contact edited successfully</p>");
+
+                    }
+                })
+                .catch(error => 
+                {
+                    $("#editResult").append("<p>ERROR: Contact not edited </p>");
+                });
+
+                return false;
+
+            }
+
+            // Function to toggle address fields
+            function toggleAddressField() 
+            {
+
+                // ...
+                let container = document.getElementById('addressFieldsContainer');
+                let button = document.getElementById('toggleAddressButton');
+
+                // ...
+                if (container.children.length > 0) 
+                {
+                    container.innerHTML = '';
+                    button.textContent = 'Edit Address';
+                } 
+                else 
+                {
+                    
+                    let newField = document.createElement('div');
+                    newField.classList.add('addressField');
+                    newField.innerHTML = `<?php include 'components/addressForm.php'; ?>`;
+                    container.appendChild(newField);
+                    button.textContent = 'Remove Address';
+
+                    // Required fields for address
+                    let address_line_01 = newField.querySelector(".address_line_01");
+                    let city = newField.querySelector(".city");
+                    let state = newField.querySelector(".state");
+                    let zip_code = newField.querySelector(".zip_code");
+
+                    // Optional fields for address
+                    let address_line_02 = newField.querySelector(".address_line_02");
+
+                    // Add required attribute to the required fields
+                    if (address_line_01) address_line_01.required = false;
+                    if (city) city.required = false;
+                    if (state) state.required = false;
+                    if (zip_code) zip_code.required = false;
+
+                    // Remove required attribute from the optional fields
+                    if (address_line_02) address_line_02.required = false;
+
+                    // Add placeholder text for the required fields
+                    if (address_line_01) address_line_01.placeholder = "Optional";
+                    if (city) city.placeholder = "Optional";
+                    if (state) state.placeholder = "Optional";
+                    if (zip_code) zip_code.placeholder = "Optional";
+
+                    // Add placeholder text for the optional fields
+                    if (address_line_02) address_line_02.placeholder = "Optional";
+
+                }
         
-            <!-- First Name -->
-            <div class="form-group">
-                <label for="firstname">First Name:</label>
-                <!-- It would be nice to have placeholders of the current details of the contact -->
-                <input class="textForm" type="text" id="first_name" name="first_name">
-            </div>
+            }
 
-            <!-- Last Name -->
-            <div class="form-group">
-                <label for="lastname">Last Name:</label>
-                <input class="textForm" type="text" id="last_name" name="last_name" placeholder="<?php echo $lastName; ?>">
-            </div>
+            // Get the document elements of the form inputs for required fields
+            let first_name = document.getElementById("first_name");
 
-            <!-- Email -->
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input class="textForm" type="email" id="email" name="email" placeholder="<?php echo $email; ?>">
-            </div>
+            // Get the document elements of the form inputs for optional fields
+            let last_name = document.getElementById("last_name");
+            let phone_number = document.getElementById("phone_number");
+            let email = document.getElementById("email");
 
-            <!-- Phone Number -->
-            <div class="form-group">
-                <label for="phone_number">Phone Number:</label>
-                <input class="textForm" type="tel" id="phone_number" name="phone_number"  placeholder="<?php echo $phoneNumber ?>">
-            </div>
+            // Add required attributes to the required fields
+            first_name.required = false;
 
-            <!-- Address -->
-            <div class="form-group">
-                <label for="street_address">Street Address:</label>
-                <input class="textForm" type="text" id="address_line_01" name="address_line_01" placeholder="<?php echo $addressLine1; ?>" >
-                <label for="street_address_2">Street Address 2:</label>
-                <input class="textForm" type="text" id="address_line_02" name="address_line_02" placeholder="<?php echo $addressLine2; ?>">
-                <label for="city">City:</label>
-                <input class="textForm" type="text" id="city" name="city" placeholder="<?php echo $city; ?>">
-                <label for="state">State:</label>
-                <input class="textForm" type="text" id="state" name="state" placeholder="<?php echo $state; ?>">
-                <label for="zip_code">Zip code:</label>
-                <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="<?php echo $zipCode; ?>" >
-            </div>
+            // Remove required attributes from the optional fields
+            last_name.required = false;
+            phone_number.required = false;
+            email.required = false;
 
-            <!-- Submit Button -->
-            <span id="loginResult"></span>
-            <div class="form-group">
-                <input class="buttonAdd" type="submit" value="Edit Contact">
-            </div>
-        </form>
-    </div>
+            // Add optional placeholder text to the optional fields
+            last_name.placeholder = "Optional";
+            phone_number.placeholder = "Optional";
+            email.placeholder = "Optional";
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script>
-        function doEdit(contactId) {
-            event.preventDefault();
+            // Add required placeholder text to the required fields
+            first_name.placeholder = "Optional";
 
-            
+        </script>
+        
+    </body>
 
-            document.getElementById("loginResult").innerHTML = " ";
-
-            let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
-
-            urlRequest.searchParams.append('req_type', 'update');
-            urlRequest.searchParams.append('user_id', 1);
-            urlRequest.searchParams.append('first_name', document.getElementById("first_name").value);
-            urlRequest.searchParams.append('last_name', document.getElementById("last_name").value);
-            urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value);
-            urlRequest.searchParams.append('email', document.getElementById("email").value);
-            urlRequest.searchParams.append('address_line_01', document.getElementById("address_line_01").value);
-            urlRequest.searchParams.append('address_line_02', document.getElementById("address_line_02").value);
-            urlRequest.searchParams.append('city', document.getElementById("city").value);
-            urlRequest.searchParams.append('state', document.getElementById("state").value);
-            urlRequest.searchParams.append('zip_code', document.getElementById("zip_code").value);
-
-            console.log(urlRequest.toString());
-
-            fetch(urlRequest, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                method: 'GET',
-            })
-            .then(async (response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                let data = await response.json();
-                console.log(data);
-                if (data.success == false) {
-                    $("#loginResult").append("<p>ERROR: Contact not created </p>");
-                } else if (data.success == true) {
-                    window.location.href = "https://jo531962ucf.xyz/components/demo/cardDemo.php";
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                $("#loginResult").append("<p>ERROR: Contact not updated </p>");
-            });
-
-            // Return false to prevent the default form submission
-            return false;
-        }
-
-    </script>
-</body>
 </html>
