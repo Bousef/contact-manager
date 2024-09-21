@@ -50,6 +50,11 @@
                 $phone_number = isset($json_decoded['phone_number']) && $json_decoded['phone_number'] !== '' ? $json_decoded['phone_number'] : null;
                 $email = isset($json_decoded['email']) && $json_decoded['email'] !== '' ? $json_decoded['email'] : null;
         
+                // Log the values of the optional parameters
+                error_log("last_name: " . var_export($last_name, true));
+                error_log("phone_number: " . var_export($phone_number, true));
+                error_log("email: " . var_export($email, true));
+
                 // Validate and sanitize phone number if provided
                 if ($phone_number !== null)
                 {

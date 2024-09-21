@@ -91,12 +91,12 @@
                 if (data.success == false) 
                 {
 
-                    // Display the error message
-                    $("#form_result_message").append("<p>Contact not created</p>");
-
                     // Log error message to console
                     console.error(data.error_code);
                     console.error(data.error_message);
+
+                    // Display the error message
+                    $("#form_result_message").append(`<p>Contact not created: ${data.error_message}</p>`);
 
                 } 
                 else if (data.success == true) 
@@ -143,6 +143,9 @@
                                 console.error(data.error_code);
                                 console.error(data.error_message);
 
+                                // Display the error message if the address was invalid
+                                $("#form_result_message").append(`<p>Contact not created: ${data.error_message}</p>`);
+
                                 // Set the URL for the delete request
                                 let delete_contact_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
                                 delete_contact_request.searchParams.append('req_type', 'delete');
@@ -168,11 +171,17 @@
                                         console.error(data.error_code);
                                         console.error(data.error_message);
 
+                                        // Display the error message if the delete request fails
+                                        $("#form_result_message").append("<p>Bad thing happened</p>");
+
                                     }
 
                                 })
                                 .catch(error => 
                                 {
+
+                                    // Log error message to console
+                                    console.error(error);
 
                                     // Display the error message if the delete request fails
                                     $("#form_result_message").append("<p>Bad thing happened</p>");
@@ -186,8 +195,6 @@
 
                                 });
 
-                                // Display the error message if the address was invalid
-                                $("#form_result_message").append("<p>Contact not created because address was invalid</p>");
                                 return;    
 
                             }
@@ -195,6 +202,9 @@
                         })
                         .catch(async (error) => 
                         {
+
+                            // Log error message to console
+                            console.error(error);
 
                             // Display the error message if the delete request fails
                             $("#form_result_message").append("<p>Bad thing happened</p>");
@@ -216,6 +226,9 @@
             })
             .catch(error => 
             {
+
+                // Log error message to console
+                console.error(error);
 
                 // Display the error message
                 $("#form_result_message").append("<p>Bad thing happened</p>");
