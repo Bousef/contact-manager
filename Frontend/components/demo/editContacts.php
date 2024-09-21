@@ -28,10 +28,10 @@
         $response = file_get_contents($url);
         $contact = json_decode($response, true);
 
-        if (!$contact) {
-            echo "No contact found";
-            exit();
-        }
+        // if (!$contact) {
+        //     echo "No contact found!";
+        //     exit();
+        // }
 
         $firstName = $contact['first_name'];
         $lastName = $contact['last_name'];
