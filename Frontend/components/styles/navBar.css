@@ -49,6 +49,7 @@ body {
 
 .logoutBtn {
   background: #EA5A3B;
+  margin-right: 4px;
 }
 
 .logoutBtn:hover {
@@ -56,7 +57,7 @@ body {
 }
 
 .homeBtn {
-  background: #293BFF;
+  background: #4151FE;
 }
 
 .homeBtn:hover {
