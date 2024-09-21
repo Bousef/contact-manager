@@ -15,8 +15,8 @@
     <link href="components/styles/card.css" rel="stylesheet"> -->
 </head>
 <body id="body">
-    <//?php include 'components/navBar.php'; ?>
-    <//?php include 'components/import.php'; ?>
+    <?php include '../navBar.php'; ?>
+    <?php include '../import.php'; ?>
     <div class="login-title">
         <h2 id="title">Edit Contact</h2>
     </div>
@@ -29,7 +29,7 @@
             <form id="editContact">
                 
                 <!-- Include contact form elements -->
-                <?php include '../components/contactForm.php'; ?>
+                <?php include '../contactForm.php'; ?>
                 
                 <!-- Address fields container -->
                 <div id="addressFieldsContainer">
