@@ -80,15 +80,15 @@
             <!-- Address -->
             <div class="form-group">
                 <label for="street_address">Street Address:</label>
-                <input class="textForm" type="text" id="address_line_01" name="address_line_01" placeholder="123 Candyland Ln" placeholder="<?php echo $addressLine1; ?>" >
+                <input class="textForm" type="text" id="address_line_01" name="address_line_01" placeholder="<?php echo $addressLine1; ?>" >
                 <label for="street_address_2">Street Address 2:</label>
-                <input class="textForm" type="text" id="address_line_02" name="address_line_02" placeholder="Apt 4B" placeholder="<?php echo $addressLine2; ?>">
+                <input class="textForm" type="text" id="address_line_02" name="address_line_02" placeholder="<?php echo $addressLine2; ?>">
                 <label for="city">City:</label>
                 <input class="textForm" type="text" id="city" name="city" placeholder="Orlando" placeholder="<?php echo $city; ?>">
                 <label for="state">State:</label>
-                <input class="textForm" type="text" id="state" name="state" placeholder="FL" placeholder="<?php echo $state; ?>">
+                <input class="textForm" type="text" id="state" name="state" placeholder="<?php echo $state; ?>">
                 <label for="zip_code">Zip code:</label>
-                <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="12345" placeholder="<?php echo $zipCode; ?>" >
+                <input class="textForm" type="text" id="zip_code" name="zip_code" placeholder="<?php echo $zipCode; ?>" >
             </div>
 
             <!-- Submit Button -->
