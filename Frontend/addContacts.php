@@ -157,6 +157,13 @@
                             $("#form_result_message").append("<p>Contact not created because address was invalid</p>");
                             return;
                             
+                        })
+                        .finally(() => 
+                        {
+
+                            // Reset the URL search parameters
+                            add_address_request.search = "";
+
                         });
 
                     }
@@ -170,7 +177,16 @@
             {
 
                 // Display the error message
-                $("#form_result_message").append("<p>ERROR: Contact not created </p>");
+                $("#form_result_message").append("<p>Contact not created </p>");
+
+            })
+            .finally(() => 
+            {
+
+                // Reset the URL search parameters
+                add_contact_request.search = "";
+
+
 
             });
 
