@@ -133,7 +133,7 @@
                             })
                             .catch(error => 
                             {
-                                $("#editResult").append("<p>ERROR: Contact not edited </p>");
+                                $("#editResult").append("<p>ERROR: Contact not edited  .catch(error </p>");
                             });
                         }
 
@@ -143,7 +143,7 @@
                 })
                 .catch(error => 
                 {
-                    $("#editResult").append("<p>ERROR: Contact not edited </p>");
+                    $("#editResult").append("<p>ERROR: Contact not edited  .catch(error2 </p>");
                 });
 
                 return false;
