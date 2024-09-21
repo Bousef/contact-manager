@@ -68,6 +68,15 @@
             add_contact_request.searchParams.append('phone_number', document.getElementById("phone_number").value);
             add_contact_request.searchParams.append('email', document.getElementById("email").value);
 
+            // Iterate over all search parameters and set empty string values to null
+            for (let [key, value] of add_contact_request.searchParams.entries()) 
+            {
+                if (value === "") 
+                {
+                    add_contact_request.searchParams.set(key, null);
+                }
+            }
+
             fetch(add_contact_request, 
             {
                 headers: 
@@ -150,6 +159,13 @@
 
                                 // Display the error message if the delete request fails
                                 $("#form_result_message").append("<p>Bad thing happened</p>");
+
+                            })
+                            .finally(() => 
+                            {
+
+                                // Reset the URL search parameters
+                                delete_contact_request.search = "";
 
                             });
 
