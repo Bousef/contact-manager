@@ -9,10 +9,10 @@
     
     <meta charset="UTF-8">
     <title>Contacts</title>
-    <!-- <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link href="components/styles/navBar.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/ac1c3ec324.js" crossorigin="anonymous"></script>
-    <link href="components/styles/card.css" rel="stylesheet"> -->
+    <link href="components/styles/card.css" rel="stylesheet">
 </head>
 <body id="body">
     <?php include '../navBar.php'; ?>
@@ -91,32 +91,32 @@
                     addressRequest.searchParams.append('zip_code', addressField.querySelector('.zip_code').value);
                 }
 
-                fetch(urlRequest, 
+                fetch(urlRequest,
                 {
-                    headers: 
+                    headers:
                     {
                         "Content-Type": "application/json",
                     },
                     method: 'GET',
                 })
-                .then(async (response) => 
+                .then(async (response) =>
                 {
 
-                    if (!response.ok) 
+                    if (!response.ok)
                     {
                         throw new Error('Network response was not ok');
                     }
 
                     let data = await response.json();
 
-                    if (data.success == false) 
+                    if (data.success == false)
                     {
-                        $("#editResult").append("<p>ERROR: Contact not edited </p>");
+                        $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
                     } 
-                    else if (data.success == true) 
+                    else if (data.success == true)
                     {
 
-                        if (addressField) 
+                        if (addressField)
                         {
                             addressRequest.searchParams.append('contact_id', data.result);
                             fetch(addressRequest, 
@@ -151,7 +151,7 @@
             }
 
             // Function to toggle address fields
-            function toggleAddressField() 
+            function toggleAddressField()
             {
 
                 // ...
