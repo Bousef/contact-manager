@@ -28,7 +28,7 @@
         $response = file_get_contents($url);
         $contact = json_decode($response, true);
 
-        if (!$contact || !$contact['success']) {
+        if (!$contact) {
             echo "No contact found";
             exit();
         }
