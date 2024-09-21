@@ -31,9 +31,9 @@ BEGIN
     -- Insert new contact
     INSERT INTO cop4331_contact_manager.contacts (id_user, first_name, last_name, phone_number, email_address)
     VALUES (in_user_id, in_first_name, 
-            IF(in_last_name = '', NULL, in_last_name), 
-            IF(in_phone_number = '', NULL, in_phone_number), 
-            IF(in_email_address = '', NULL, in_email_address));
+        IF(in_last_name = '', NULL, in_last_name), 
+        IF(in_phone_number = '', NULL, in_phone_number), 
+        IF(in_email_address = '', NULL, in_email_address));
 
     -- Get the last inserted ID
     SET contact_id = LAST_INSERT_ID();

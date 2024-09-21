@@ -90,17 +90,25 @@
                 // Check if the contact was created successfully
                 if (data.success == false) 
                 {
+
+                    // Display the error message
                     $("#form_result_message").append("<p>Contact not created</p>");
+
+                    // Log error message to console
+                    console.error(data.error_code);
+                    console.error(data.error_message);
+
                 } 
                 else if (data.success == true) 
                 {
 
                     // Check if the address form exists
-                    let addressField = document.getElementById('address_form');
+                    let address_form = document.getElementById('address_form');
 
                     // If the address form exists, send the address data to the API
-                    if (addressField) 
+                    if (address_form) 
                     {
+
                         // Set the URL for the API request
                         let add_address_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
 
@@ -123,44 +131,73 @@
                         })
                         .then(async (response) => 
                         {
-                            await response.json();
+
+                            // Wait for the response to be converted to JSON
+                            let data = await response.json();
+
+                            // Check if the address was created successfully
+                            if (data.success == false) 
+                            {
+
+                                // Log error message to console
+                                console.error(data.error_code);
+                                console.error(data.error_message);
+
+                                // Set the URL for the delete request
+                                let delete_contact_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+                                delete_contact_request.searchParams.append('req_type', 'delete');
+                                delete_contact_request.searchParams.append('user_id', sessionStorage.getItem("userID"));
+                                delete_contact_request.searchParams.append('contact_id', data.result);
+
+                                // Delete the contact
+                                await fetch(delete_contact_request, 
+                                {
+                                    method: 'GET',
+                                })
+                                .then(async (response) => 
+                                {
+
+                                    // Wait for the response to be converted to JSON
+                                    let data = await response.json();
+
+                                    // Check if the contact was deleted successfully
+                                    if (data.success == false) 
+                                    {
+
+                                        // Log error message to console
+                                        console.error(data.error_code);
+                                        console.error(data.error_message);
+
+                                    }
+
+                                })
+                                .catch(error => 
+                                {
+
+                                    // Display the error message if the delete request fails
+                                    $("#form_result_message").append("<p>Bad thing happened</p>");
+
+                                })
+                                .finally(() => 
+                                {
+
+                                    // Reset the URL search parameters
+                                    delete_contact_request.search = "";
+
+                                });
+
+                                // Display the error message if the address was invalid
+                                $("#form_result_message").append("<p>Contact not created because address was invalid</p>");
+                                return;    
+
+                            }
+
                         })
                         .catch(async (error) => 
                         {
 
-                            // Set the URL for the delete request
-                            let delete_contact_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
-                            delete_contact_request.searchParams.append('req_type', 'delete');
-                            delete_contact_request.searchParams.append('user_id', sessionStorage.getItem("userID"));
-                            delete_contact_request.searchParams.append('contact_id', data.result);
-
-                            // Delete the contact
-                            await fetch(delete_contact_request, 
-                            {
-                                method: 'POST',
-                            })
-                            .then(async (response) => 
-                            {
-                                await response.json();
-                            })
-                            .catch(error => 
-                            {
-
-                                // Display the error message if the delete request fails
-                                $("#form_result_message").append("<p>Bad thing happened</p>");
-
-                            })
-                            .finally(() => 
-                            {
-
-                                // Reset the URL search parameters
-                                delete_contact_request.search = "";
-
-                            });
-
-                            // Display the error message if the address was invalid
-                            $("#form_result_message").append("<p>Contact not created because address was invalid</p>");
-                            return;
+                            // Display the error message if the delete request fails
+                            $("#form_result_message").append("<p>Bad thing happened</p>");
 
                         })
                         .finally(() => 
@@ -181,7 +218,7 @@
             {
 
                 // Display the error message
-                $("#form_result_message").append("<p>Contact not created </p>");
+                $("#form_result_message").append("<p>Bad thing happened</p>");
 
             })
             .finally(() => 
@@ -191,7 +228,7 @@
                 add_contact_request.search = "";
 
             });
-            
+
         }
 
         // Function to add or remove address fields after the contact form
