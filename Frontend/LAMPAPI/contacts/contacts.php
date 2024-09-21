@@ -46,9 +46,9 @@
             {
 
                 // Initialize optional parameters
-                $last_name = isset($json_decoded['last_name']) ? $json_decoded['last_name'] : null;
-                $phone_number = isset($json_decoded['phone_number']) ? $json_decoded['phone_number'] : null;
-                $email = isset($json_decoded['email']) ? $json_decoded['email'] : null;
+                $last_name = isset($json_decoded['last_name']) && $json_decoded['last_name'] !== '' ? $json_decoded['last_name'] : null;
+                $phone_number = isset($json_decoded['phone_number']) && $json_decoded['phone_number'] !== '' ? $json_decoded['phone_number'] : null;
+                $email = isset($json_decoded['email']) && $json_decoded['email'] !== '' ? $json_decoded['email'] : null;
         
                 // Validate and sanitize phone number if provided
                 if ($phone_number !== null)
@@ -85,7 +85,7 @@
         
                 // Call the function to create a contact for a user
                 create_contact_for_user($json_decoded['user_id'], $json_decoded['first_name'], $last_name, $phone_number, $email);
-                
+
             }
             else
             {
@@ -152,11 +152,11 @@
             {
 
                 // Initialize optional parameters
-                $first_name = isset($json_decoded['first_name']) ? $json_decoded['first_name'] : null;
-                $last_name = isset($json_decoded['last_name']) ? $json_decoded['last_name'] : null;
-                $phone_number = isset($json_decoded['phone_number']) ? $json_decoded['phone_number'] : null;
-                $email = isset($json_decoded['email']) ? $json_decoded['email'] : null;
-        
+                $first_name = isset($json_decoded['first_name']) && $json_decoded['first_name'] !== '' ? $json_decoded['first_name'] : null;
+                $last_name = isset($json_decoded['last_name']) && $json_decoded['last_name'] !== '' ? $json_decoded['last_name'] : null;
+                $phone_number = isset($json_decoded['phone_number']) && $json_decoded['phone_number'] !== '' ? $json_decoded['phone_number'] : null;
+                $email = isset($json_decoded['email']) && $json_decoded['email'] !== '' ? $json_decoded['email'] : null;
+
                 // Validate and sanitize phone number if provided
                 if ($phone_number !== null)
                 {
