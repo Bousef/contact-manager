@@ -14,7 +14,7 @@
     function flipButton() { // For flipping add contact button to home when not at home.
       if(window.location.pathname == "/addContacts.php") {
         const buttonID = document.getElementById("buttonID");
-        buttonID.onclick = "window.location.href = 'https://jo531962ucf.xyz/contactsPage.php';";
+        buttonID.onclick = function() { window.location.href = "https://jo531962ucf.xyz/contactsPage.php";};
         buttonID.innerHTML = "<i class='fa-solid fa-house icon profileIcon'></i>";
         buttonID.setAttribute("title", "Home");
         buttonID.setAttribute("aria-label", "Home");
