@@ -5,8 +5,8 @@
     <title>Edit Contacts Page</title>
     <!-- <link href="css/style.css" rel="stylesheet">
     <link href="components/styles/navBar.css" rel="stylesheet"> -->
-    <script src="https://kit.fontawesome.com/ac1c3ec324.js" crossorigin="anonymous"></script>
-    <link href="components/styles/card.css" rel="stylesheet">
+    <!-- <script src="https://kit.fontawesome.com/ac1c3ec324.js" crossorigin="anonymous"></script> -->
+    <!-- <link href="components/styles/card.css" rel="stylesheet"> -->
 </head>
 <body id="body">
     <?php
