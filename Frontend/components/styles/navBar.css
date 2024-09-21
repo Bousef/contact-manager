@@ -46,3 +46,19 @@ body {
 .addContactBtn:hover {
   background: #40a14d;
 }
+
+.logoutBtn {
+  background: #EA5A3B;
+}
+
+.logoutBtn:hover {
+  background: #AB422C;
+}
+
+.homeBtn {
+  background: #293BFF;
+}
+
+.homeBtn:hover {
+  background: #1927C0;
+}
