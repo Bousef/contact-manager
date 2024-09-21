@@ -50,7 +50,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
 
-        // Function to handle form submission
         function add_contact() 
         {
 
@@ -64,18 +63,9 @@
             add_contact_request.searchParams.append('req_type', 'create');
             add_contact_request.searchParams.append('user_id', sessionStorage.getItem("userID"));
             add_contact_request.searchParams.append('first_name', document.getElementById("first_name").value);
-            add_contact_request.searchParams.append('last_name', document.getElementById("last_name").value);
-            add_contact_request.searchParams.append('phone_number', document.getElementById("phone_number").value);
-            add_contact_request.searchParams.append('email', document.getElementById("email").value);
-
-            // Iterate over all search parameters and set empty string values to null
-            for (let [key, value] of add_contact_request.searchParams.entries()) 
-            {
-                if (value === "") 
-                {
-                    add_contact_request.searchParams.set(key, null);
-                }
-            }
+            add_contact_request.searchParams.append('last_name', document.getElementById("last_name").value || null);
+            add_contact_request.searchParams.append('phone_number', document.getElementById("phone_number").value || null);
+            add_contact_request.searchParams.append('email', document.getElementById("email").value || null);
 
             fetch(add_contact_request, 
             {
@@ -104,25 +94,24 @@
                 } 
                 else if (data.success == true) 
                 {
-                    
+
                     // Check if the address form exists
                     let addressField = document.getElementById('address_form');
 
                     // If the address form exists, send the address data to the API
                     if (addressField) 
                     {
-
                         // Set the URL for the API request
                         let add_address_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
 
                         // Add the form data to the request
                         add_address_request.searchParams.append('req_type', 'create');
                         add_address_request.searchParams.append('contact_id', data.result);
-                        add_address_request.searchParams.append('address_line_01', document.getElementById('address_line_01').value);
-                        add_address_request.searchParams.append('address_line_02', document.getElementById('address_line_02').value);
-                        add_address_request.searchParams.append('city', document.getElementById('city').value);
-                        add_address_request.searchParams.append('state', document.getElementById('state').value);
-                        add_address_request.searchParams.append('zip_code', document.getElementById('zip_code').value);
+                        add_address_request.searchParams.append('address_line_01', document.getElementById('address_line_01').value || null);
+                        add_address_request.searchParams.append('address_line_02', document.getElementById('address_line_02').value || null);
+                        add_address_request.searchParams.append('city', document.getElementById('city').value || null);
+                        add_address_request.searchParams.append('state', document.getElementById('state').value || null);
+                        add_address_request.searchParams.append('zip_code', document.getElementById('zip_code').value || null);
 
                         fetch(add_address_request, 
                         {
@@ -172,7 +161,7 @@
                             // Display the error message if the address was invalid
                             $("#form_result_message").append("<p>Contact not created because address was invalid</p>");
                             return;
-                            
+
                         })
                         .finally(() => 
                         {
@@ -181,7 +170,6 @@
                             add_address_request.search = "";
 
                         });
-
                     }
 
                     // Display the success message
@@ -198,12 +186,12 @@
             })
             .finally(() => 
             {
-
+                
                 // Reset the URL search parameters
                 add_contact_request.search = "";
 
             });
-
+            
         }
 
         // Function to add or remove address fields after the contact form

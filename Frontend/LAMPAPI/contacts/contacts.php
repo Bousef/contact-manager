@@ -38,15 +38,11 @@
     switch($json_decoded['req_type'])
     {
 
-    case 'create':
+        case 'create':
         {
 
             // Ensure the necessary parameters are set
-            if 
-            (
-                isset($json_decoded['user_id'])     && 
-                isset($json_decoded['first_name'])
-            )
+            if (isset($json_decoded['user_id']) && isset($json_decoded['first_name']))
             {
 
                 // Initialize optional parameters
@@ -89,7 +85,7 @@
         
                 // Call the function to create a contact for a user
                 create_contact_for_user($json_decoded['user_id'], $json_decoded['first_name'], $last_name, $phone_number, $email);
-
+                
             }
             else
             {
