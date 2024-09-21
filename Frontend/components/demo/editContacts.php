@@ -84,7 +84,7 @@
                 <label for="street_address_2">Street Address 2:</label>
                 <input class="textForm" type="text" id="address_line_02" name="address_line_02" placeholder="<?php echo $addressLine2; ?>">
                 <label for="city">City:</label>
-                <input class="textForm" type="text" id="city" name="city" placeholder="Orlando" placeholder="<?php echo $city; ?>">
+                <input class="textForm" type="text" id="city" name="city" placeholder="<?php echo $city; ?>">
                 <label for="state">State:</label>
                 <input class="textForm" type="text" id="state" name="state" placeholder="<?php echo $state; ?>">
                 <label for="zip_code">Zip code:</label>
