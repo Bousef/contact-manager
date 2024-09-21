@@ -36,8 +36,10 @@
       }
       return;
     }
-    greyOutButton("emailBtn");
-    greyOutButton("callBtn");
-    greyOutButton("textBtn");
+    window.onload = function() {
+      greyOutButton("emailBtn");
+      greyOutButton("callBtn");
+      greyOutButton("textBtn");
+    };
   </script>
 </div>
