@@ -14,9 +14,7 @@
     function flipButton() { // For flipping add contact button to home when not at home.
       if(window.location.pathranme == "/addContacts.php") {
         const buttonID = document.getElementById("buttonID");
-        buttonID.innerHTML = "
-          <i class="fa-solid fa-house icon profileIcon"></i>
-          ";
+        buttonID.innerHTML = "<i class='fa-solid fa-house icon profileIcon'></i>";
       }
     }
     
