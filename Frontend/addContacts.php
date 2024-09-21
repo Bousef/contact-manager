@@ -202,8 +202,6 @@
                 // Reset the URL search parameters
                 add_contact_request.search = "";
 
-
-
             });
 
         }
