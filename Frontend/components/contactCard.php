@@ -1,8 +1,10 @@
 <div class="contactWrapper">
-  <h2 class="name">*CONTACT_NAME*</h2>
-  <p class="number">*CONTACT_NUMBER*</p>
-  <p class="email">*CONTACT_EMAIL*</p>
-  <h4 class="company">*CONTACT_COMPANY*</h4>
+  <div class = "contactInfo">
+    <h2 class="name">*CONTACT_NAME*</h2>
+    <p class="number">*CONTACT_NUMBER*</p>
+    <p class="email">*CONTACT_EMAIL*</p>
+    <h4 class="company">*CONTACT_COMPANY*</h4>
+  </div>
   <div class="buttonGroup">
     <div class="contactGroup">
   <a href="mailto:*CONTACT_EMAIL*" class="contactBtn">
