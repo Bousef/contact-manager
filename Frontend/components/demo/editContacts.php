@@ -29,7 +29,7 @@
             <form id="editContact">
                 
                 <!-- Include contact form elements -->
-                <//?php include 'components/contactForm.php'; ?>
+                <?php include '../components/contactForm.php'; ?>
                 
                 <!-- Address fields container -->
                 <div id="addressFieldsContainer">
