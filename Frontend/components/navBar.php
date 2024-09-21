@@ -3,7 +3,7 @@
     Contact Manager
   </h1>
   <div class = "navButtons">
-    <button type="submit" id = "buttonID" class="addContactBtn" onclick="window.location.href='https://jo531962ucf.xyz/contactsPage.php';" title="Add Contact" aria-label="Add Contact">
+    <button type="submit" id = "buttonID" class="profileBtn addContactBtn" onclick="window.location.href='https://jo531962ucf.xyz/contactsPage.php';" title="Add Contact" aria-label="Add Contact">
       <i class="fa-solid fa-plus icon plusIcon"></i>
     </button>
     <button type="submit" class="profileBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
@@ -15,6 +15,8 @@
       if(window.location.pathname == "/addContacts.php") {
         const buttonID = document.getElementById("buttonID");
         buttonID.innerHTML = "<i class='fa-solid fa-house icon profileIcon'></i>";
+
+        buttonID.classList.remove("addContactBtn");
       }
     }
     window.onload = flipButton();
