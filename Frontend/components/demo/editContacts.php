@@ -71,6 +71,7 @@
                 let addressRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
 
                 urlRequest.searchParams.append('req_type', 'update');
+                urlRequest.searchParams.append('contact_id', contact_id);
                 urlRequest.searchParams.append('user_id', sessionStorage.getItem("userID"));
                 urlRequest.searchParams.append('first_name', document.getElementById("first_name").value);
                 urlRequest.searchParams.append('last_name', document.getElementById("last_name").value);
@@ -82,6 +83,7 @@
                 if (addressField) 
                 {
                     addressRequest.searchParams.append('req_type', 'update');
+                    addressRequest.searchParams.append('contact_id', contact_id);
                     addressRequest.searchParams.append('address_line_01', addressField.querySelector('.address_line_01').value);
                     addressRequest.searchParams.append('address_line_02', addressField.querySelector('.address_line_02').value);
                     addressRequest.searchParams.append('city', addressField.querySelector('.city').value);
