@@ -6,7 +6,7 @@
     <button type="submit" id = "buttonID" class="profileBtn addContactBtn" onclick="window.location.href='https://jo531962ucf.xyz/addContacts.php';" title="Add Contact" aria-label="Add Contact">
       <i class="fa-solid fa-plus icon plusIcon"></i>
     </button>
-    <button type="submit" class="profileBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
+    <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
       <i class="fa-solid fa-door-open icon profileIcon"></i>
     </button>
   </div>
@@ -19,6 +19,7 @@
         buttonID.setAttribute("title", "Home");
         buttonID.setAttribute("aria-label", "Home");
         buttonID.classList.remove("addContactBtn");
+        buttonID.classList.add("homeBtn");
       }
     }
     window.onload = flipButton();
