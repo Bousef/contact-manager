@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Contacts Page</title>
+    <title>Edit Contacts Page</title>
     <link href="css/style.css" rel="stylesheet">
     <link href="components/styles/navBar.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/ac1c3ec324.js" crossorigin="anonymous"></script>
@@ -11,7 +11,7 @@
 <body id="body">
     <?php
         include '../navBar.php';
-        include '../cardDemo.php';
+        include '../demo/cardDemo.php';
         //open database
         include '../../LAMPAPI/database.php';
 
@@ -24,32 +24,24 @@
         $contactId = $_GET['contact_id'];
 
         //Fetch details of the contact
-        $conn = open_connection_to_database();
+        $url = "https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php?req_type=get&contact_id=$contactId";
+        $response = file_get_contents($url);
+        $contact = json_decode($response, true);
 
-        if(!$conn) {
-            echo "Error connecting to database";
+        if (!$contact || !$contact['success']) {
+            echo "No contact found";
             exit();
         }
 
-        $sql = "SELECT * FROM contacts WHERE id = $contactId";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $first_name = $row['first_name'];
-            $last_name = $row['last_name'];
-            $email = $row['email'];
-            $phone_number = $row['phone_number'];
-            $address_line_01 = $row['address_line_01'];
-            $address_line_02 = $row['address_line_02'];
-            $city = $row['city'];
-            $state = $row['state'];
-            $zip_code = $row['zip_code'];
-        } else {
-            echo "No contact found";
-        }
-        close_connection_to_database($conn);
-        
+        $firstName = $contact['first_name'];
+        $lastName = $contact['last_name'];
+        $email = $contact['email'];
+        $phoneNumber = $contact['phone_number'];
+        $addressLine1 = $contact['address_line_01'];
+        $addressLine2 = $contact['address_line_02'];
+        $city = $contact['city'];
+        $state = $contact['state'];
+        $zipCode = $contact['zip_code'];
     ?>
     <div class="login-title">
         <h2 id="title">Edit Contact</h2>
