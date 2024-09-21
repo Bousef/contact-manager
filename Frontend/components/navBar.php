@@ -5,6 +5,9 @@
     <button type="submit" class="profileBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
       <i class="fa-solid fa-door-open icon profileIcon"></i>
     </button>
+    <button type="submit" class="profileBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
+      <i class="fa-solid fa-house icon profileIcon"></i>
+    </button>
   <script>
     function doLogout() {
         sessionStorage.clear();
