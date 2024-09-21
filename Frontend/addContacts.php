@@ -22,7 +22,6 @@
 
     <!-- Contact form -->
     <div id="add_contact_form" class="login-form">
-        <h3>Add Contact</h3>
         <form>
 
             <!-- Include contact form elements -->
@@ -245,6 +244,7 @@
                 // Change the button text to "Remove Address"
                 button.textContent = "Remove Address";
             }
+
         }
 
         // Get the document elements of the form inputs for required fields
