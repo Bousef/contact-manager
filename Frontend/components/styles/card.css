@@ -72,6 +72,12 @@
   margin: 2px;
 }
 
+.greyBtn {
+  pointerEvents: none;
+  background: #666666;
+  opacity: 0.5;
+}
+
 .contactBtn:hover {
   background: #5E94E0;
 }
