@@ -11,7 +11,7 @@
 <body id="body">
     <?php
         include '../navBar.php';
-        //include '../demo/cardDemo.php';
+        include '../demo/cardDemo.php';
         //open database
         include '../../LAMPAPI/database.php';
 
