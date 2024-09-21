@@ -9,6 +9,7 @@
   display: inline-block;
   width: 100%;
   margin: 2px;
+  margin-left: 4px;
   font-size: 20px;
   border-radius: 20px;
   border: 0.2px solid #000;
@@ -25,6 +26,7 @@
   display: inline-block;
   width: 50px;
   margin: 2px;
+  margin-left: 4px;
   height: 50px;
   border-radius: 30px;
   border: 0.2px solid #000;
@@ -36,21 +38,4 @@
 
 .searchSubmitBtn:hover {
   background: #5E94E0;
-}
-
-.addContactBtn {
-  display: inline-block;
-  width: 50px;
-  margin: 2px;
-  height: 50px;
-  border-radius: 30px;
-  border: 0.2px solid #000;
-  background: #52ca62;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-  font-size: 24px;
-}
-
-.addContactBtn:hover {
-  background: #40a14d;
 }
