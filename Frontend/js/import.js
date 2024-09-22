@@ -28,7 +28,13 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 						last_name: row["Last Name"] || null,
 						phone_number: row["Phone 1 - Value"] || row["Primary Phone"] || row["Mobile Phone"] || row["Home Phone"] || row["Home Phone 2"] || row["Other Phone"] || row["Business Phone"] || row["Business Phone 2"] || row["Assistant's Phone"] || row["Car Phone"] || row["Radio Phone"] || row["Company Main Phone"] || null,
 						email: row["E-mail Address"] || row["E-mail 2 Address"] || row["E-mail 3 Address"] || null,
-						img_url: row["Photo"] || null
+						img_url: row["Photo"] || null,
+
+						address_line_01: null,
+						address_line_02: null,
+						city: null,
+						state: null,
+						zip_code: null
 					};
 
                                         let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
@@ -180,6 +186,12 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 			phone_number: null,
 			email: null,
 			img_url: null,
+
+			address_line_01: null,
+			address_line_02: null,
+			city: null,
+			state: null,
+			zip_code: null
 		};
 
 		const splitData = vCard.split(/\r\n|\n/);
@@ -227,6 +239,27 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 			// Get photo if it exists
 			if(line.startsWith('PHOTO')) {
 				parsedCard.img_url = line.substring(6).trim();
+			}
+
+			
+			if(line.startsWith("ADR;")) {
+				var temp = line.trim();
+				temp = temp.split(";");
+				if(temp[2] != "") { // Check to see if data exists before assigning.
+					parsedCard.address_line_02 = temp[2];
+				}
+				if(temp[3] != "") { // Check to see if data exists before assigning.
+					parsedCard.address_line_01 = temp[3];
+				}
+				if(temp[4] != "") { // Check to see if data exists before assigning.
+					parsedCard.city = temp[4];
+				}
+				if(temp[5] != "") { // Check to see if data exists before assigning.
+					parsedCard.state = temp[5];
+				}
+				if(temp[6] != "") { // Check to see if data exists before assigning.
+					parsedCard.zip_code = temp[6];
+				}
 			}
 		});
 
