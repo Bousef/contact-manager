@@ -54,7 +54,7 @@
             {
 
                 // Optional parameters
-                $address_line_02 = isset($json_decoded['address_line_02']) ? $json_decoded['address_line_02'] : null;
+                $address_line_02 = isset($json_decoded['address_line_02']) && $json_decoded['address_line_02'] !== '' ? $json_decoded['address_line_02'] : null;
 
                 // Call the function to create the address
                 create_address_for_contact($json_decoded['contact_id'], $json_decoded['address_line_01'], $json_decoded['address_line_02'], $json_decoded['city'], $json_decoded['state'], $json_decoded['zip_code']);

@@ -65,9 +65,9 @@
             add_contact_request.searchParams.append('req_type', 'create');
             add_contact_request.searchParams.append('user_id', sessionStorage.getItem("userID"));
             add_contact_request.searchParams.append('first_name', document.getElementById("first_name").value);
-            add_contact_request.searchParams.append('last_name', document.getElementById("last_name").value || null);
-            add_contact_request.searchParams.append('phone_number', document.getElementById("phone_number").value || null);
-            add_contact_request.searchParams.append('email', document.getElementById("email").value || null);
+            add_contact_request.searchParams.append('last_name', document.getElementById("last_name").value || '');
+            add_contact_request.searchParams.append('phone_number', document.getElementById("phone_number").value || '');
+            add_contact_request.searchParams.append('email', document.getElementById("email").value || '');
 
             fetch(add_contact_request, 
             {
@@ -117,11 +117,11 @@
                         // Add the form data to the request
                         add_address_request.searchParams.append('req_type', 'create');
                         add_address_request.searchParams.append('contact_id', data.result);
-                        add_address_request.searchParams.append('address_line_01', document.getElementById('address_line_01').value || null);
-                        add_address_request.searchParams.append('address_line_02', document.getElementById('address_line_02').value || null);
-                        add_address_request.searchParams.append('city', document.getElementById('city').value || null);
-                        add_address_request.searchParams.append('state', document.getElementById('state').value || null);
-                        add_address_request.searchParams.append('zip_code', document.getElementById('zip_code').value || null);
+                        add_address_request.searchParams.append('address_line_01', document.getElementById('address_line_01').value);
+                        add_address_request.searchParams.append('address_line_02', document.getElementById('address_line_02').value || '');
+                        add_address_request.searchParams.append('city', document.getElementById('city').value);
+                        add_address_request.searchParams.append('state', document.getElementById('state').value);
+                        add_address_request.searchParams.append('zip_code', document.getElementById('zip_code').value);
 
                         fetch(add_address_request, 
                         {
