@@ -2,18 +2,20 @@
   <div class = "overlay" id = "overlayID" onclick = "closeOptions()"></div>
 
   <div class = "options" id = "optionsID">
-    <h1>
-      Options
-    </h1>
-    
+
+    <div class = "optionsChildDiv optionsHeader">
+      <h1>Options</h1>
+    </div>
+      
     <div class = "optionsChildDiv logoutOption">
-      <p>Logout</p>
+      <h3>Logout</h3>
       <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
         <i class="fa-solid fa-gear icon profileIcon"></i>
       </button>
     </div>
         
     <div class="optionsChildDiv importContacts">
+      <h3>Import Contacts</h3>
     	<form id="importForm">
     		<input type="file" id="fileInput" accept=".csv,.vcf" required>
     		<button type="submit">Parse Input</button>
@@ -23,21 +25,20 @@
     </div>
 
     <div class = "optionsChildDiv exportContacts">
-      <p>Export</p>
+      <h3>Export</h3>
       <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
         <i class="fa-solid fa-gear icon profileIcon"></i>
       </button>
     </div>
 
     <div class = "optionsChildDiv deleteOption">
-      <p>Delete Account</p>
+      <h3>Delete Account</h3>
       <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
         <i class="fa-solid fa-gear icon profileIcon"></i>
       </button>
     </div>
     
   </div>
-
 
   <script>
     function doLogout() {
