@@ -27,7 +27,7 @@
     </div>
   </div>
   
-  <script>
+  <script defer>
     function greyOutButton(inputString)  {
       const inputID = document.getElementById(inputString);
       const inputRef = inputID.href;
