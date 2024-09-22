@@ -4,7 +4,11 @@
   <div class = "options" id = "optionsID">
 
     <div class = "optionsChildDiv optionsHeader">
-      <h1>Options</h1>
+      <div></div>
+      <h1 style = "margin: 0px;">Options</h1>
+      <button type="submit" class="profileBtn closeOptionsBtn" onclick = "closeOptions()" title="Close" aria-label="Close Options Button">
+        <i class="fa-solid fa-xmark icon profileIcon"></i>
+      </button>
     </div>
       
     <div class = "optionsChildDiv logoutOption">
