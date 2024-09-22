@@ -30,7 +30,13 @@
             <form id="editContact">
                 
                 <!-- Include contact form elements -->
-                <?php include '../contactForm.php'; ?>
+                <?php include '../contactForm.php'; 
+                // Get the request data
+                $json_req = file_get_contents('php://input');
+
+                // Turn input data into Object
+                parse_str($_SERVER['QUERY_STRING'], $json_decoded);
+                ?>
                 
                 <!-- Address fields container -->
                 <div id="addressFieldsContainer">
@@ -46,7 +52,7 @@
 
                 <!-- Submit button -->
                 <div class="form-group">
-                    <button type="button" onclick="doEditContact(<?php $_GET['contact_id'];?>)">Edit Contact</button>
+                    <button type="button" onclick="doEditContact(<?php echo $json_decoded['contact_id'];?>)">Edit Contact</button>
                 </div>
 
                 <!-- Submit result -->
