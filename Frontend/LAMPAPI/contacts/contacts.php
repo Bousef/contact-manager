@@ -45,6 +45,17 @@
             if (isset($json_decoded['user_id']) && isset($json_decoded['first_name']))
             {
 
+                // Make sure the required parameters are set
+                if 
+                (
+                    ($json_decoded['user_id'] === '')       ||
+                    ($json_decoded['first_name'] === '')
+                )
+                {
+                    send_error_response(ErrorCodes::MISSING_PARAMETERS);
+                    return;
+                }
+
                 // Initialize optional parameters
                 $last_name = isset($json_decoded['last_name']) && $json_decoded['last_name'] !== '' ? $json_decoded['last_name'] : null;
                 $phone_number = isset($json_decoded['phone_number']) && $json_decoded['phone_number'] !== '' ? $json_decoded['phone_number'] : null;
@@ -111,6 +122,19 @@
                 isset($json_decoded['contact_id'])
             )
             {
+
+                // Make sure the required parameters are set
+                if 
+                (
+                    ($json_decoded['user_id'] === '')       ||
+                    ($json_decoded['contact_id'] === '')
+                )
+                {
+                    send_error_response(ErrorCodes::MISSING_PARAMETERS);
+                    return;
+                }
+
+                // Call the function to read a contact for a user
                 read_contact_for_user($json_decoded['user_id'], $json_decoded['contact_id']);
             }
             else
@@ -133,6 +157,15 @@
                 isset($json_decoded['search_string'])
             )
             {
+
+                // Make sure the required parameters are set
+                if ($json_decoded['user_id'] === '')
+                {
+                    send_error_response(ErrorCodes::MISSING_PARAMETERS);
+                    return;
+                }
+
+                // Make sure the required parameters are set
                 read_contacts_for_user($json_decoded['user_id'], $json_decoded['search_string']);
             }
             else
@@ -155,6 +188,17 @@
                 isset($json_decoded['contact_id'])
             )
             {
+
+                // Make sure the required parameters are set
+                if 
+                (
+                    ($json_decoded['user_id'] === '')       ||
+                    ($json_decoded['contact_id'] === '')
+                )
+                {
+                    send_error_response(ErrorCodes::MISSING_PARAMETERS);
+                    return;
+                }
 
                 // Initialize optional parameters
                 $first_name = isset($json_decoded['first_name']) && $json_decoded['first_name'] !== '' ? $json_decoded['first_name'] : null;
@@ -218,6 +262,19 @@
                 isset($json_decoded['contact_id'])
             )
             {
+
+                // Make sure the required parameters are set
+                if 
+                (
+                    ($json_decoded['user_id'] === '')       ||
+                    ($json_decoded['contact_id'] === '')
+                )
+                {
+                    send_error_response(ErrorCodes::MISSING_PARAMETERS);
+                    return;
+                }
+
+                // Make sure the required parameters are set
                 delete_contact_for_user($json_decoded['user_id'], $json_decoded['contact_id']);
             }
             else

@@ -65,9 +65,9 @@
             add_contact_request.searchParams.append('req_type', 'create');
             add_contact_request.searchParams.append('user_id', sessionStorage.getItem("userID"));
             add_contact_request.searchParams.append('first_name', document.getElementById("first_name").value);
-            add_contact_request.searchParams.append('last_name', document.getElementById("last_name").value || '');
-            add_contact_request.searchParams.append('phone_number', document.getElementById("phone_number").value || '');
-            add_contact_request.searchParams.append('email', document.getElementById("email").value || '');
+            add_contact_request.searchParams.append('last_name', document.getElementById("last_name").value);
+            add_contact_request.searchParams.append('phone_number', document.getElementById("phone_number").value);
+            add_contact_request.searchParams.append('email', document.getElementById("email").value);
 
             fetch(add_contact_request, 
             {
@@ -118,7 +118,7 @@
                         add_address_request.searchParams.append('req_type', 'create');
                         add_address_request.searchParams.append('contact_id', data.result);
                         add_address_request.searchParams.append('address_line_01', document.getElementById('address_line_01').value);
-                        add_address_request.searchParams.append('address_line_02', document.getElementById('address_line_02').value || '');
+                        add_address_request.searchParams.append('address_line_02', document.getElementById('address_line_02').value);
                         add_address_request.searchParams.append('city', document.getElementById('city').value);
                         add_address_request.searchParams.append('state', document.getElementById('state').value);
                         add_address_request.searchParams.append('zip_code', document.getElementById('zip_code').value);
@@ -317,25 +317,30 @@
 
         }
 
-        // Get the document elements of the form inputs for required fields
-        let first_name = document.getElementById("first_name");
+        document.addEventListener('DOMContentLoaded', function() 
+        {
 
-        // Get the document elements of the form inputs for optional fields
-        let last_name = document.getElementById("last_name");
-        let phone_number = document.getElementById("phone_number");
-        let email = document.getElementById("email");
+            // Get the document elements of the form inputs for required fields
+            let first_name = document.getElementById("first_name");
 
-        // Add required attributes to the required fields
-        first_name.required = true;
-        first_name.placeholder = "Required";
+            // Get the document elements of the form inputs for optional fields
+            let last_name = document.getElementById("last_name");
+            let phone_number = document.getElementById("phone_number");
+            let email = document.getElementById("email");
 
-        // Remove required attributes from the optional fields
-        last_name.required = false;
-        last_name.placeholder = "Optional";
-        phone_number.required = false;
-        phone_number.placeholder = "Optional";
-        email.required = false;
-        email.placeholder = "Optional";
+            // Add required attributes to the required fields
+            first_name.required = true;
+            first_name.placeholder = "Required";
+
+            // Remove required attributes from the optional fields
+            last_name.required = false;
+            last_name.placeholder = "Optional";
+            phone_number.required = false;
+            phone_number.placeholder = "Optional";
+            email.required = false;
+            email.placeholder = "Optional";
+
+        });
 
     </script>
 </body>
