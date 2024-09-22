@@ -73,7 +73,7 @@
 }
 
 .greyBtn {
-  pointerEvents: none;
+  pointer-events: none;
   background: #666666;
   opacity: 0.5;
 }
