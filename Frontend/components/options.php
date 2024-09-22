@@ -6,14 +6,14 @@
       Options
     </h1>
     
-    <div class = "logoutOption">
+    <div class = "optionsChildDiv logoutOption">
       <p>Logout</p>
       <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
         <i class="fa-solid fa-gear icon profileIcon"></i>
       </button>
     </div>
         
-    <div class="importContacts">
+    <div class="optionsChildDiv importContacts">
     	<form id="importForm">
     		<input type="file" id="fileInput" accept=".csv,.vcf" required>
     		<button type="submit">Parse Input</button>
@@ -22,14 +22,14 @@
     	<script src="/js/import.js"></script>
     </div>
 
-    <div class = "exportContacts">
+    <div class = "optionsChildDiv exportContacts">
       <p>Export</p>
       <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
         <i class="fa-solid fa-gear icon profileIcon"></i>
       </button>
     </div>
 
-    <div class = "deleteOption">
+    <div class = "optionsChildDiv deleteOption">
       <p>Delete Account</p>
       <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
         <i class="fa-solid fa-gear icon profileIcon"></i>
