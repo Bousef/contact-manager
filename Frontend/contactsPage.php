@@ -16,6 +16,7 @@
     <link href="components/styles/card.css" rel="stylesheet">
     <link href="components/styles/searchBar.css" rel="stylesheet">
     <link href="components/styles/navBar.css" rel="stylesheet">
+    <link href="components/styles/options.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
 
@@ -24,6 +25,7 @@
     <?php
       include 'components/navBar.php';
       include 'components/searchBar.php';
+      include 'components/options.php';
     ?>
     <div class = 'cardGrid'>
 
