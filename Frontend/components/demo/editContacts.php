@@ -68,31 +68,59 @@
                 event.preventDefault();
                 document.getElementById("editResult").innerHTML = "";
 
-                let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
-                let addressRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
+                let edit_contact_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+                //let addressRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
 
-                urlRequest.searchParams.append('req_type', 'update');
-                urlRequest.searchParams.append('contact_id', contact_id);
-                urlRequest.searchParams.append('user_id', sessionStorage.getItem("userID"));
-                urlRequest.searchParams.append('first_name', document.getElementById("first_name").value);
-                urlRequest.searchParams.append('last_name', document.getElementById("last_name").value);
-                urlRequest.searchParams.append('phone_number', document.getElementById("phone_number").value);
-                urlRequest.searchParams.append('email', document.getElementById("email").value);
+                edit_contact_request.searchParams.append('req_type', 'update');
+                edit_contact_request.searchParams.append('user_id', sessionStorage.getItem("userID"));
+                edit_contact_request.searchParams.append('contact_id', contact_id);
+                edit_contact_request.searchParams.append('first_name', document.getElementById("first_name").value);
+                edit_contact_request.searchParams.append('last_name', document.getElementById("last_name").value || null);
+                edit_contact_request.searchParams.append('phone_number', document.getElementById("phone_number").value || null);
+                edit_contact_request.searchParams.append('email', document.getElementById("email").value || null);
 
-                let addressField = document.querySelector('.addressField');
-
-                if (addressField) 
+                fetch(edit_contact_request,
                 {
-                    addressRequest.searchParams.append('req_type', 'update');
-                    addressRequest.searchParams.append('contact_id', contact_id);
-                    addressRequest.searchParams.append('address_line_01', addressField.querySelector('.address_line_01').value);
-                    addressRequest.searchParams.append('address_line_02', addressField.querySelector('.address_line_02').value);
-                    addressRequest.searchParams.append('city', addressField.querySelector('.city').value);
-                    addressRequest.searchParams.append('state', addressField.querySelector('.state').value);
-                    addressRequest.searchParams.append('zip_code', addressField.querySelector('.zip_code').value);
+                    headers:
+                    {
+                        "Content-Type": "application/json",
+                    },
+                    method: 'GET',
+                })
+                .then(async (response) =>
+                {
+
+                    if (!response.ok)
+                    {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    let data = await response.json();
+
+                    if (data.success == false)
+                    {
+                        $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
+                    } 
+                    else if (data.success == true)
+                    {
+                        $("#editResult").append("<p>Contact edited successfully</p>");
+                    }
+                })
+                if (addressField)
+                {
+
+                    let edit_address_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
+
+                    edit_address_request.searchParams.append('req_type', 'update');
+                    edit_address_request.searchParams.append('contact_id', contact_id);
+                    edit_address_request.searchParams.append('address_line_01', addressField.querySelector('.address_line_01').value || null);
+                    edit_address_request.searchParams.append('address_line_02', addressField.querySelector('.address_line_02').value || null);
+                    edit_address_request.searchParams.append('city', addressField.querySelector('.city').value || null);
+                    edit_address_request.searchParams.append('state', addressField.querySelector('.state').value || null);
+                    edit_address_request.searchParams.append('zip_code', addressField.querySelector('.zip_code').value || null);
                 }
 
-                fetch(urlRequest,
+                fetch(edit_contact_request,
                 {
                     headers:
                     {
