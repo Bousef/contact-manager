@@ -6,4 +6,6 @@
 
 .options {
   background: #FFFFFF;
+  display: none;
+  z-index: 1001;
 }
