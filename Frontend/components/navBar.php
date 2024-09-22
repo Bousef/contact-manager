@@ -33,9 +33,3 @@
     }
   </script>
 </div>
-
-<!-- Add in options overlay -->
-<link href="components/styles/options.css" rel="stylesheet">
-<?php
-  include 'components/options.php';
-?>
