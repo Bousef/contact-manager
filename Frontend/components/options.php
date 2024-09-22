@@ -5,12 +5,31 @@
     <h1>
       Options
     </h1>
+    
     <div class = "logoutOption">
       <p>Logout</p>
       <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
         <i class="fa-solid fa-gear icon profileIcon"></i>
       </button>
     </div>
+
+    <!-- Import method -->
+    <?php include 'components/import.php'; ?>
+
+    <div class = "logoutOption">
+      <p>Export</p>
+      <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
+        <i class="fa-solid fa-gear icon profileIcon"></i>
+      </button>
+    </div>
+
+    <div class = "logoutOption">
+      <p>Delete Account</p>
+      <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
+        <i class="fa-solid fa-gear icon profileIcon"></i>
+      </button>
+    </div>
+
   </div>
 
 
