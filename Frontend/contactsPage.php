@@ -9,13 +9,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
+
+        
+    <link rel='stylesheet' href="components/styles/pageGrid.css">
+    <script src="https://kit.fontawesome.com/ac1c3ec324.js" crossorigin="anonymous"></script>
+    <link href="components/styles/card.css" rel="stylesheet">
+    <link href="components/styles/searchBar.css" rel="stylesheet">
+    <link href="components/styles/navBar.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
-  <link rel='stylesheet' href="components/styles/pageGrid.css">
-  <script src="https://kit.fontawesome.com/ac1c3ec324.js" crossorigin="anonymous"></script>
-  <link href="components/styles/card.css" rel="stylesheet">
-  <link href="components/styles/searchBar.css" rel="stylesheet">
-  <link href="components/styles/navBar.css" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
   <body>
