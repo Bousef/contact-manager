@@ -37,5 +37,5 @@
 <!-- Link options page here so it always come with the navbar -->
 <link href="components/styles/options.css" rel="stylesheet">
 <?php
-  include './options.php';
+  include 'options.php';
 ?>
