@@ -27,6 +27,23 @@
   display: inline-block;
 }
 
+.optionsHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 100%;
+}
+
+.closeOptionsBtn {
+  background: #EA5A3B;
+  margin-right: 4px;
+}
+
+.closeOptionsBtn:hover {
+  background: #AB422C;
+}
+
 .logoutBtn {
   background: #EA5A3B;
   margin-right: 4px;
