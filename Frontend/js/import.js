@@ -115,11 +115,11 @@ document.getElementById("importForm").addEventListener("submit", function(event)
                                 urlRequest.searchParams.append('phone_number', vCardJSON.phone_number);
                                 urlRequest.searchParams.append('email', vCardJSON.email);
                                 addressRequest.searchParams.append('req_type', 'create');
-                                addressRequest.searchParams.append('address_line_01', "");
-                                addressRequest.searchParams.append('address_line_02', "");
-                                addressRequest.searchParams.append('city', "");
-                                addressRequest.searchParams.append('state', "");
-                                addressRequest.searchParams.append('zip_code', "");
+                                addressRequest.searchParams.append('address_line_01', vCardJSON.address_line_01);
+                                addressRequest.searchParams.append('address_line_02', vCardJSON.address_line_02);
+                                addressRequest.searchParams.append('city', vCardJSON.city);
+                                addressRequest.searchParams.append('state', vCardJSON.state);
+                                addressRequest.searchParams.append('zip_code', vCardJSON.zip_code);
 
 
 
@@ -162,7 +162,7 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 			const outputREMOVEME = JSON.stringify(outputObj, null, 2);
 			console.log(outputREMOVEME);
 
-                        window.location.href = "https://jo531962ucf.xyz/contactsPage.php";
+                        //window.location.href = "https://jo531962ucf.xyz/contactsPage.php";
 		}
 		// Read file and call above function to parse into cards and then into JSON.
 		reader.readAsText(file);
