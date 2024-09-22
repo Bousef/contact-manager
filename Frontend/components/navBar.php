@@ -7,7 +7,7 @@
       <i class="fa-solid fa-plus icon plusIcon"></i>
     </button>
     <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
-      <i class="fa-solid fa-cog icon profileIcon"></i>
+      <i class="fa-solid fa-gear icon profileIcon"></i>
     </button>
   </div>
   <script>
