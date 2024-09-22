@@ -5,7 +5,7 @@
 
     <div class = "optionsChildDiv optionsHeader">
       <div></div>
-      <h1 style = "margin: 0px;">Options</h1>
+      <div><h1 style = "margin: 0px;">Options</h1></div>
       <button type="submit" class="profileBtn closeOptionsBtn" onclick = "closeOptions()" title="Close" aria-label="Close Options Button">
         <i class="fa-solid fa-xmark icon profileIcon"></i>
       </button>
@@ -13,7 +13,7 @@
       
     <div class = "optionsChildDiv logoutOption">
       <h3>Logout</h3>
-      <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">Logout
+      <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
         <i class="fa-solid fa-door-open icon profileIcon"></i>
       </button>
     </div>
