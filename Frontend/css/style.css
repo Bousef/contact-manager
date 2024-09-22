@@ -17,20 +17,11 @@ body{
 }
 
 .login-form{
-    width: 50%;
-    margin: auto;
-    padding: 20px;
     background-color: #D7DEE9;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-}
-
-.login-form {
-    background-color: #D7DEE9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    width: 90%;
     max-width: 400px;
     border: 0.2px solid #000;
 }
