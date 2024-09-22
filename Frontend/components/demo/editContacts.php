@@ -52,7 +52,7 @@
 
                 <!-- Submit button -->
                 <div class="form-group">
-                    <button type="button" onclick="doEditContact(<?php echo $json_decoded['contact_id'];?>)">Edit Contact</button>
+                    <button type="button" onclick="doEditContact(<?php echo($json_decoded['contact_id']);?>)">Edit Contact</button>
                 </div>
 
                 <!-- Submit result -->
