@@ -96,7 +96,8 @@
                                        //Replace undefined fields with empty
                                        .replaceAll("undefined", " ")
                                        .replaceAll("null", " ")
-                                       .replaceAll('<h4 class="company">  , </h4>', '<h4 class="company"> </h4>');
+                                       .replaceAll('<h4 class="company">  , </h4>', '<h4 class="company"> </h4>')
+                                       .replaceAll(' " class="contactBtn"', ' " class="contactBtn greyBtn"');
             $('.cardGrid').append(responseHTML);
           })
           }
