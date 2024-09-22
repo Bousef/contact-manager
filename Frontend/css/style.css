@@ -22,7 +22,7 @@ body{
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     margin: 10px;
-    width: calc(100% - 20px);
+    width: calc(100% - 62px);
     max-width: 400px;
     border: 0.2px solid #000;
 }
