@@ -13,7 +13,7 @@
       
     <div class = "optionsChildDiv logoutOption">
       <h3>Logout</h3>
-      <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
+      <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">Logout
         <i class="fa-solid fa-door-open icon profileIcon"></i>
       </button>
     </div>
