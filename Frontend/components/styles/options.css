@@ -1,6 +1,9 @@
-.overlay {
-  background: rgba(0, 0, 0, 0.5);
+.optionsWrapperID {
   display: none;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.5);x
   z-index: 1000;
   position: fixed;
   top: 0;
@@ -11,6 +14,5 @@
 
 .options {
   background: #FFFFFF;
-  display: none;
   z-index: 1001;
 }
