@@ -73,9 +73,13 @@
 }
 
 .greyBtn {
-  pointerEvents: none;
+  pointer-events: none;
   background: #666666;
   opacity: 0.5;
+}
+
+.greyBtn:hover {
+  background: #666666;
 }
 
 .contactBtn:hover {

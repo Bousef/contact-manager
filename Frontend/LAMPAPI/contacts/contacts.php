@@ -41,26 +41,64 @@
         case 'create':
         {
 
-            // Ensure all necessary parameters are set (including parameters not yet handled by function)
-            if 
-            (
-                isset($json_decoded['user_id'])         &&
-                isset($json_decoded['first_name'])      &&
-                isset($json_decoded['last_name'])       &&
-                isset($json_decoded['phone_number'])    &&
-                isset($json_decoded['email'])
-            )
+            // Ensure the necessary parameters are set
+            if (isset($json_decoded['user_id']) && isset($json_decoded['first_name']))
             {
-                create_contact_for_user($json_decoded['user_id'], $json_decoded['first_name'], $json_decoded['last_name'], $json_decoded['phone_number'], $json_decoded['email']);
+
+                // Initialize optional parameters
+                $last_name = isset($json_decoded['last_name']) && $json_decoded['last_name'] !== '' ? $json_decoded['last_name'] : null;
+                $phone_number = isset($json_decoded['phone_number']) && $json_decoded['phone_number'] !== '' ? $json_decoded['phone_number'] : null;
+                $email = isset($json_decoded['email']) && $json_decoded['email'] !== '' ? $json_decoded['email'] : null;
+        
+                // Log the values of the optional parameters
+                error_log("last_name: " . var_export($last_name, true));
+                error_log("phone_number: " . var_export($phone_number, true));
+                error_log("email: " . var_export($email, true));
+
+                // Validate and sanitize phone number if provided
+                if ($phone_number !== null)
+                {
+
+                    // Clean the phone number to the format xxxxxxxxxx, remove country code, area code, and any other characters
+                    $phone_number = preg_replace('/[^0-9]/', '', $phone_number);
+                    $phone_number = substr($phone_number, -10);
+        
+                    // If the phone number is not 10 digits, return an error
+                    if (strlen($phone_number) != 10)
+                    {
+                        send_error_response(ErrorCodes::INVALID_PHONE_NUMBER);
+                        return;
+                    }
+
+                }
+        
+                // Validate and sanitize email if provided
+                if ($email !== null)
+                {
+
+                    // Clean the email to remove any characters that are not allowed
+                    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        
+                    // If the email is not valid, return an error
+                    if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+                    {
+                        send_error_response(ErrorCodes::INVALID_EMAIL);
+                        return;
+                    }
+
+                }
+        
+                // Call the function to create a contact for a user
+                create_contact_for_user($json_decoded['user_id'], $json_decoded['first_name'], $last_name, $phone_number, $email);
+
             }
             else
             {
                 send_error_response(ErrorCodes::MISSING_PARAMETERS);
                 return;
             }
-
+        
             break;
-
         }
 
         case 'read':
@@ -110,27 +148,64 @@
         case 'update':
         {
 
-            // Ensure all necessary parameters are set
+            // Ensure the necessary parameters are set
             if 
             (
-                isset($json_decoded['user_id'])         &&
-                isset($json_decoded['contact_id'])      &&
-                isset($json_decoded['first_name'])      &&
-                isset($json_decoded['last_name'])       &&
-                isset($json_decoded['phone_number'])    &&
-                isset($json_decoded['email'])
+                isset($json_decoded['user_id'])         && 
+                isset($json_decoded['contact_id'])
             )
             {
-                update_contact_for_user($json_decoded['user_id'], $json_decoded['contact_id'], $json_decoded['first_name'], $json_decoded['last_name'], $json_decoded['phone_number'], $json_decoded['email']);
+
+                // Initialize optional parameters
+                $first_name = isset($json_decoded['first_name']) && $json_decoded['first_name'] !== '' ? $json_decoded['first_name'] : null;
+                $last_name = isset($json_decoded['last_name']) && $json_decoded['last_name'] !== '' ? $json_decoded['last_name'] : null;
+                $phone_number = isset($json_decoded['phone_number']) && $json_decoded['phone_number'] !== '' ? $json_decoded['phone_number'] : null;
+                $email = isset($json_decoded['email']) && $json_decoded['email'] !== '' ? $json_decoded['email'] : null;
+
+                // Validate and sanitize phone number if provided
+                if ($phone_number !== null)
+                {
+
+                    // Clean the phone number to the format xxxxxxxxxx, remove country code, area code, and any other characters
+                    $phone_number = preg_replace('/[^0-9]/', '', $phone_number);
+                    $phone_number = substr($phone_number, -10);
+        
+                    // If the phone number is not 10 digits, return an error
+                    if (strlen($phone_number) != 10)
+                    {
+                        send_error_response(ErrorCodes::INVALID_PHONE_NUMBER);
+                        return;
+                    }
+
+                }
+        
+                // Validate and sanitize email if provided
+                if ($email !== null)
+                {
+
+                    // Clean the email to remove any characters that are not allowed
+                    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        
+                    // If the email is not valid, return an error
+                    if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+                    {
+                        send_error_response(ErrorCodes::INVALID_EMAIL);
+                        return;
+                    }
+
+                }
+        
+                // Call the function to update a contact for a user
+                update_contact_for_user($json_decoded['user_id'], $json_decoded['contact_id'], $first_name, $last_name, $phone_number, $email);
+                
             }
             else
             {
                 send_error_response(ErrorCodes::MISSING_PARAMETERS);
                 return;
             }
-
+        
             break;
-
         }
 
         case 'delete':

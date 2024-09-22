@@ -7,7 +7,7 @@
         $conn = open_connection_to_database();
         if ($conn === null) 
         {
-            
+
             // If the connection failed, return an error response
             send_error_response(ErrorCodes::DATABASE_CONNECTION_FAILED);
             return;
@@ -64,7 +64,7 @@
         // Close the statement and the database connection
         $stmt->close();
         close_connection_to_database($conn);
-
+        
     }
 
 ?>

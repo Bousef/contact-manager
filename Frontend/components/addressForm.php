@@ -1,6 +1,6 @@
 
-<!-- Address -->
-<div class="form-group">
+<!-- Address Form -->
+<div id="address_form" class="form-group">
 
     <!-- Address line 1 -->
     <label for="address_line_01">Street Address</label>

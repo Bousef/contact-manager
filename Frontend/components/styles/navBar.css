@@ -47,13 +47,13 @@ body {
   background: #40a14d;
 }
 
-.logoutBtn {
-  background: #EA5A3B;
+.optionsBtn {
+  background: #E7E95A;
   margin-right: 4px;
 }
 
-.logoutBtn:hover {
-  background: #AB422C;
+.optionsBtn:hover {
+  background: #B1B238;
 }
 
 .homeBtn {
@@ -63,3 +63,4 @@ body {
 .homeBtn:hover {
   background: #1927C0;
 }
+

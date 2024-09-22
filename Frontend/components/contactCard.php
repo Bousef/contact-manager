@@ -26,20 +26,4 @@
       </button>
     </div>
   </div>
-  
-  <script>
-    function greyOutButton(inputString)  {
-      const inputID = document.getElementById(inputString);
-      const inputRef = inputID.href;
-      if(!inputRef || inputRef === "" || inputRef === " ") {
-        inputID.classList.add("greyBtn");
-      }
-      return;
-    }
-    window.onload = function() {
-      greyOutButton("emailBtn");
-      greyOutButton("callBtn");
-      greyOutButton("textBtn");
-    };
-  </script>
 </div>

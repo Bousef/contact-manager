@@ -6,8 +6,8 @@
     <button type="submit" id = "buttonID" class="profileBtn addContactBtn" onclick="window.location.href='https://jo531962ucf.xyz/addContacts.php';" title="Add Contact" aria-label="Add Contact">
       <i class="fa-solid fa-plus icon plusIcon"></i>
     </button>
-    <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
-      <i class="fa-solid fa-door-open icon profileIcon"></i>
+    <button type="submit" class="profileBtn optionsBtn" onclick="openOptions()" title="Options" aria-label="Options Button">
+      <i class="fa-solid fa-gear icon profileIcon"></i>
     </button>
   </div>
   <script>
@@ -24,9 +24,18 @@
     }
     window.onload = flipButton();
     
-    function doLogout() {
-        sessionStorage.clear();
-        window.location.href = "https://jo531962ucf.xyz";
+    function openOptions() {
+      document.getElementById("optionsWrapperID").style.display = "block";
+    }
+
+    function closeOptions() {
+      document.getElementById("optionsWrapperID").style.display = "none";
     }
   </script>
 </div>
+
+<!-- Link options page here so it always come with the navbar -->
+<link href="components/styles/options.css" rel="stylesheet">
+<?php
+  include 'options.php';
+?>

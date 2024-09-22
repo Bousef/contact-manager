@@ -16,8 +16,10 @@
         const INVALID_REQUEST = ['code' => 20, 'message' => 'Invalid Query Request'];
         const MISSING_PARAMETERS = ['code' => 21, 'message' => 'Query Request Missing Parameters'];
         const INVALID_PASSWORD = ['code' => 22, 'message' => 'Invalid password'];
-        const ADDRESS_CREATION_FAILED = ['code' => 23, 'message' => 'Failed to create address']; // New error code for address creation failure
-        const ADDRESS_NOT_FOUND = ['code' => 24, 'message' => 'Address not found']; // New error code for address not found
+        const ADDRESS_CREATION_FAILED = ['code' => 23, 'message' => 'Failed to create address'];
+        const ADDRESS_NOT_FOUND = ['code' => 24, 'message' => 'Address not found'];
+        const INVALID_PHONE_NUMBER = ['code' => 25, 'message' => 'Invalid phone number'];
+        const INVALID_EMAIL = ['code' => 26, 'message' => 'Invalid email address']; // New error code for invalid email address
     }
 
     function send_error_response($error_code) 
