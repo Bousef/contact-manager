@@ -33,3 +33,8 @@
     }
   </script>
 </div>
+
+<?php
+  <link href="components/styles/options.css" rel="stylesheet">
+  include 'components/options.php';
+?>
