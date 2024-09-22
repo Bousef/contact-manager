@@ -18,6 +18,15 @@
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
+.optionsChildDiv {
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
 .logoutBtn {
   background: #EA5A3B;
   margin-right: 4px;
