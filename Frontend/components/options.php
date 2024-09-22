@@ -1,4 +1,4 @@
-<div class = "optionsWrapper">
+<div class = "optionsWrapper" id = "optionsWrapperID">
   <div class = "overlay" id = "overlayID" onclick = "closeOptions()"></div>
 
   <div class = "options" id = "optionsID">
@@ -21,13 +21,15 @@
 
   <script>
     function openOptions() {
-      document.getElementById("overlayID").style.display = 'block';
-      document.getElementById("optionsID").style.display = 'block';
+      document.getElementById("optionsWrapperID").style.display = "block";
+      //document.getElementById("overlayID").style.display = "block";
+      //document.getElementById("optionsID").style.display = "block";
     }
 
     function closeOptions() {
-      document.getElementById("overlayID").style.display = 'none';
-      document.getElementById("optionsID").style.display = 'none';
+      document.getElementById("optionsWrapperID").style.display = "none";
+      //document.getElementById("overlayID").style.display = "none";
+      //document.getElementById("optionsID").style.display = "none";
     }
   </script>
 </div>
