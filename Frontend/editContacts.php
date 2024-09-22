@@ -9,15 +9,14 @@
     
     <meta charset="UTF-8">
     <title>Contacts</title>
-    <link href="../../css/style.css" rel="stylesheet">
-    <link href="../styles/navBar.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="components/styles/navBar.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/ac1c3ec324.js" crossorigin="anonymous"></script>
-    <link href="../styles/card.css" rel="stylesheet">
-    <link href="../styles/options.css" rel="stylesheet">
+    <link href="components/styles/card.css" rel="stylesheet">
+    <link href="components/styles/options.css" rel="stylesheet">
 </head>
 <body id="body">
-    <?php include '../navBar.php'; ?>
-    <?php include '../import.php'; ?>
+    <?php include 'components/navBar.php'; ?>
     <div class="login-title">
         <h2 id="title">Edit Contact</h2>
     </div>
@@ -30,7 +29,7 @@
             <form id="editContact">
                 
                 <!-- Include contact form elements -->
-                <?php include '../contactForm.php'; 
+                <?php include 'components/contactForm.php'; 
                 // Get the request data
                 $json_req = file_get_contents('php://input');
 
