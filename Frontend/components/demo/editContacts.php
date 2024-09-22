@@ -102,7 +102,7 @@
 
                         if (data.success == false) {
                             console.error(data.error_code);
-                            console.errort(data.error_message);
+                            console.error(data.error_message);
 
                             $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
                         } else if (data.success == true) {
