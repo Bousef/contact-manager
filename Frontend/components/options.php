@@ -1,4 +1,11 @@
-<div class="navBarWrapper">
+<div class = "optionsWrapper">
+  <div class = "overlay" id = "overlayID" onclick = "closeOptions()"></div>
+
+  <div class = "options" id = "optionsID">
+    <h1>popup test</h1>
+  </div>
+
+<!--
   <h1 class="siteHeader">
     Contact Manager
   </h1>
@@ -7,26 +14,18 @@
       <i class="fa-solid fa-plus icon plusIcon"></i>
     </button>
     <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
-      <i class="fa-solid fa-door-open icon profileIcon"></i>
+      <i class="fa-solid fa-gear icon profileIcon"></i>
     </button>
   </div>
+-->
+
   <script>
-    function flipButton() { // For flipping add contact button to home when not at home.
-      if(window.location.pathname == "/addContacts.php") {
-        const buttonID = document.getElementById("buttonID");
-        buttonID.onclick = function() { window.location.href = "https://jo531962ucf.xyz/contactsPage.php";};
-        buttonID.innerHTML = "<i class='fa-solid fa-house icon profileIcon'></i>";
-        buttonID.setAttribute("title", "Home");
-        buttonID.setAttribute("aria-label", "Home");
-        buttonID.classList.remove("addContactBtn");
-        buttonID.classList.add("homeBtn");
-      }
+    function openOptions() {
+
     }
-    window.onload = flipButton();
-    
-    function doLogout() {
-        sessionStorage.clear();
-        window.location.href = "https://jo531962ucf.xyz";
+
+    function closeOptions() {
+      
     }
   </script>
 </div>
