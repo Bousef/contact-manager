@@ -32,7 +32,7 @@
   justify-content: space-between;
   margin-left: 10px;
   margin-right: 10px;
-  width: 100%;
+  width: calc(100% - 20px);
 }
 
 .closeOptionsBtn {
