@@ -47,12 +47,12 @@ body {
   background: #40a14d;
 }
 
-.logoutBtn {
+.optionsBtn {
   background: #EA5A3B;
   margin-right: 4px;
 }
 
-.logoutBtn:hover {
+.optionsBtn:hover {
   background: #AB422C;
 }
 
