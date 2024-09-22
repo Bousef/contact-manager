@@ -18,7 +18,6 @@
 </head>
 <body id="body">
     <?php include 'components/navBar.php'; ?>
-    <?php include 'components/import.php'; ?>
     <div class="login-title">
         <h2 id="title">Add Contact</h2>
     </div>
