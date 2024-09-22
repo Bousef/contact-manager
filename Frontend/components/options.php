@@ -20,16 +20,9 @@
 -->
 
   <script>
-    function openOptions() {
-      document.getElementById("optionsWrapperID").style.display = "block";
-      //document.getElementById("overlayID").style.display = "block";
-      //document.getElementById("optionsID").style.display = "block";
-    }
-
-    function closeOptions() {
-      document.getElementById("optionsWrapperID").style.display = "none";
-      //document.getElementById("overlayID").style.display = "none";
-      //document.getElementById("optionsID").style.display = "none";
+    function doLogout() {
+        sessionStorage.clear();
+        window.location.href = "https://jo531962ucf.xyz";
     }
   </script>
 </div>
