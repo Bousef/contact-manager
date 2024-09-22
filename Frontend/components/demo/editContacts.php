@@ -68,8 +68,7 @@
         <script>
 
             // Function to handle form submission
-            function doEditContact(contact_id)
-            {
+            function doEditContact(contact_id) {
 
                 event.preventDefault();
                 document.getElementById("editResult").innerHTML = "";
@@ -86,87 +85,75 @@
                 edit_contact_request.searchParams.append('email', document.getElementById("email").value || null);
 
                 fetch(edit_contact_request,
-                {
-                    headers:
                     {
-                        "Content-Type": "application/json",
-                    },
-                    method: 'GET',
-                })
-                .then(async (response) =>
-                {
-
-                    if (!response.ok)
-                    {
-                        throw new Error('Network response was not ok');
-                    }
-
-                    let data = await response.json();
-
-                    if (data.success == false)
-                    {
-                        console.error(data.error_code);
-                        console.errort(data.error_message);
-
-                        $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
-                    } 
-                    else if (data.success == true)
-                    {
-                        let address_form = document.getElementById("address_form");
-
-                        if (address_form)
-                    {
-                        let edit_address_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
-
-                        edit_address_request.searchParams.append('req_type', 'update');
-                        edit_address_request.searchParams.append('contact_id', contact_id);
-                        edit_address_request.searchParams.append('address_line_01', address_form.querySelector('.address_line_01').value || null);
-                        edit_address_request.searchParams.append('address_line_02', address_form.querySelector('.address_line_02').value || null);
-                        edit_address_request.searchParams.append('city', address_form.querySelector('.city').value || null);
-                        edit_address_request.searchParams.append('state', address_form.querySelector('.state').value || null);
-                        edit_address_request.searchParams.append('zip_code', address_form.querySelector('.zip_code').value || null);
-
-                        fetch(edit_address_request,
-                        {
-                            headers:
+                        headers:
                             {
                                 "Content-Type": "application/json",
                             },
-                            method: 'GET',
-                        })
-                        .then(async (response) =>
-                        {
+                        method: 'GET',
+                    })
+                    .then(async (response) => {
 
-                            if (!response.ok)
-                            {
-                                throw new Error('Network response was not ok');
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+
+                        let data = await response.json();
+
+                        if (data.success == false) {
+                            console.error(data.error_code);
+                            console.errort(data.error_message);
+
+                            $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
+                        } else if (data.success == true) {
+                            let address_form = document.getElementById("address_form");
+
+                            if (address_form) {
+                                let edit_address_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
+
+                                edit_address_request.searchParams.append('req_type', 'update');
+                                edit_address_request.searchParams.append('contact_id', contact_id);
+                                edit_address_request.searchParams.append('address_line_01', address_form.querySelector('.address_line_01').value || null);
+                                edit_address_request.searchParams.append('address_line_02', address_form.querySelector('.address_line_02').value || null);
+                                edit_address_request.searchParams.append('city', address_form.querySelector('.city').value || null);
+                                edit_address_request.searchParams.append('state', address_form.querySelector('.state').value || null);
+                                edit_address_request.searchParams.append('zip_code', address_form.querySelector('.zip_code').value || null);
+
+                                fetch(edit_address_request,
+                                    {
+                                        headers:
+                                            {
+                                                "Content-Type": "application/json",
+                                            },
+                                        method: 'GET',
+                                    })
+                                    .then(async (response) => {
+
+                                        if (!response.ok) {
+                                            throw new Error('Network response was not ok');
+                                        }
+
+                                        let data = await response.json();
+
+                                        if (data.success == false) {
+                                            console.error(data.error_code);
+                                            console.error(data.error_message);
+
+                                            $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
+                                        } else if (data.success == true) {
+                                            $("#editResult").append("<p>Contact edited successfully</p>");
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error(error);
+                                        $("#editResult").append("<p>ERROR: Contact not edited  .catch(error2</p>");
+                                    });
+
+
                             }
-
-                            let data = await response.json();
-
-                            if (data.success == false)
-                            {
-                                console.error(data.error_code);
-                                console.error(data.error_message);
-
-                                $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
-                            } 
-                            else if (data.success == true)
-                            {
-                                $("#editResult").append("<p>Contact edited successfully</p>");
-                            }
-                        })
-                        .catch(error => 
-                        {
-                            console.error(error);
-                            $("#editResult").append("<p>ERROR: Contact not edited  .catch(error2</p>");
-                        });
-
-
-                    }
-                    }
-                })
-
+                        }
+                    })
+            }
                 
 
             // Function to toggle address fields
@@ -246,7 +233,6 @@
 
             // Add required placeholder text to the required fields
             first_name.placeholder = "Optional";
-
         </script>
         
     </body>
