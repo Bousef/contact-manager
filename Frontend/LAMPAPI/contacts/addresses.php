@@ -53,6 +53,22 @@
             ) 
             {
 
+                // Make sure the required parameters are set
+                if 
+                (
+                    $json_decoded['contact_id'] === ''      || 
+                    $json_decoded['address_line_01'] === '' || 
+                    $json_decoded['city'] === ''            || 
+                    $json_decoded['state'] === ''           || 
+                    $json_decoded['zip_code'] === ''
+                ) 
+                {
+
+                    // If the required parameters are not set, return an error response
+                    send_error_response(ErrorCodes::MISSING_PARAMETERS);
+                    return;
+                }
+
                 // Optional parameters
                 $address_line_02 = isset($json_decoded['address_line_02']) && $json_decoded['address_line_02'] !== '' ? $json_decoded['address_line_02'] : null;
 
@@ -61,7 +77,10 @@
             } 
             else 
             {
+
+                // If the required parameters are not set, return an error response
                 send_error_response(ErrorCodes::INVALID_REQUEST);
+
             }
 
             break;
