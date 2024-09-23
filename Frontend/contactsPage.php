@@ -33,17 +33,20 @@
 
         <!-- JS for -->
         <script>
-            // Delete contact button
             $(document).ready(function() {
+                // Starting grid
+                createGrid();
+                
+                // Delete contact button
                 $(".deleteButton").click(function() {
                     let contactId = $(this).data("contact-id");
                     doDelete(contactId);
                 });
-            });
-
-            // Search for contacts and create grid button
-            $(".searchSubmitBtn").click(function() {
-                createGrid();
+                
+                // Search for contacts and create grid button
+                $(".searchSubmitBtn").click(function() {
+                    createGrid();
+                });
             });
 
             // Create grid of contacts
