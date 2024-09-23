@@ -126,11 +126,6 @@
                     }
                 });
             }
-            
-            // Add contact button
-            $(".addContactBtn").click(function(){
-                window.location.href = "https://jo531962ucf.xyz/addContacts.php";
-            });
     
             // Edit contact button
             function doEdit(contactId) {
