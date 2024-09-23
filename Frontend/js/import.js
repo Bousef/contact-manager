@@ -37,6 +37,24 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 						zip_code: ""
 					};
 
+					// Split address selecting up to make sure we don't mix address types into one address.
+					if(row["Home Street"]) {
+						reformattedObj.address_line_01 = row["Home Street"];
+						reformattedObj.city = row["Home City"];
+						reformattedObj.state = row["Home State"];
+						reformattedObj.zip_code = row["Home Postal Code"];
+					} else if(row["Business Street"]) {
+						reformattedObj.address_line_01 = row["Business Street"];
+						reformattedObj.city = row["Business City"];
+						reformattedObj.state = row["Business State"];
+						reformattedObj.zip_code = row["Business Postal Code"];
+					} else if(row["Other Street"]) {
+						reformattedObj.address_line_01 = row["Other Street"];
+						reformattedObj.city = row["Other City"];
+						reformattedObj.state = row["Other State"];
+						reformattedObj.zip_code = row["Other Postal Code"];
+					}
+
                                         let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
                                         let addressRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
                                         urlRequest.searchParams.append('req_type', 'create');
