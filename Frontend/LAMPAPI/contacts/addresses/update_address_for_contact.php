@@ -107,10 +107,23 @@
         // Fetch the result of the statement execution
         $result = $stmt->get_result()->fetch_assoc();
 
-        // Return a success response with the update status
-        echo json_encode([
-            'success' => (bool) $result['exit_status']
-        ]);
+        // Check if the update was successful
+        if ((bool) $result['exit_status']) 
+        {
+
+            // Return a success response with the update status
+            echo json_encode([
+                'success' => true
+            ]);
+
+        } 
+        else 
+        {
+
+            // Return an error response if the update failed
+            send_error_response(ErrorCodes::ADDRESS_UPDATE_FAILED);
+            
+        }
 
         // Close the statement and the database connection
         $stmt->close();

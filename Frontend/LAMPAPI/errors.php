@@ -19,7 +19,8 @@
         const ADDRESS_CREATION_FAILED = ['code' => 23, 'message' => 'Failed to create address'];
         const ADDRESS_NOT_FOUND = ['code' => 24, 'message' => 'Address not found'];
         const INVALID_PHONE_NUMBER = ['code' => 25, 'message' => 'Invalid phone number'];
-        const INVALID_EMAIL = ['code' => 26, 'message' => 'Invalid email address']; // New error code for invalid email address
+        const INVALID_EMAIL = ['code' => 26, 'message' => 'Invalid email address'];
+        const ADDRESS_UPDATE_FAILED = ['code' => 27, 'message' => 'Failed to update address']; // New error code for address update failure
     }
 
     function send_error_response($error_code) 
