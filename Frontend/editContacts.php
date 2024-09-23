@@ -8,6 +8,7 @@
     <link rel="manifest" href="favicon/site.webmanifest">
     
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
     <link href="css/style.css" rel="stylesheet">
     <link href="components/styles/navBar.css" rel="stylesheet">
@@ -117,7 +118,7 @@
                                 edit_address_request.searchParams.append('city', address_form.querySelector('#city').value || null);
                                 edit_address_request.searchParams.append('state', address_form.querySelector('#state').value || null);
                                 edit_address_request.searchParams.append('zip_code', address_form.querySelector('#zip_code').value || null);
-
+                                
                                 fetch(edit_address_request,
                                     {
                                         headers:
@@ -137,9 +138,9 @@
                                         if (data.success == false) {
                                             console.log(data);
 
-                                            $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
+                                            $("#editResult").append("<p>Contact Update Failed</p>");
                                         } else if (data.success == true) {
-                                            $("#editResult").append("<p>Contact edited successfully</p>");
+                                            $("#editResult").append("<p>Contact Edited Successfully</p>");
                                         }
                                     })
                                     .catch(error => {
