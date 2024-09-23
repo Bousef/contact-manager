@@ -11,7 +11,7 @@
     <link href="css/style.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body id="body">
+<body id="body" onload="loggedCheck()">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <div class="login-title">
         <h2 id="title">Contact Manager</h2>
@@ -46,6 +46,12 @@
     </div>
 
     <script>
+      function loggedCheck() {
+        if(sessionStorage.getItem("userID") != null){
+          window.location.href = "https://jo531962ucf.xyz/contactsPage.php";
+        }
+      }
+      
       function doLogin() {
         userName = document.getElementById("username").value;
         passWord = document.getElementById("password").value;

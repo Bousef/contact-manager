@@ -23,18 +23,18 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 				const outputObj = inputData.map(row => {
 					const reformattedObj = {
 						req_type: "create",
-						user_id: null,
-						first_name: row["First Name"] || null,
-						last_name: row["Last Name"] || null,
-						phone_number: row["Phone 1 - Value"] || row["Primary Phone"] || row["Mobile Phone"] || row["Home Phone"] || row["Home Phone 2"] || row["Other Phone"] || row["Business Phone"] || row["Business Phone 2"] || row["Assistant's Phone"] || row["Car Phone"] || row["Radio Phone"] || row["Company Main Phone"] || null,
-						email: row["E-mail Address"] || row["E-mail 2 Address"] || row["E-mail 3 Address"] || null,
-						img_url: row["Photo"] || null,
+						user_id: "",
+						first_name: row["First Name"] || "",
+						last_name: row["Last Name"] || "",
+						phone_number: row["Phone 1 - Value"] || row["Primary Phone"] || row["Mobile Phone"] || row["Home Phone"] || row["Home Phone 2"] || row["Other Phone"] || row["Business Phone"] || row["Business Phone 2"] || row["Assistant's Phone"] || row["Car Phone"] || row["Radio Phone"] || row["Company Main Phone"] || "",
+						email: row["E-mail Address"] || row["E-mail 2 Address"] || row["E-mail 3 Address"] || "",
+						img_url: row["Photo"] || "",
 
-						address_line_01: null,
-						address_line_02: null,
-						city: null,
-						state: null,
-						zip_code: null
+						address_line_01: "",
+						address_line_02: "",
+						city: "",
+						state: "",
+						zip_code: ""
 					};
 
                                         let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
@@ -90,8 +90,7 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 
 				const outputREMOVEME = JSON.stringify(outputObj, null, 2);
 				console.log(outputREMOVEME);
-
-                                //window.location.href = "https://jo531962ucf.xyz/contactsPage.php";
+				closeOptions();
 			}
 		});
 
@@ -161,8 +160,7 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 			
 			const outputREMOVEME = JSON.stringify(outputObj, null, 2);
 			console.log(outputREMOVEME);
-
-                        //window.location.href = "https://jo531962ucf.xyz/contactsPage.php";
+			closeOptions();
 		}
 		// Read file and call above function to parse into cards and then into JSON.
 		reader.readAsText(file);
@@ -180,18 +178,18 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 
 		let parsedCard = {
 			req_type: "create",
-			user_id: null,
-			first_name: null, 
-			last_name: null,
-			phone_number: null,
-			email: null,
-			img_url: null,
+			user_id: "",
+			first_name: "", 
+			last_name: "",
+			phone_number: "",
+			email: "",
+			img_url: "",
 
-			address_line_01: null,
-			address_line_02: null,
-			city: null,
-			state: null,
-			zip_code: null
+			address_line_01: "",
+			address_line_02: "",
+			city: "",
+			state: "",
+			zip_code: ""
 		};
 
 		const splitData = vCard.split(/\r\n|\n/);

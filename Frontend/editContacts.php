@@ -112,11 +112,11 @@
 
                                 edit_address_request.searchParams.append('req_type', 'update');
                                 edit_address_request.searchParams.append('contact_id', contact_id);
-                                edit_address_request.searchParams.append('address_line_01', address_form.querySelector('.address_line_01').value || null);
-                                edit_address_request.searchParams.append('address_line_02', address_form.querySelector('.address_line_02').value || null);
-                                edit_address_request.searchParams.append('city', address_form.querySelector('.city').value || null);
-                                edit_address_request.searchParams.append('state', address_form.querySelector('.state').value || null);
-                                edit_address_request.searchParams.append('zip_code', address_form.querySelector('.zip_code').value || null);
+                                edit_address_request.searchParams.append('address_line_01', address_form.querySelector('#address_line_01').value || null);
+                                edit_address_request.searchParams.append('address_line_02', address_form.querySelector('#address_line_02').value || null);
+                                edit_address_request.searchParams.append('city', address_form.querySelector('#city').value || null);
+                                edit_address_request.searchParams.append('state', address_form.querySelector('#state').value || null);
+                                edit_address_request.searchParams.append('zip_code', address_form.querySelector('#zip_code').value || null);
 
                                 fetch(edit_address_request,
                                     {
@@ -174,7 +174,7 @@
                     
                     let newField = document.createElement('div');
                     newField.classList.add('addressField');
-                    newField.innerHTML = `<?php include '../addressForm.php'; ?>`;
+                    newField.innerHTML = `<?php include 'components/addressForm.php'; ?>`;
                     container.appendChild(newField);
                     button.textContent = 'Remove Address';
 

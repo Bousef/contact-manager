@@ -1,4 +1,4 @@
-<div class="contactWrapper">
+<div class="contactWrapper" id="*CONTACT_ID*ID">
   <div class = "contactInfo">
     <h2 class="name">*CONTACT_NAME*</h2>
     <p class="number">*CONTACT_NUMBER*</p>
@@ -15,7 +15,10 @@
   </a>
   <a href="sms:+*CONTACT_NUMBER*" class="contactBtn" id = "textBtn">
     <i class="fa-solid fa-message icon"></i>
-      </a>
+  </a>
+  <a href="geo:0,0?q=*CONTACT_COMPANY*" class="contactBtn" id = "mapBtn">
+    <i class="fa-solid fa-map icon"></i>
+  </a>
     </div>
     <div class="modifyGroup">
       <button class="contactBtn editButton" onclick="doEdit(*CONTACT_ID*)">
