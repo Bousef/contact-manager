@@ -36,21 +36,43 @@
             $stmt->close();
             close_connection_to_database($conn);
             return;
-            
+
         }
 
         // Fetch the result of the statement execution
-        $result = $stmt->get_result()->fetch_assoc();
+        $result = $stmt->get_result();
+        if ($result === false) 
+        {
+
+            // If no result is returned, return an error response
+            send_error_response(ErrorCodes::NO_RESULT_RETURNED);
+            $stmt->close();
+            close_connection_to_database($conn);
+            return;
+
+        }
+
+        $row = $result->fetch_assoc();
+        if ($row === null) 
+        {
+
+            // If no row is fetched, return an error response
+            send_error_response(ErrorCodes::NO_ROW_FETCHED);
+            $stmt->close();
+            close_connection_to_database($conn);
+            return;
+
+        }
 
         // Return a success response with the update status
         echo json_encode([
-            'success' => (bool) $result['exit_status']
+            'success' => (bool) $row['exit_status']
         ]);
 
         // Close the statement and the database connection
         $stmt->close();
         close_connection_to_database($conn);
-
+        
     }
 
 ?>
