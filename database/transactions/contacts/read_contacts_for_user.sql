@@ -25,7 +25,8 @@ BEGIN
         c.first_name LIKE CONCAT('%', in_search_string, '%') OR
         c.last_name LIKE CONCAT('%', in_search_string, '%') OR
         CONCAT(c.first_name, ' ', c.last_name) LIKE CONCAT('%', in_search_string, '%')
-    );
+    )
+    LIMIT 4;
 
 END //
 
