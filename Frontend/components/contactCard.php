@@ -1,4 +1,4 @@
-<div class="contactWrapper">
+<div class="contactWrapper" id="*CONTACT_ID*ID">
   <div class = "contactInfo">
     <h2 class="name">*CONTACT_NAME*</h2>
     <p class="number">*CONTACT_NUMBER*</p>

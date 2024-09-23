@@ -118,8 +118,7 @@
     
     function doEdit(contactId) {
     window.location.href = "https://jo531962ucf.xyz/editContacts.php?contact_id=" + contactId;
-
-      }
+    }
 
       function doDelete(contactId) {
         if (confirm("Are you sure you want to delete this contact?")) {
@@ -140,8 +139,7 @@
             let data = await response.json();
             console.log("Response data: ", data);//Debbuging
             if (data.success) {
-              alert("Contact deleted successfully.");
-              location.reload(); //Reload the page to get changes
+              $("#" + contactId + "ID").remove();
             } else {
               alert("Failed to delete contact.");
             }
