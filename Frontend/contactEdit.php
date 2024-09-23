@@ -122,7 +122,7 @@
 
                         // Add the form data to the request
                         add_address_request.searchParams.append('req_type', 'update');
-                        add_address_request.searchParams.append('contact_id', $json_decoded['contact_id']);
+                        add_address_request.searchParams.append('contact_id', <?php echo($json_decoded['contact_id']);?>);
                         add_address_request.searchParams.append('address_line_01', document.getElementById('address_line_01').value);
                         add_address_request.searchParams.append('address_line_02', document.getElementById('address_line_02').value);
                         add_address_request.searchParams.append('city', document.getElementById('city').value);
