@@ -4,6 +4,9 @@
     require_once 'create_address_for_contact.php';
     require_once 'read_address_for_contact.php';
 
+    // Include the errors file using an absolute path
+    require_once __DIR__ . '/../../errors.php';
+
     // Function to update an address for a contact
     function update_address_for_contact($contact_id, $address_line_01, $address_line_02, $city, $state, $zip_code) 
     {
