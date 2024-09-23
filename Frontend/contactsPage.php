@@ -42,7 +42,12 @@
             });
 
             // Search for contacts and create grid button
-            $(".searchSubmitBtn").click(function(){
+            $(".searchSubmitBtn").click(function() {
+                createGrid();
+            });
+
+            // Create grid of contacts
+            function createGrid() {
                 let elements = document.getElementsByClassName("contactWrapper");
 
                 // Remove current displayed cards
@@ -117,7 +122,7 @@
                         });
                     }
                 });
-            });
+            }
             
             // Add contact button
             $(".addContactBtn").click(function(){
