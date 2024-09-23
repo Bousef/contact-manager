@@ -135,8 +135,7 @@
                                         let data = await response.json();
 
                                         if (data.success == false) {
-                                            console.error(data.error_code);
-                                            console.error(data.error_message);
+                                            console.log(data);
 
                                             $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
                                         } else if (data.success == true) {
