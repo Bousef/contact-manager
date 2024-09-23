@@ -117,7 +117,7 @@
                                 edit_address_request.searchParams.append('city', address_form.querySelector('#city').value || null);
                                 edit_address_request.searchParams.append('state', address_form.querySelector('#state').value || null);
                                 edit_address_request.searchParams.append('zip_code', address_form.querySelector('#zip_code').value || null);
-
+                                
                                 fetch(edit_address_request,
                                     {
                                         headers:
@@ -138,9 +138,9 @@
                                             console.error(data.error_code);
                                             console.error(data.error_message);
 
-                                            $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
+                                            $("#editResult").append("<p>Contact Update Failed</p>");
                                         } else if (data.success == true) {
-                                            $("#editResult").append("<p>Contact edited successfully</p>");
+                                            $("#editResult").append("<p>Contact Edited Successfully</p>");
                                         }
                                     })
                                     .catch(error => {
