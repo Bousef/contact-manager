@@ -37,7 +37,7 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 						zip_code: ""
 					};
 
-					// Split address selecting up to make sure we don't mix address types into one address.
+					// Split address selecting up to make sure we don't mix address types into one bad address.
 					if(row["Home Street"]) {
 						reformattedObj.address_line_01 = row["Home Street"];
 						reformattedObj.city = row["Home City"];
