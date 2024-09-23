@@ -12,7 +12,7 @@
   </div>
   <script>
     function flipButton() { // For flipping add contact button to home when not at home.
-      if(window.location.pathname == "/addContacts.php") {
+      if(window.location.pathname !== "/contactsPage.php") {
         const buttonID = document.getElementById("buttonID");
         buttonID.onclick = function() { window.location.href = "https://jo531962ucf.xyz/contactsPage.php";};
         buttonID.innerHTML = "<i class='fa-solid fa-house icon profileIcon'></i>";
