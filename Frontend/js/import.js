@@ -178,18 +178,18 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 
 		let parsedCard = {
 			req_type: "create",
-			user_id: null,
-			first_name: null, 
-			last_name: null,
-			phone_number: null,
+			user_id: "",
+			first_name: "", 
+			last_name: "",
+			phone_number: "",
 			email: "",
-			img_url: null,
+			img_url: "",
 
-			address_line_01: null,
-			address_line_02: null,
-			city: null,
-			state: null,
-			zip_code: null
+			address_line_01: "",
+			address_line_02: "",
+			city: "",
+			state: "",
+			zip_code: ""
 		};
 
 		const splitData = vCard.split(/\r\n|\n/);
