@@ -8,6 +8,7 @@
     <link rel="manifest" href="favicon/site.webmanifest">
     
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
     <link href="css/style.css" rel="stylesheet">
     <link href="components/styles/navBar.css" rel="stylesheet">
