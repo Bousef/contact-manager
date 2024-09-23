@@ -174,7 +174,7 @@
                     
                     let newField = document.createElement('div');
                     newField.classList.add('addressField');
-                    newField.innerHTML = `<?php include '../addressForm.php'; ?>`;
+                    newField.innerHTML = `<?php include 'components/addressForm.php'; ?>`;
                     container.appendChild(newField);
                     button.textContent = 'Remove Address';
 
