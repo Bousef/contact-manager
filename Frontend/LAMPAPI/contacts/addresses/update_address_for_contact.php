@@ -22,7 +22,7 @@
         {
 
             // Check if the address was not found
-            if (isset($read_result['error']) && $read_result['error'] === ErrorCodes::ADDRESS_NOT_FOUND) 
+            if (isset($read_result['error_code']) && $read_result['error_code'] === ErrorCodes::ADDRESS_NOT_FOUND) 
             {
 
                 // Check if all address parameters are not null or empty strings
