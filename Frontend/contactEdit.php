@@ -68,7 +68,7 @@
 
             // Add the form data to the request
             add_contact_request.searchParams.append('req_type', 'update');
-            add_contact_request.searchParams.append('contact_id', $json_decoded['contact_id'])
+            add_contact_request.searchParams.append('contact_id', <?php echo($json_decoded['contact_id']);?>)
             add_contact_request.searchParams.append('user_id', sessionStorage.getItem("userID"));
             add_contact_request.searchParams.append('first_name', document.getElementById("first_name").value);
             add_contact_request.searchParams.append('last_name', document.getElementById("last_name").value);
