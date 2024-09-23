@@ -64,11 +64,11 @@ document.getElementById("importForm").addEventListener("submit", function(event)
                                         urlRequest.searchParams.append('phone_number', reformattedObj.phone_number);
                                         urlRequest.searchParams.append('email', reformattedObj.email);
                                         addressRequest.searchParams.append('req_type', 'create');
-                                        addressRequest.searchParams.append('address_line_01', "");
+                                        addressRequest.searchParams.append('address_line_01', reformattedObj.address_line_01);
                                         addressRequest.searchParams.append('address_line_02', "");
-                                        addressRequest.searchParams.append('city', "");
-                                        addressRequest.searchParams.append('state', "");
-                                        addressRequest.searchParams.append('zip_code', "");
+                                        addressRequest.searchParams.append('city', reformattedObj.city);
+                                        addressRequest.searchParams.append('state', reformattedObj.state);
+                                        addressRequest.searchParams.append('zip_code', reformattedObj.zip_code);
 
                                         fetch(urlRequest, {
                                                 headers: {
