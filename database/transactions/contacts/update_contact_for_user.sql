@@ -17,11 +17,14 @@ BEGIN
     DECLARE current_last_name VARCHAR(255);
     DECLARE current_phone_number VARCHAR(20);
     DECLARE current_email_address VARCHAR(255);
+    DECLARE exit_status BOOLEAN DEFAULT 1;
 
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
         -- Rollback the transaction in case of an error
         ROLLBACK;
+        -- Set the status to false
+        SET exit_status = 0;
     END;
 
     -- Start transaction
@@ -44,6 +47,9 @@ BEGIN
 
     -- Commit the transaction
     COMMIT;
+
+    -- Return the update status
+    SELECT exit_status AS exit_status;
 
 END //
 
