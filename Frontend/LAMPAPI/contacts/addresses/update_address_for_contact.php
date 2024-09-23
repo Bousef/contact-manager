@@ -3,7 +3,6 @@
     // Include the address functions files
     require_once 'create_address_for_contact.php';
     require_once 'read_address_for_contact.php';
-    require_once '../../errors.php';
 
     // Function to update an address for a contact
     function update_address_for_contact($contact_id, $address_line_01, $address_line_02, $city, $state, $zip_code) 
