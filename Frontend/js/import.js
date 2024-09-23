@@ -182,7 +182,7 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 			first_name: null, 
 			last_name: null,
 			phone_number: null,
-			email: null,
+			email: "",
 			img_url: null,
 
 			address_line_01: null,
