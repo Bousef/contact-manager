@@ -1,4 +1,4 @@
-<div class = "optionsWrapper" id = "optionsWrapperID" style = "display: none;">
+<div class = "optionsWrapper" id = "optionsWrapperID" style = "display: none; justify-content: center;">
   <div class = "overlay" id = "overlayID" onclick = "closeOptions()"></div>
 
   <div class = "options" id = "optionsID">
