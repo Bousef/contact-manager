@@ -48,9 +48,25 @@
 
 .logoutBtn {
   background: #EA5A3B;
-  margin-right: 4px;
 }
 
 .logoutBtn:hover {
   background: #AB422C;
+}
+
+.importBtn {
+  background: #52ca62;
+  margin-top: 10px;
+}
+
+.importBtn:hover {
+  background: #40a14d;
+}
+
+.exportBtn {
+  background: #52ca62;
+}
+
+.exportBtn:hover {
+  background: #40a14d;
 }
