@@ -1,6 +1,6 @@
 <?php
 
-    function read_contacts_for_user($user_id, $search_string) 
+    function read_contacts_for_user($user_id, $search_string, $limit, $offset) 
     {
 
         // Open a connection to the database
@@ -15,7 +15,7 @@
         }
 
         // Prepare the SQL statement to call the stored procedure for reading contacts
-        $stmt = $conn->prepare("CALL read_contacts_for_user(?, ?)");
+        $stmt = $conn->prepare("CALL read_contacts_for_user(?, ?, ?, ?)");
         if (!$stmt) 
         {
 
@@ -27,7 +27,7 @@
         }
 
         // Bind the parameters to the SQL statement
-        $stmt->bind_param("is", $user_id, $search_string);
+        $stmt->bind_param("is", $user_id, $search_string, $limit, $offset);
         if (!$stmt->execute()) 
         {
 
