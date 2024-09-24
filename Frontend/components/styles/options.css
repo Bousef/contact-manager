@@ -13,6 +13,8 @@
   z-index: 1001;
   position: fixed;
   margin: 10%;
+  margin-left: auto;
+  margin-right: auto;
   width: 80%;
   max-width: 500px;
   border-radius: 10px;
