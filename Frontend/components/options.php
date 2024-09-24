@@ -22,7 +22,9 @@
       <h3>Import Contacts</h3>
     	<form id="importForm">
     		<input type="file" id="fileInput" accept=".csv,.vcf" required>
-    		<button type="submit">Parse Input</button>
+    		<button type="submit">Parse Input>
+          <i class="fa-solid fa-file-import icon profileIcon"></i>
+        </button>
     	</form>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     	<script src="/js/import.js"></script>
@@ -31,17 +33,7 @@
     <div class = "optionsChildDiv exportContacts">
       <h3>Export</h3>
       <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
-        <i class="fa-solid fa-gear icon profileIcon"></i>
-        
         <i class="fa-solid fa-file-export icon profileIcon"></i>
-        <i class="fa-solid fa-upload icon profileIcon"></i>
-        <i class="fa-solid fa-arrow-right icon profileIcon"></i>
-        <i class="fa-solid fa-share icon profileIcon"></i>
-        
-        <i class="fa-solid fa-file-import icon profileIcon"></i>
-        <i class="fa-solid fa-download icon profileIcon"></i>
-        <i class="fa-solid fa-arrow-left icon profileIcon"></i>
-        <i class="fa-solid fa-inbox icon profileIcon"></i>
       </button>
     </div>
 
