@@ -27,7 +27,7 @@
         }
 
         // Bind the parameters to the SQL statement
-        $stmt->bind_param("is", $user_id, $search_string, $limit, $offset);
+        $stmt->bind_param("isii", $user_id, $search_string, $limit, $offset);
         if (!$stmt->execute()) 
         {
 
