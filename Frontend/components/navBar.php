@@ -25,7 +25,7 @@
     window.onload = flipButton();
     
     function openOptions() {
-      document.getElementById("optionsWrapperID").style.display = "block";
+      document.getElementById("optionsWrapperID").style.display = "flex";
     }
 
     function closeOptions() {
