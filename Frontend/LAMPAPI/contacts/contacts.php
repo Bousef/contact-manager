@@ -154,8 +154,8 @@
             if 
             (
                 isset($json_decoded['user_id'])         &&
-                isset($json_decoded['search_string'])
-                isset($json_decoded['limit'])
+                isset($json_decoded['search_string'])    &&
+                isset($json_decoded['limit'])    &&
                 isset($json_decoded['offset'])
             )
             {
