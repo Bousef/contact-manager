@@ -6,7 +6,9 @@ DELIMITER //
 
 CREATE PROCEDURE read_contacts_for_user(
     IN in_user_id INT,
-    IN in_search_string VARCHAR(255)
+    IN in_search_string VARCHAR(255),
+    IN in_limit INT,
+    IN in_offset INT
 )
 SQL SECURITY DEFINER
 BEGIN
@@ -26,7 +28,7 @@ BEGIN
         c.last_name LIKE CONCAT('%', in_search_string, '%') OR
         CONCAT(c.first_name, ' ', c.last_name) LIKE CONCAT('%', in_search_string, '%')
     )
-    LIMIT 24;
+    LIMIT in_limit OFFSET in_offset;
 
 END //
 
