@@ -109,6 +109,7 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 				const outputREMOVEME = JSON.stringify(outputObj, null, 2);
 				console.log(outputREMOVEME);
 				closeOptions();
+				createGrid();
 			}
 		});
 
@@ -179,6 +180,7 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 			const outputREMOVEME = JSON.stringify(outputObj, null, 2);
 			console.log(outputREMOVEME);
 			closeOptions();
+			createGrid();
 		}
 		// Read file and call above function to parse into cards and then into JSON.
 		reader.readAsText(file);
