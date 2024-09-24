@@ -43,7 +43,7 @@
 
     <div class = "optionsChildDiv deleteOption">
       <h3>Delete Account</h3>
-      <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
+      <button type="submit" class="profileBtn deleteBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
         <i class="fa-solid fa-trash icon profileIcon"></i>
       </button>
     </div>
