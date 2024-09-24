@@ -38,7 +38,8 @@
     <div class = "optionsChildDiv deleteOption">
       <h3>Delete Account</h3>
       <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
-        <i class="fa-solid fa-gear icon profileIcon"></i>
+        <i class="fa-solid fa-user-minus icon profileIcon"></i>
+        <i class="fa-solid fa-trash icon profileIcon"></i>
       </button>
     </div>
     
