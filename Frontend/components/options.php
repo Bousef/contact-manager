@@ -20,7 +20,7 @@
         
     <div class="optionsChildDiv importContacts">
       <h3>Import Contacts</h3>
-    	<form id="importForm">
+    	<form id="importForm" style="display: block;">
     		<input type="file" id="fileInput" accept=".csv,.vcf" required>
     		<button type="submit" class="profileBtn" title="Import" aria-label="Import Button">
           <i class="fa-solid fa-file-import icon profileIcon"></i>
