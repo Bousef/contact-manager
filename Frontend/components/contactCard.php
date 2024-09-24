@@ -10,10 +10,10 @@
   <a href="mailto:*CONTACT_EMAIL*" class="contactBtn" id = "emailBtn">
     <i class="fa-solid fa-envelope icon"></i>
   </a>
-  <a href="tel:+*CONTACT_NUMBER*" class="contactBtn" id = "callBtn">
+  <a href="tel:++1*CONTACT_NUMBER*" class="contactBtn" id = "callBtn">
     <i class="fa-solid fa-phone icon"></i>
   </a>
-  <a href="sms:+*CONTACT_NUMBER*" class="contactBtn" id = "textBtn">
+  <a href="sms:++1*CONTACT_NUMBER*" class="contactBtn" id = "textBtn">
     <i class="fa-solid fa-message icon"></i>
   </a>
   <a href="geo:0,0?q=*CONTACT_COMPANY*" class="contactBtn" id = "mapBtn">
