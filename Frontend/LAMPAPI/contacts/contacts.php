@@ -155,6 +155,8 @@
             (
                 isset($json_decoded['user_id'])         &&
                 isset($json_decoded['search_string'])
+                isset($json_decoded['limit'])
+                isset($json_decoded['offset'])
             )
             {
 
@@ -166,7 +168,7 @@
                 }
 
                 // Make sure the required parameters are set
-                read_contacts_for_user($json_decoded['user_id'], $json_decoded['search_string']);
+                read_contacts_for_user($json_decoded['user_id'], $json_decoded['search_string'], $json_decoded['limit'], $json_decoded['offset']);
             }
             else
             {
