@@ -64,8 +64,8 @@
                 urlRequest.searchParams.append('req_type', 'search');
                 urlRequest.searchParams.append('user_id', sessionStorage.getItem("userID"));
                 urlRequest.searchParams.append('search_string', document.getElementById("searchText").value);
-                urlRequest.searchParams.append('limit', 3);
-                urlRequest.searchParams.append('offset', 3);
+                urlRequest.searchParams.append('limit', 12);
+                urlRequest.searchParams.append('offset', 0);
                 
                 console.log(urlRequest.toString());
                 
