@@ -32,13 +32,22 @@
       <h3>Export</h3>
       <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
         <i class="fa-solid fa-gear icon profileIcon"></i>
+        
+        <i class="fa-solid fa-file-export icon profileIcon"></i>
+        <i class="fa-solid fa-upload icon profileIcon"></i>
+        <i class="fa-solid fa-arrow-right icon profileIcon"></i>
+        <i class="fa-solid fa-share icon profileIcon"></i>
+        
+        <i class="fa-solid fa-file-import icon profileIcon"></i>
+        <i class="fa-solid fa-download icon profileIcon"></i>
+        <i class="fa-solid fa-arrow-left icon profileIcon"></i>
+        <i class="fa-solid fa-inbox icon profileIcon"></i>
       </button>
     </div>
 
     <div class = "optionsChildDiv deleteOption">
       <h3>Delete Account</h3>
       <button type="submit" class="profileBtn logoutBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
-        <i class="fa-solid fa-user-minus icon profileIcon"></i>
         <i class="fa-solid fa-trash icon profileIcon"></i>
       </button>
     </div>
