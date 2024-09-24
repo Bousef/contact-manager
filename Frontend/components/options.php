@@ -21,8 +21,8 @@
     <div class="optionsChildDiv importContacts">
       <h3>Import Contacts</h3>
     	<form id="importForm">
-    		<input type="file" id="fileInput" accept=".csv,.vcf" required>
-    		<button type="submit">Parse Input>
+    		<input type="file" class="profileBtn" id="fileInput" accept=".csv,.vcf" required>
+    		<button type="submit" class="profileBtn">
           <i class="fa-solid fa-file-import icon profileIcon"></i>
         </button>
     	</form>
