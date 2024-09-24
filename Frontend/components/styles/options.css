@@ -47,11 +47,11 @@
 }
 
 .logoutBtn {
-  background: #EA5A3B;
+  background: #E7E95A;
 }
 
 .logoutBtn:hover {
-  background: #AB422C;
+  background: #B1B238;
 }
 
 .importBtn {
@@ -64,9 +64,17 @@
 }
 
 .exportBtn {
-  background: #52ca62;
+  background: #06a3dd;
 }
 
 .exportBtn:hover {
-  background: #40a14d;
+  background: #0589ba;
+}
+
+.deleteBtn {
+  background: #EA5A3B;
+}
+
+.deleteBtn:hover {
+  background: #AB422C;
 }
