@@ -161,10 +161,11 @@
 } else {
     console.log("Page does not require a scrollbar.");
 }
+                    console.log(data.result.length);
                     
                     // Load until scroll bar appears or all loaded.
                     if($(document).height() - 1000 < $(window).height() && data.result.length != 0) {
-                        createGrid(false)
+                        createGrid(false);
                     }
                 })
                 .catch(() => {
