@@ -156,14 +156,14 @@
                     // Say finish loading so another createGrid() function can be triggered.
                     busyLoading = false;
 
-            if (checkPageSize()) {
+            if (!checkPageSize()) {
     console.log("Page requires a scrollbar.");
 } else {
     console.log("Page does not require a scrollbar.");
 }
                     
                     // Load until scroll bar appears or all loaded.
-                    if(checkPageSize() && data.result.length != 0) {
+                    if(!checkPageSize() && data.result.length != 0) {
                         createGrid(false);
                     }
                 })
@@ -173,7 +173,7 @@
             }
 
             function checkPageSize() {
-                return $(document).height() - 1000 < $(window).height();
+                return $(document).height() > $(window).height();
             }
     
             // Edit contact button
