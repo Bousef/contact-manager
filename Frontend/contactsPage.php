@@ -155,6 +155,11 @@
                     }
                     // I think this belongs here due to async
                     busyLoading = false;
+
+                    // Load until scroll bar appears or all loaded.
+                    if( !($(document).height() > $(window).height()) ) {
+                        createGrid(false);
+                    }
                 })
                 .catch(() => {
                     busyLoading = false;
