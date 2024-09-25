@@ -35,7 +35,10 @@
         <script>
             $(document).ready(function() {
                 // Starting grid
-                createGrid();
+                createGrid(true);
+
+                // Detect Scroll
+                $(window).on('scroll', scrollCards);
                 
                 // Delete contact button
                 $(".deleteButton").click(function() {
@@ -45,17 +48,31 @@
                 
                 // Search for contacts and create grid button
                 $(".searchSubmitBtn").click(function() {
-                    createGrid();
+                    createGrid(true);
                 });
             });
 
+            function scrollCards() {
+                if($(window).scrollTop() + $(window).height() >= $(document).height() - 10) {
+                    createGrid(false);
+                }
+            }
+
+            let offset = 0;
+            let cardSets = 0;
+            let busyLoading = false;
+
             // Create grid of contacts
-            function createGrid() {
+            function createGrid(firstSet) {
+                if(busyLoading) return;
+                busyLoading = true;
+                
                 let elements = document.getElementsByClassName("contactWrapper");
 
-                // Remove current displayed cards
-                while(elements.length > 0) {
+                // Remove current displayed cards if we are resetting (aka first set of cards)
+                while(elements.length > 0 && firstSet) {
                     elements[0].parentNode.removeChild(elements[0]);
+                    offset = 0;
                 }
 
                 // Fetch contacts based on search
@@ -65,7 +82,7 @@
                 urlRequest.searchParams.append('user_id', sessionStorage.getItem("userID"));
                 urlRequest.searchParams.append('search_string', document.getElementById("searchText").value);
                 urlRequest.searchParams.append('limit', 12);
-                urlRequest.searchParams.append('offset', 0);
+                urlRequest.searchParams.append('offset', offset);
                 
                 console.log(urlRequest.toString());
                 
@@ -125,8 +142,12 @@
                                 }
                             });
                         });
+
+                        offset += data.result.length;
                     }
                 });
+
+                busyLoading = false;
             }
     
             // Edit contact button
