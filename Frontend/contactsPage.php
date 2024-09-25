@@ -142,7 +142,8 @@
                                 }
                             });
                         });
-
+                        console.log(offset);
+                        console.log(data.result.length);
                         offset += data.result.length;
                     }
                 });
