@@ -161,7 +161,7 @@
                     
                     // Load until scroll bar appears or all loaded.
                     if($(document).height() == $(window).height()) {
-                        createGrid(false);
+                        // createGrid(false);
                     }
                 })
                 .catch(() => {
