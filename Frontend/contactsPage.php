@@ -39,7 +39,7 @@
                 console.log("Document Height: ", $(document).height());
                 console.log("Window Height: ", $(window).height());
                 // Load until scroll bar appears or all loaded.
-                while(document.documentElement.scrollHeight == window.innerHeight) {
+                while(document.documentElement.scrollHeight != window.innerHeight) {
                     if(createGrid(false) == 0) break;
                 }
 
