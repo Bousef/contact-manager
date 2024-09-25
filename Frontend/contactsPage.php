@@ -157,7 +157,7 @@
                     busyLoading = false;
                     
                     // Load until scroll bar appears or all loaded.
-                    if(document.documentElement.scrollHeight < window.innerHeight && data.result.length != 0) {
+                    if($(document).height() < $(window).height() && data.result.length != 0) {
                         createGrid(false)
                     }
                 })
