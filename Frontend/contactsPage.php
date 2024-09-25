@@ -163,7 +163,7 @@
 }
                     
                     // Load until scroll bar appears or all loaded.
-                    if($(document).height() < $(window).height() && data.result.length != 0) {
+                    if($(document).height() - 1000 < $(window).height() && data.result.length != 0) {
                         createGrid(false)
                     }
                 })
