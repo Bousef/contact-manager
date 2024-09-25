@@ -153,9 +153,12 @@
                         console.log(data.result.length);
                         offset += data.result.length;
                     }
+                    // I think this belongs here due to async
+                    busyLoading = false;
+                })
+                .catch(() => {
+                    busyLoading = false;
                 });
-
-                busyLoading = false;
             }
     
             // Edit contact button
