@@ -156,7 +156,7 @@
                     // Say finish loading so another createGrid() function can be triggered.
                     busyLoading = false;
 
-            if ($(document).height() < $(window).height()) {
+            if ($(document).height() - 1000 < $(window).height()) {
     console.log("Page requires a scrollbar.");
 } else {
     console.log("Page does not require a scrollbar.");
