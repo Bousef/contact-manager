@@ -36,23 +36,6 @@
             $(document).ready(function() {
                 // Starting grid
                 createGrid(true);
-                console.log("Document Height: ", $(document).height());
-                console.log("Window Height: ", $(window).height());
-                // Load until scroll bar appears or all loaded.
-                while(document.documentElement.scrollHeight != window.innerHeight) {
-                    if(createGrid(false) == 0) break;
-                }
-
-                if ($(document).height() > $(window).height()) {
-    console.log("Page requires a scrollbar.");
-} else {
-    console.log("Page does not require a scrollbar.");
-}
-if (document.documentElement.scrollHeight > window.innerHeight) {
-    console.log("Page requires a scrollbar.");
-} else {
-    console.log("Page does not require a scrollbar.");
-}
 
                 // Detect Scroll
                 $(window).on('scroll', scrollCards);
@@ -170,10 +153,13 @@ if (document.documentElement.scrollHeight > window.innerHeight) {
                         console.log(data.result.length);
                         offset += data.result.length;
                     }
-                    // I think this belongs here due to async
+                    // Say finish loading so another createGrid() function can be triggered.
                     busyLoading = false;
-
-                    return data.result.length;
+                    
+                    // Load until scroll bar appears or all loaded.
+                    if(document.documentElement.scrollHeight < window.innerHeight && data.result.length != 0) {
+                        createGrid(false)
+                    }
                 })
                 .catch(() => {
                     busyLoading = false;
