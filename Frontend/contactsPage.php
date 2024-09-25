@@ -36,6 +36,12 @@
             $(document).ready(function() {
                 // Starting grid
                 createGrid(true);
+                console.log("Document Height: ", $(document).height());
+                console.log("Window Height: ", $(window).height());
+                // Load until scroll bar appears or all loaded.
+                while($(document).height() == $(window).height()) {
+                    if(createGrid(false) == 0) break;
+                }
 
                 // Detect Scroll
                 $(window).on('scroll', scrollCards);
@@ -156,13 +162,7 @@
                     // I think this belongs here due to async
                     busyLoading = false;
 
-                    console.log("Document Height: ", $(document).height());
-                    console.log("Window Height: ", $(window).height());
-                    
-                    // Load until scroll bar appears or all loaded.
-                    if($(document).height() == $(window).height()) {
-                        // createGrid(false);
-                    }
+                    return data.result.length;
                 })
                 .catch(() => {
                     busyLoading = false;
