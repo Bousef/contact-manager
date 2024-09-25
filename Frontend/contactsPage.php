@@ -70,7 +70,7 @@ if (document.documentElement.scrollHeight > window.innerHeight) {
             });
 
             function scrollCards() {
-                if($(window).scrollTop() + $(window).height() >= $(document).height() - 10) {
+                if($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
                     createGrid(false);
                 }
             }
