@@ -66,7 +66,7 @@
             function createGrid(firstSet) {
 
                 console.log("initial offset: " + offset);
-                console.log("initial cardSets: " + cradSets);
+                console.log("initial cardSets: " + cardSets);
                 console.log("initial busyLoading: " + busyLoading);
                 console.log("initial firstSet: " + firstSet);
                 console.log("initial busyLoading: " + busyLoading);
