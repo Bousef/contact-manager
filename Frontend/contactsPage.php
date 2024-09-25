@@ -43,6 +43,17 @@
                     if(createGrid(false) == 0) break;
                 }
 
+                if ($(document).height() > $(window).height()) {
+    console.log("Page requires a scrollbar.");
+} else {
+    console.log("Page does not require a scrollbar.");
+}
+if (document.documentElement.scrollHeight > window.innerHeight) {
+    console.log("Page requires a scrollbar.");
+} else {
+    console.log("Page does not require a scrollbar.");
+}
+
                 // Detect Scroll
                 $(window).on('scroll', scrollCards);
                 
