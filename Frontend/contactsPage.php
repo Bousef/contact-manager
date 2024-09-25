@@ -39,9 +39,9 @@
                 console.log("Document Height: ", $(document).height());
                 console.log("Window Height: ", $(window).height());
                 // Load until scroll bar appears or all loaded.
-                while($(document).height() == $(window).height()) {
-                    if(createGrid(false) == 0) break;
-                }
+                //while($(document).height() == $(window).height()) {
+                //    if(createGrid(false) == 0) break;
+                //}
 
                 // Detect Scroll
                 $(window).on('scroll', scrollCards);
