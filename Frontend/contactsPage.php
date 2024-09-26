@@ -157,14 +157,16 @@
                 .catch(() => {
                     busyLoading = false;
                 })
-                .then(() => {
-                    // Say finish loading so another createGrid() function can be triggered.
-                    busyLoading = false;
-                    
-                    // Load until scroll bar appears or all loaded.
-                    if(!checkPageSize() && data.result.length != 0) {
-                        createGrid(false);
-                    }
+                .finally(() => {
+                    setTimeout(function() {
+                        // Say finish loading so another createGrid() function can be triggered.
+                        busyLoading = false;
+                        
+                        // Load until scroll bar appears or all loaded.
+                        if(!checkPageSize() && data.result.length != 0) {
+                            createGrid(false);
+                        }
+                    }, 100); // STUPID DELAY bc js sucks (this alone costed me 12 hours for unneeded feature.)
                 });
             }
 
