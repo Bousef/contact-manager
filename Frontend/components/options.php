@@ -70,9 +70,7 @@
           method: 'GET',
         })
         .then(async(response) => {
-          data = await response.json();
-          console.log(data);
-          window.location.href = "https://jo531962ucf.xyz/";
+          doLogout();
         })
       }
     }
