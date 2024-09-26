@@ -152,16 +152,18 @@
                         console.log(offset);
                         console.log(data.result.length);
                         offset += data.result.length;
-                        
-                        setTimeout(function() {
-                            // Say finish loading so another createGrid() function can be triggered.
-                            busyLoading = false;
-                            
-                            // Load until scroll bar appears or all loaded.
-                            if(!checkPageSize() && data.result.length != 0) {
-                                createGrid(false);
-                            }
-                        }, 100); // STUPID DELAY bc js sucks (this alone costed me 12 hours for unneeded feature.)
+
+                        requestAnimationFrame(() => {
+                            setTimeout(function() {
+                                // Say finish loading so another createGrid() function can be triggered.
+                                busyLoading = false;
+                                
+                                // Load until scroll bar appears or all loaded.
+                                if(!checkPageSize() && data.result.length != 0) {
+                                    createGrid(false);
+                                }
+                            }, 10); // STUPID DELAY bc js sucks (this alone costed me 12 hours for unneeded feature.)
+                        });
                     }
                 })
                 .catch(() => {
