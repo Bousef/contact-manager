@@ -12,7 +12,7 @@
         }
 
         // Prepare the SQL statement to call the stored procedure read_contacts_for_user
-        $stmt = $conn->prepare("CALL read_contacts_for_user(?, '')");
+        $stmt = $conn->prepare("CALL read_contacts_for_user(?, '', 0, 0)");
         if (!$stmt) 
         {
             send_error_response(ErrorCodes::STATEMENT_PREPARATION_FAILED);
