@@ -58,7 +58,22 @@
     function doDeleteAccount() {
       if(confirm("Permanently Delete User?")) {
         alert(sessionStorage.getItem("userID"));
-        window.location.href = "https://jo531962ucf.xyz/";
+        
+        let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/users/users.php")
+        urlRequest.searchParams.append('req_type', 'delete');
+        urlRequest.searchParams.append('user_id', sessionStorage.getItem("userID"));
+
+        fetch(urlRequest, {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          method: 'GET',
+        })
+        .then(async(response) => {
+          data = await response.json();
+          console.log(data);
+          window.location.href = "https://jo531962ucf.xyz/";
+        })
       }
     }
   </script>
