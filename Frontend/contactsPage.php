@@ -73,6 +73,7 @@
                 while(elements.length > 0 && firstSet) {
                     elements[0].parentNode.removeChild(elements[0]);
                     offset = 0;
+                    document.getElementById("footerText").style.display = "none";
                 }
 
                 // Fetch contacts based on search
