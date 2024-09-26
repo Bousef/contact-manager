@@ -169,6 +169,10 @@
             }
 
             function checkPageSize() {
+                console.log($(document).height() > $(window).height());
+                console.log($(document).height() < $(window).height());
+                console.log($(document).height() == $(window).height());
+                console.log($(document).height() === $(window).height());
                 return $(document).height() > $(window).height();
             }
     
