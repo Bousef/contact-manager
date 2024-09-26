@@ -162,7 +162,7 @@
                                 if(!checkPageSize() && data.result.length != 0) {
                                     createGrid(false);
                                 }
-                            }, 250); // STUPID DELAY bc js sucks (this alone costed me 12 hours for unneeded feature.)
+                            }, 1000); // STUPID DELAY bc js sucks (this alone costed me 12 hours for unneeded feature.)
                         });
                     }
                 })
