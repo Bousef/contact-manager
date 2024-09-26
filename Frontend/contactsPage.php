@@ -157,7 +157,7 @@
                 .catch(() => {
                     busyLoading = false;
                 })
-                .finally(() => {
+                .done(() => {
                     // Say finish loading so another createGrid() function can be triggered.
                     busyLoading = false;
                     
