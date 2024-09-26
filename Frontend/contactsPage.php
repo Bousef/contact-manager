@@ -153,6 +153,10 @@
                                 if(!checkPageSize() && data.result.length != 0) {
                                     createGrid(false);
                                 }
+
+                                if(data.result.length == 0) {
+                                    document.getElementById("footerText").style.display = "block";
+                                }
                             }, 1000); // STUPID DELAY bc js sucks (this alone costed me 12 hours for unneeded feature.)
                         });
                     }
@@ -208,7 +212,7 @@
 
       </script>
 </div>
-<div><h1>bottom text</h1></div>
+<div style = "display: none" id = "footerText"><h1 style = "text-align: center;">All contacts displayed</h1></div>
 
 </body>
 </html>
