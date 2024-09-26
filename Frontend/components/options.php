@@ -57,7 +57,8 @@
   
     function doDeleteAccount() {
       if(confirm("Permanently Delete User?")) {
-        alert("del");
+        alert(sessionStorage.getItem("userID"));
+        window.location.href = "https://jo531962ucf.xyz/";
       }
     }
   </script>
