@@ -57,8 +57,6 @@
   
     function doDeleteAccount() {
       if(confirm("Permanently Delete User?")) {
-        alert(sessionStorage.getItem("userID"));
-        
         let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/users/users.php")
         urlRequest.searchParams.append('req_type', 'delete');
         urlRequest.searchParams.append('user_id', sessionStorage.getItem("userID"));
