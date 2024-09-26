@@ -64,13 +64,6 @@
 
             // Create grid of contacts
             function createGrid(firstSet) {
-
-                console.log("initial offset: " + offset);
-                console.log("initial cardSets: " + cardSets);
-                console.log("initial busyLoading: " + busyLoading);
-                console.log("initial firstSet: " + firstSet);
-                console.log("initial busyLoading: " + busyLoading);
-                
                 if(busyLoading) return;
                 busyLoading = true;
                 
@@ -149,8 +142,6 @@
                                 }
                             });
                         });
-                        console.log(offset);
-                        console.log(data.result.length);
                         offset += data.result.length;
 
                         requestAnimationFrame(() => {
@@ -174,10 +165,6 @@
             }
 
             function checkPageSize() {
-                console.log($(document).height() > $(window).height());
-                console.log($(document).height() < $(window).height());
-                console.log($(document).height() == $(window).height());
-                console.log($(document).height() === $(window).height());
                 return $(document).height() > $(window).height();
             }
     
@@ -221,6 +208,7 @@
 
       </script>
 </div>
+<div><h1>bottom text</h1></div>
 
 </body>
 </html>
