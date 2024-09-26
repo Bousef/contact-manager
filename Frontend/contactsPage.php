@@ -157,7 +157,7 @@
                                 if(data.result.length == 0) {
                                     document.getElementById("footerText").style.display = "block";
                                 }
-                            }, 1000); // STUPID DELAY bc js sucks (this alone costed me 12 hours for unneeded feature.)
+                            }, 500); // STUPID DELAY bc js sucks (this alone costed me 12 hours for unneeded feature.)
                         });
                     }
                 })
