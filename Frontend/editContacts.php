@@ -16,7 +16,7 @@
     <link href="components/styles/card.css" rel="stylesheet">
     <link href="components/styles/options.css" rel="stylesheet">
 </head>
-<body id="body">
+<body id="body" onload="autofillDetails(<?php echo $json_decoded['contact_id']; ?>)">
     <?php include 'components/navBar.php'; ?>
     <div class="login-title">
         <h2 id="title">Edit Contact</h2>
@@ -93,7 +93,7 @@
                             console.error(data.error_code);
                             console.error(data.error_message);
 
-                            $("#editResult").append("<p>ERROR: Contact not edited  data.success==falseo</p>");
+                            $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
                         } else if (data.success == true) {
                             let contact = data.contact;
 
@@ -187,7 +187,7 @@
                             console.error(data.error_code);
                             console.error(data.error_message);
 
-                            $("#editResult").append("<p>ERROR: Contact not edited  data.success==falseo</p>");
+                            $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
                         } else if (data.success == true) {
                             let address_form = document.getElementById("address_form");
 
