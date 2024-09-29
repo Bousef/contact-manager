@@ -69,6 +69,9 @@
 
             function autofillDetails(contact_id)
             {
+
+                console.log("autofillDetails function called with contact_id: " + contact_id); //Debugging
+
                 let get_contact_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
                 get_contact_request.searchParams.append('req_type', 'get');
                 get_contact_request.searchParams.append('contact_id', contact_id);
