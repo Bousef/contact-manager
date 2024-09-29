@@ -93,7 +93,7 @@
                             console.error(data.error_code);
                             console.error(data.error_message);
 
-                            $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
+                            $("#editResult").append("<p>ERROR: Contact not edited  data.success==falseo</p>");
                         } else if (data.success == true) {
                             let contact = data.contact;
 
@@ -187,7 +187,7 @@
                             console.error(data.error_code);
                             console.error(data.error_message);
 
-                            $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
+                            $("#editResult").append("<p>ERROR: Contact not edited  data.success==falseo</p>");
                         } else if (data.success == true) {
                             let address_form = document.getElementById("address_form");
 
