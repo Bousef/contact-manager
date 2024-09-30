@@ -16,7 +16,7 @@
     <link href="components/styles/card.css" rel="stylesheet">
     <link href="components/styles/options.css" rel="stylesheet">
 </head>
-<body id="body" onload="autofillContact(<?php echo $json_decoded['contact_id']; ?>)">
+<body id="body">
     <?php include 'components/navBar.php'; ?>
     <div class="login-title">
         <h2 id="title">Edit Contact</h2>
@@ -66,6 +66,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <script>
+             document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOMContentLoaded event triggered');
+            autofillContact(<?php echo json_encode($json_decoded['contact_id']); ?>);
+        });
+
          function autofillContact(contact_id) {
     console.log("autofillContact called with contact_id:", contact_id); // Debugging statement
 
@@ -286,7 +291,6 @@
                     if (address_line_02) address_line_02.placeholder = "Optional";
 
                 }
-                autofillContact(<?php echo $json_decoded['contact_id']; ?>);
 
                 autofillAddressFields();
         
