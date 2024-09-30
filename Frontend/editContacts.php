@@ -66,88 +66,86 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <script>
-         function autofillDetails(contact_id) {
-            console.log("autofillDetails called with contact_id:", contact_id); // Debugging
+         function autofillContact(contact_id) {
+    console.log("autofillContact called with contact_id:", contact_id); // Debugging statement
 
-            if (!contact_id)
-            {
-            console.error("No contact_id provided");
-             return;
-            }
+    let get_contact_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+    get_contact_request.searchParams.append('req_type', 'get');
+    get_contact_request.searchParams.append('contact_id', contact_id);
 
-            let get_contact_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
-            get_contact_request.searchParams.append('req_type', 'get');
-            get_contact_request.searchParams.append('contact_id', contact_id);
-
-            fetch(get_contact_request, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                method: 'GET',
-            })
-            .then(async (response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                let data = await response.json();
-                console.log("Data received:", data);
-
-                if (data.success == false) {
-                    console.error(data.error_code);
-                    console.error(data.error_message);
-                    $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
-                } else if (data.success == true) {
-                    let contact = data.contact;
-                    document.getElementById("first_name").value = contact.first_name;
-                    document.getElementById("last_name").value = contact.last_name;
-                    document.getElementById("phone_number").value = contact.phone_number;
-                    document.getElementById("email").value = contact.email;
-
-                    let address_form = document.getElementById("address_form");
-
-                    if (address_form) {
-                        let get_address_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
-                        get_address_request.searchParams.append('req_type', 'get');
-                        get_address_request.searchParams.append('contact_id', contact_id);
-
-                        fetch(get_address_request, {
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            method: 'GET',
-                        })
-                        .then(async (response) => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-
-                            let data = await response.json();
-                            console.log("Address data received:", data); // Debugging statement
-
-                            if (data.success == false) {
-                                console.log(data);
-                                $("#editResult").append("<p>Contact Update Failed</p>");
-                            } else if (data.success == true) {
-                                let address = data.address;
-                                address_form.querySelector('#address_line_01').value = address.address_line_01;
-                                address_form.querySelector('#address_line_02').value = address.address_line_02;
-                                address_form.querySelector('#city').value = address.city;
-                                address_form.querySelector('#state').value = address.state;
-                                address_form.querySelector('#zip_code').value = address.zip_code;
-                            }
-                        })
-                        .catch(error => {
-                            console.error(error);
-                            $("#editResult").append("<p>ERROR: Contact not edited  .catch(error2</p>");
-                        });
-                    }
-                }
-            })
-            .catch(error => {
-                console.error("Fetch error:", error);
-            });
+    fetch(get_contact_request, {
+        headers: {
+            "Content-Type": "application/json",
+        },
+        method: 'GET',
+    })
+    .then(async (response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+
+        let data = await response.json();
+        console.log("Contact data received:", data); // Debugging statement
+
+        if (data.success == false) {
+            console.error(data.error_code);
+            console.error(data.error_message);
+            $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
+        } else if (data.success == true) {
+            let contact = data.contact;
+            document.getElementById("first_name").value = contact.first_name;
+            document.getElementById("last_name").value = contact.last_name;
+            document.getElementById("phone_number").value = contact.phone_number;
+            document.getElementById("email").value = contact.email;
+        }
+    })
+    .catch(error => {
+        console.error("Fetch error:", error); // Debugging statement
+    });
+}
+         function autofillAddressFields() {
+         let contact_id = <?php echo json_encode($json_decoded['contact_id']); ?>;
+    console.log("autofillAddressFields called with contact_id:", contact_id); // Debugging statement
+
+    let get_address_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
+    get_address_request.searchParams.append('req_type', 'get');
+    get_address_request.searchParams.append('contact_id', contact_id);
+
+    fetch(get_address_request, {
+        headers: {
+            "Content-Type": "application/json",
+        },
+        method: 'GET',
+    })
+    .then(async (response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        let data = await response.json();
+        console.log("Address data received:", data); // Debugging statement
+
+        if (data.success == false) {
+            console.log(data);
+            $("#editResult").append("<p>Contact Update Failed</p>");
+        } else if (data.success == true) {
+            let address = data.address;
+            let address_form = document.getElementById("address_form");
+            if (address_form) {
+                address_form.querySelector('.address_line_01').value = address.address_line_01;
+                address_form.querySelector('.address_line_02').value = address.address_line_02;
+                address_form.querySelector('.city').value = address.city;
+                address_form.querySelector('.state').value = address.state;
+                address_form.querySelector('.zip_code').value = address.zip_code;
+            }
+        }
+    })
+    .catch(error => {
+        console.error("Fetch error:", error); // Debugging statement
+    });
+         }
+
+            
             // Function to handle form submission
             function doEditContact(contact_id) {
 
@@ -288,6 +286,8 @@
                     if (address_line_02) address_line_02.placeholder = "Optional";
 
                 }
+
+                autofillAddressFields();
         
             }
 
