@@ -16,7 +16,7 @@
     <link href="components/styles/card.css" rel="stylesheet">
     <link href="components/styles/options.css" rel="stylesheet">
 </head>
-<body id="body" onload="autofillDetails(<?php echo $json_decoded['contact_id']; ?>)">
+<body id="body" onload="autofillContact(<?php echo $json_decoded['contact_id']; ?>)">
     <?php include 'components/navBar.php'; ?>
     <div class="login-title">
         <h2 id="title">Edit Contact</h2>
@@ -286,6 +286,7 @@
                     if (address_line_02) address_line_02.placeholder = "Optional";
 
                 }
+                autofillContact(<?php echo $json_decoded['contact_id']; ?>);
 
                 autofillAddressFields();
         
