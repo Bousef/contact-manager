@@ -16,7 +16,7 @@
     <link href="components/styles/card.css" rel="stylesheet">
     <link href="components/styles/options.css" rel="stylesheet">
 </head>
-<body id="body">
+<body id="body" onload="autofillDetails(<?php echo $json_decoded['contact_id']; ?>)">
     <?php include 'components/navBar.php'; ?>
     <div class="login-title">
         <h2 id="title">Edit Contact</h2>
@@ -66,8 +66,92 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <script>
+                    function autofillDetails(contact_id) {
+            console.log("autofillDetails called with contact_id:", contact_id); // Debugging statement
 
-    
+            let get_contact_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+            get_contact_request.searchParams.append('req_type', 'get');
+            get_contact_request.searchParams.append('contact_id', contact_id);
+
+            fetch(get_contact_request, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: 'GET',
+            })
+            .then(async (response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                let data = await response.json();
+                console.log("Data received:", data); // Debugging statement
+
+                if (data.success == false) {
+                    console.error(data.error_code);
+                    console.error(data.error_message);
+                    $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
+                } else if (data.success == true) {
+                    let contact = data.contact;
+                    document.getElementById("first_name").value = contact.first_name;
+                    document.getElementById("last_name").value = contact.last_name;
+                    document.getElementById("phone_number").value = contact.phone_number;
+                    document.getElementById("email").value = contact.email;
+
+                    let address_form = document.getElementById("address_form");
+
+                    if (address_form) {
+                        let get_address_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
+                        get_address_request.searchParams.append('req_type', 'get');
+                        get_address_request.searchParams.append('contact_id', contact_id);
+
+                        fetch(get_address_request, {
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            method: 'GET',
+                        })
+                        .then(async (response) => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+
+                            let data = await response.json();
+                            console.log("Address data received:", data); // Debugging statement
+
+                            if (data.success == false) {
+                                console.log(data);
+                                $("#editResult").append("<p>Contact Update Failed</p>");
+                            } else if (data.success == true) {
+                                let address = data.address;
+                                address_form.querySelector('#address_line_01').value = address.address_line_01;
+                                address_form.querySelector('#address_line_02').value = address.address_line_02;
+                                address_form.querySelector('#city').value = address.city;
+                                address_form.querySelector('#state').value = address.state;
+                                address_form.querySelector('#zip_code').value = address.zip_code;
+                            }
+                        })
+                        .catch(error => {
+                            console.error(error);
+                            $("#editResult").append("<p>ERROR: Contact not edited  .catch(error2</p>");
+                        });
+                    }
+                }
+            })
+            .catch(error => {
+                console.error("Fetch error:", error); // Debugging statement
+            });
+        }
+
+        function toggleAddressField() {
+            const addressFieldsContainer = document.getElementById('addressFieldsContainer');
+            const addressFieldsTemplate = document.getElementById('addressFieldsTemplate');
+
+            if (!addressFieldsContainer.hasChildNodes()) {
+                const clone = addressFieldsTemplate.content.cloneNode(true);
+                addressFieldsContainer.appendChild(clone);
+            }
+        }
 
             // Function to handle form submission
             function doEditContact(contact_id) {
@@ -167,7 +251,7 @@
                 let button = document.getElementById('toggleAddressButton');
 
                 // ...
-                if (container.children.length > 0) 
+                if (container.children.length > 0)
                 {
                     container.innerHTML = '';
                     button.textContent = 'Edit Address';
