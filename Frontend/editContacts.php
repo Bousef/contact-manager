@@ -66,8 +66,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <script>
-                    function autofillDetails(contact_id) {
-            console.log("autofillDetails called with contact_id:", contact_id); // Debugging statement
+         function autofillDetails(contact_id) {
+            console.log("autofillDetails called with contact_id:", contact_id); // Debugging
+
+            if (!contact_id)
+            {
+            console.error("No contact_id provided");
+             return;
+            }
 
             let get_contact_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
             get_contact_request.searchParams.append('req_type', 'get');
@@ -85,7 +91,7 @@
                 }
 
                 let data = await response.json();
-                console.log("Data received:", data); // Debugging statement
+                console.log("Data received:", data);
 
                 if (data.success == false) {
                     console.error(data.error_code);
@@ -139,20 +145,9 @@
                 }
             })
             .catch(error => {
-                console.error("Fetch error:", error); // Debugging statement
+                console.error("Fetch error:", error);
             });
         }
-
-        function toggleAddressField() {
-            const addressFieldsContainer = document.getElementById('addressFieldsContainer');
-            const addressFieldsTemplate = document.getElementById('addressFieldsTemplate');
-
-            if (!addressFieldsContainer.hasChildNodes()) {
-                const clone = addressFieldsTemplate.content.cloneNode(true);
-                addressFieldsContainer.appendChild(clone);
-            }
-        }
-
             // Function to handle form submission
             function doEditContact(contact_id) {
 
