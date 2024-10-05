@@ -180,6 +180,38 @@
 
         }
 
+        case 'export':
+        {
+
+            // Ensure all necessary parameters are set // search_string is always blank, I just don't want to recode a lot.
+            if 
+            (
+                isset($json_decoded['user_id'])         &&
+                isset($json_decoded['search_string'])    &&
+                isset($json_decoded['limit'])    &&
+                isset($json_decoded['offset'])
+            )
+            {
+
+                // Make sure the required parameters are set
+                if ($json_decoded['user_id'] === '')
+                {
+                    send_error_response(ErrorCodes::MISSING_PARAMETERS);
+                    return;
+                }
+
+                require_once 'export.php';
+            }
+            else
+            {
+                send_error_response(ErrorCodes::MISSING_PARAMETERS);
+                return;
+            }
+
+            break;
+
+        }
+
         case 'update':
         {
 
