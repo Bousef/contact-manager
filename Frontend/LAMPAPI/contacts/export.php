@@ -5,5 +5,5 @@
   // Send to user.
   header('Content-Type: text/vcard');
   header('Content-Disposition: attachment; filename="contacts.vcf"');
-  echo $vcf_content;
+  echo $vcf_file;
 ?>
