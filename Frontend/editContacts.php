@@ -98,7 +98,7 @@
             console.error(data.error_message);
             $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
         } else if (data.success == true) {
-            let contact = data.contact;
+            let contact = data.result;
             document.getElementById("first_name").value = contact.first_name;
             document.getElementById("last_name").value = contact.last_name;
             document.getElementById("phone_number").value = contact.phone_number;
@@ -135,7 +135,7 @@
             console.log(data);
             $("#editResult").append("<p>Contact Update Failed</p>");
         } else if (data.success == true) {
-            let address = data.address;
+            let address = data.result;
             let address_form = document.getElementById("address_form");
             if (address_form) {
                 address_form.querySelector('.address_line_01').value = address.address_line_01;
