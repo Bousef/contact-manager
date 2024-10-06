@@ -82,7 +82,12 @@
       urlRequest.searchParams.append('limit', 2147483647); // int max to export all
       urlRequest.searchParams.append('offset', 0);
 
-      
+      fetch(urlRequest, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    method: 'GET',
+      });
     }
   </script>
 </div>
