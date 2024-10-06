@@ -11,7 +11,7 @@
 .options {
   background: #FFFFFF;
   z-index: 1001;
-  position: fixed;
+  position: absolute;
   margin: 10%;
   width: 80%;
   max-width: 500px;
