@@ -75,8 +75,9 @@
     console.log("autofillContact called with contact_id:", contact_id); // Debugging statement
 
     let get_contact_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
-    get_contact_request.searchParams.append('req_type', 'get');
+    get_contact_request.searchParams.append('req_type', 'read');
     get_contact_request.searchParams.append('contact_id', contact_id);
+    get_contact_request.searchParams.append('user_id', sessionStorage.getItem("userID"));
 
     fetch(get_contact_request, {
         headers: {
@@ -113,7 +114,7 @@
     console.log("autofillAddressFields called with contact_id:", contact_id); // Debugging statement
 
     let get_address_request = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/addresses.php");
-    get_address_request.searchParams.append('req_type', 'get');
+    get_address_request.searchParams.append('req_type', 'read');
     get_address_request.searchParams.append('contact_id', contact_id);
 
     fetch(get_address_request, {
