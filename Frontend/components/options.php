@@ -25,7 +25,7 @@
           <input type="file" id="fileInput" accept=".csv,.vcf" required>
         </div>
         <div>
-          <button type="submit" class="profileBtn importBtn" title="Import" aria-label="Import Button">
+          <button type="submit" class="profileBtn importBtn" title="Import" aria-label="Import Contacts Button">
             <i class="fa-solid fa-file-import icon profileIcon"></i>
           </button>
         </div>
@@ -36,7 +36,7 @@
     
     <div class = "optionsChildDiv exportContacts">
       <h3>Export</h3>
-      <button type="submit" class="profileBtn exportBtn" onclick="doLogout()" title="Logout" aria-label="Logout Button">
+      <button type="submit" class="profileBtn exportBtn" onclick="doExport()" title="Export" aria-label="Export Contacts Button">
         <i class="fa-solid fa-file-export icon profileIcon"></i>
       </button>
     </div>
@@ -71,6 +71,12 @@
           doLogout();
         })
       }
+    }
+  
+    function doExport() {
+      let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
+      urlRequest.searchParams.append('req_type', 'export');
+      urlRequest.searchParams.append('user_id', sessionStorage.getItem("userID"));
     }
   </script>
 </div>
