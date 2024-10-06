@@ -245,6 +245,9 @@
 
 
                             }
+                            else {
+                                window.location.href = "/contactsPage.php";
+                            }
                         }
                     })
             }

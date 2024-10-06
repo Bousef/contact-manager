@@ -335,6 +335,7 @@
 
                     // Display the success message
                     $("#form_result_message").append("<p>Contact created successfully</p>");
+                    window.location.href = "/contactsPage.php";
 
                 }
             })
