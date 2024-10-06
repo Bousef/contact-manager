@@ -81,13 +81,13 @@
       urlRequest.searchParams.append('search_string', document.getElementById("searchText").value);
       urlRequest.searchParams.append('limit', 2147483647); // int max to export all
       urlRequest.searchParams.append('offset', 0);
-
-      fetch(urlRequest, {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    method: 'GET',
-      });
+      
+      let downloadLink = document.createElement('a');
+      downloadLink.href = urlRequest.toString();
+      downloadLink.setAttribute('download', 'contacts.vcf');
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
     }
   </script>
 </div>
