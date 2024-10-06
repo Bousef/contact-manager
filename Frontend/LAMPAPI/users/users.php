@@ -122,10 +122,12 @@
                 isset($json_decoded['last_name'])
             )
             {
+                http_response_code(219);
                 update_user($json_decoded['user_id'], $json_decoded['username'], $json_decoded['password'], $json_decoded['first_name'], $json_decoded['last_name']);
             }
             else
             {
+                http_response_code(419);
                 send_error_response(ErrorCodes::MISSING_PARAMETERS);
                 return;
             }
