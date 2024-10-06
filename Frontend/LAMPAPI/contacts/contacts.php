@@ -163,15 +163,18 @@
                 // Make sure the required parameters are set
                 if ($json_decoded['user_id'] === '')
                 {
+                    http_response_code(461);
                     send_error_response(ErrorCodes::MISSING_PARAMETERS);
                     return;
                 }
 
                 // Make sure the required parameters are set
+                http_response_code(220);
                 read_contacts_for_user($json_decoded['user_id'], $json_decoded['search_string'], $json_decoded['limit'], $json_decoded['offset']);
             }
             else
             {
+                http_response_code(461);
                 send_error_response(ErrorCodes::MISSING_PARAMETERS);
                 return;
             }
