@@ -99,10 +99,14 @@
             $("#editResult").append("<p>ERROR: Contact not edited  data.success==false</p>");
         } else if (data.success == true) {
             let contact = data.result;
+            if(contact.first_name == "null" || contact.first_name == "undefined") contact.first_name = " ";
             document.getElementById("first_name").value = contact.first_name;
+            if(contact.last_name == "null" || contact.last_name == "undefined") contact.last_name = " ";
             document.getElementById("last_name").value = contact.last_name;
+            if(contact.phone_number == "null" || contact.phone_number == "undefined") contact.phone_number = " ";
             document.getElementById("phone_number").value = contact.phone_number;
-            document.getElementById("email").value = contact.email;
+            if(contact.email_address == "null" || contact.email_address == "undefined") contact.email_address = " ";
+            document.getElementById("email").value = contact.email_address;
         }
     })
     .catch(error => {
@@ -138,10 +142,15 @@
             let address = data.result;
             let address_form = document.getElementById("address_form");
             if (address_form) {
+                if(address.address_line_01 == "null" || address.address_line_01 == "undefined") address.address_line_01 = " ";
                 address_form.querySelector('.address_line_01').value = address.address_line_01;
+                if(address.address_line_02 == "null" || address.address_line_02 == "undefined") address.address_line_02 = " ";
                 address_form.querySelector('.address_line_02').value = address.address_line_02;
+                if(address.city == "null" || address.city == "undefined") address.city = " ";
                 address_form.querySelector('.city').value = address.city;
+                if(address.state == "null" || address.state == "undefined") address.state = " ";
                 address_form.querySelector('.state').value = address.state;
+                if(address.zip_code == "null" || address.zip_code == "undefined") address.zip_code = " ";
                 address_form.querySelector('.zip_code').value = address.zip_code;
             }
         }
