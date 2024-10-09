@@ -4,7 +4,7 @@
   $contacts = json_decode(ob_get_clean(), true);
   $vcf_file = "";
 
-  foreach($contacts.result as $contact) {
+  //foreach($contacts.result as $contact) {
     
     $vcf_file .= "BEGIN:VCARD\n";
     $vcf_file .= "VERSION:3.0\n";
@@ -13,7 +13,7 @@
     
     $vcf_file .= "END:VCARD\n";
     $vcf_file .= "\n";
-  }
+  //}
 
   // Send to user.
   echo $vcf_file;
