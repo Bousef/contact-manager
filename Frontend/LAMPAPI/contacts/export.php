@@ -15,7 +15,7 @@
   //}
 
   // Send to user.
+  echo $vcf_file;
   header('Content-Type: text/vcard');
   header('Content-Disposition: attachment; filename="contacts.vcf"');
-  echo $vcf_file;
 ?>
