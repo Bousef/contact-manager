@@ -1,6 +1,18 @@
 <?php
-  //read_contacts_for_user($json_decoded['user_id'], $json_decoded['search_string'], $json_decoded['limit'], $json_decoded['offset']);
-  $vcf_file = "test_work_pls";
+  $contacts = read_contacts_for_user($json_decoded['user_id'], $json_decoded['search_string'], $json_decoded['limit'], $json_decoded['offset']);
+  $vcf_file = "";
+
+  foreach($contacts as $contact) {
+    //$address = 
+    
+    $vcf_file .= "BEGIN:VCARD\n";
+    $vcf_file .= "VERSION:3.0\n";
+
+
+    
+    $vcf_file .= "END:VCARD\n";
+    $vcf_file .= "\n";
+  }
 
   // Send to user.
   header('Content-Type: text/vcard');
