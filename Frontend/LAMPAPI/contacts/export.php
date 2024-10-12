@@ -7,19 +7,11 @@
 
   $vcf_file = "";
 
-  foreach($contacts.result as $contact) {
-    
-    //$vcf_file .= $temp1;
-    //$vcf_file .= "\n";
-    //$vcf_file .= $temp2;
-    //$vcf_file .= "\n";
-    //$vcf_file .= "\n";
+  foreach($contacts["result"] as $contact) {
     
     $vcf_file .= "BEGIN:VCARD\n";
     $vcf_file .= "BEGIN:VCARD\n";
     $vcf_file .= "VERSION:3.0\n";
-
-
     
     $vcf_file .= "END:VCARD\n";
     $vcf_file .= "\n";
