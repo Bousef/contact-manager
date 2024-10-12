@@ -74,7 +74,6 @@
     }
   
     function doExport() {
-      alert("export");
       let urlRequest = new URL("https://jo531962ucf.xyz/LAMPAPI/contacts/contacts.php");
       urlRequest.searchParams.append('req_type', 'export');
       urlRequest.searchParams.append('user_id', sessionStorage.getItem("userID"));
