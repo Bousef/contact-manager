@@ -261,21 +261,21 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 
 			
 			if(line.startsWith("ADR;")) {
-				var temp = line.trim();
+				var temp = line.split(":")[1].trim();
 				temp = temp.split(";");
-				if(temp[2] != "") { // Check to see if data exists before assigning.
+				if(temp[1] != "") { // Check to see if data exists before assigning.
 					parsedCard.address_line_02 = temp[2];
 				}
-				if(temp[3] != "") { // Check to see if data exists before assigning.
+				if(temp[2] != "") { // Check to see if data exists before assigning.
 					parsedCard.address_line_01 = temp[3];
 				}
-				if(temp[4] != "") { // Check to see if data exists before assigning.
+				if(temp[3] != "") { // Check to see if data exists before assigning.
 					parsedCard.city = temp[4];
 				}
-				if(temp[5] != "") { // Check to see if data exists before assigning.
+				if(temp[4] != "") { // Check to see if data exists before assigning.
 					parsedCard.state = temp[5];
 				}
-				if(temp[6] != "") { // Check to see if data exists before assigning.
+				if(temp[5] != "") { // Check to see if data exists before assigning.
 					parsedCard.zip_code = temp[6];
 				}
 			}
