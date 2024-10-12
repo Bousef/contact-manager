@@ -17,6 +17,7 @@
     if($contact['phone_number']) $vcf_file .= "TEL;CELL:{$contact['phone_number']}\n";
     if($contact['email_address']) $vcf_file .= "EMAIL;HOME:{$contact['email_address']}\n";
 
+    // Addresses
     //require_once 'addresses/read_address_for_contact.php';
     //read_address_for_contact($contact['id']);
     //$address = json_decode(ob_get_clean(), true);
