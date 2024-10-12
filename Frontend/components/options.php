@@ -36,7 +36,7 @@
     
     <div class = "optionsChildDiv exportContacts">
       <h3>Export</h3>
-      <button type="submit" class="profileBtn exportBtn" onclick="doExport()" title="Export" aria-label="Export Contacts Button">
+      <button type="submit" class="profileBtn exportBtn" onclick="doExport()" title="Export Searched Contacts" aria-label="Export Contacts Button">
         <i class="fa-solid fa-file-export icon profileIcon"></i>
       </button>
     </div>
