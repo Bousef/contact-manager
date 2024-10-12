@@ -10,14 +10,16 @@
   foreach($contacts["result"] as $contact) {
     
     $vcf_file .= "BEGIN:VCARD\n";
-    $vcf_file .= "VERSION:2.1\n";
+    $vcf_file .= "VERSION:3.0\n";
 
     if($contact['last_name'] || $contact['first_name']) $vcf_file .= "N:{$contact['last_name']};{$contact['first_name']};;;\n";
     if($contact['last_name'] || $contact['first_name']) $vcf_file .= "FN:{$contact['first_name']} {$contact['last_name']}\n";
     if($contact['phone_number']) $vcf_file .= "TEL;CELL:{$contact['phone_number']}\n";
     if($contact['email_address']) $vcf_file .= "EMAIL;HOME:{$contact['email_address']}\n";
 
-    //if($address) $vcf_content .= "ADR;TYPE=HOME:;;{$address['address_line_01']};{$address['city']};{$address['state']};{$address['zip_code']}\n";
+    read_address_for_contact($contact['id']);
+    $address = json_decode(ob_get_clean(), true);
+    if($address) $vcf_content .= "ADR;TYPE=HOME:;{$address['address_line_02']};{$address['address_line_01']};{$address['city']};{$address['state']};{$address['zip_code']}\n";
     
     $vcf_file .= "END:VCARD\n";
     $vcf_file .= "\n";
