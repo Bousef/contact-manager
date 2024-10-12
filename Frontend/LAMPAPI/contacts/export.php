@@ -10,8 +10,12 @@
   foreach($contacts["result"] as $contact) {
     
     $vcf_file .= "BEGIN:VCARD\n";
-    $vcf_file .= "BEGIN:VCARD\n";
-    $vcf_file .= "VERSION:3.0\n";
+    $vcf_file .= "VERSION:2.1\n";
+
+    $vcf_file .= "N:{$contact['last_name']};{$contact['first_name']};;;\n";
+    $vcf_file .= "FN:{$contact['first_name']} {$contact['last_name']}\n";
+    $vcf_file .= "TEL;CELL:{$contact['phone_number']}\n";
+    $vcf_file .= "EMAIL;HOME:{$contact['email_address']}\n";
     
     $vcf_file .= "END:VCARD\n";
     $vcf_file .= "\n";
