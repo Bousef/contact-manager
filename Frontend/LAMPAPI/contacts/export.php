@@ -15,9 +15,9 @@
     $vcf_file .= "\n";
   //}
 
+  ob_end_clean();
   // Send to user.
   header('Content-Type: text/vcard');
   header('Content-Disposition: attachment; filename="contacts.vcf"');
   echo $vcf_file;
-  ob_end_clean();
 ?>
