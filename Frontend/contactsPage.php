@@ -124,7 +124,7 @@
                                         if(addressData.success == false){
                                             addressStr = " ";
                                         } else {
-                                            addressStr = "" + addressData.result.address_line_02.toString() + ", " + addressData.result.address_line_01.toString() + " " + addressData.result.city.toString() + " " + addressData.result.state.toString() + " " + addressData.result.zip_code.toString();
+                                            addressStr = "" + addressData.result.address_line_02.toString() + (addressData.result.address_line_02 ? ", " : "") + addressData.result.address_line_01.toString() + " " + addressData.result.city.toString() + " " + addressData.result.state.toString() + " " + addressData.result.zip_code.toString();
                                         }
                                         console.log(addressStr);
                                         
