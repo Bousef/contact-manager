@@ -15,7 +15,6 @@
     } else {
       $contact['address'] = $address['result'];
     }
-    ob_end_clean();
   }
 
   $vcf_file = "";
