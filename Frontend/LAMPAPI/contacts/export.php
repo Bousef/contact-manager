@@ -7,7 +7,7 @@
 
   $vcf_file = "";
 
-  foreach($contacts as $contact) {
+  foreach($contacts.result as $contact) {
     
     //$vcf_file .= $temp1;
     //$vcf_file .= "\n";
