@@ -19,8 +19,8 @@
 
     require_once 'addresses/read_address_for_contact.php';
     read_address_for_contact($contact['id']);
-    $address = json_decode(ob_get_clean(), true)["result"];
-    if($address) $vcf_file .= "ADR;TYPE=HOME:;{$address['address_line_02']};{$address['address_line_01']};{$address['city']};{$address['state']};{$address['zip_code']}\n";
+    $address = json_decode(ob_get_clean(), true);
+    if($address) $vcf_file .= "ADR;TYPE=HOME:;{$address["result"]['address_line_02']};{$address["result"]['address_line_01']};{$address["result"]['city']};{$address["result"]['state']};{$address["result"]['zip_code']}\n";
     
     $vcf_file .= "END:VCARD\n";
     $vcf_file .= "\n";
