@@ -264,19 +264,19 @@ document.getElementById("importForm").addEventListener("submit", function(event)
 				var temp = line.split(":")[1].trim();
 				temp = temp.split(";");
 				if(temp[1] != "") { // Check to see if data exists before assigning.
-					parsedCard.address_line_02 = temp[2];
+					parsedCard.address_line_02 = temp[1];
 				}
 				if(temp[2] != "") { // Check to see if data exists before assigning.
-					parsedCard.address_line_01 = temp[3];
+					parsedCard.address_line_01 = temp[2];
 				}
 				if(temp[3] != "") { // Check to see if data exists before assigning.
-					parsedCard.city = temp[4];
+					parsedCard.city = temp[3];
 				}
 				if(temp[4] != "") { // Check to see if data exists before assigning.
-					parsedCard.state = temp[5];
+					parsedCard.state = temp[4];
 				}
 				if(temp[5] != "") { // Check to see if data exists before assigning.
-					parsedCard.zip_code = temp[6];
+					parsedCard.zip_code = temp[5];
 				}
 			}
 		});
