@@ -2,9 +2,11 @@
   ob_start();
   read_contacts_for_user($json_decoded['user_id'], $json_decoded['search_string'], $json_decoded['limit'], $json_decoded['offset']);
   $contacts = json_decode(ob_get_clean(), true);
+  ob_end_clean();
 
   // Find address
-  foreach($contacts["result"] as $contact) {
+  foreach($contacts["result"] as &$contact) {
+    ob_start();
     require_once 'addresses/read_address_for_contact.php';
     read_address_for_contact($contact['id']);
     $address = json_decode(ob_get_clean(), true);
@@ -13,6 +15,7 @@
     } else {
       $contact['address'] = $address['result'];
     }
+    ob_end_clean();
   }
 
   $vcf_file = "";
@@ -31,7 +34,6 @@
     $vcf_file .= "\n";
   }
 
-  ob_end_clean();
   // Send to user.
   header('Content-Type: text/vcard');
   header('Content-Disposition: attachment; filename="contacts.vcf"');
